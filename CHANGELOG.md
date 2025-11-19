@@ -7,13 +7,22 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
-### Planeado para v0.1.0
-- Comando `init` funcional para inicializar proyectos
-- Comando `doctor` funcional para diagnóstico del sistema
-- Sistema de templates completo
-- Servicios core: FileSystemService, ConfigurationService, TemplateService
-- Tests unitarios con cobertura ≥ 85%
-- CI/CD con GitHub Actions
+### En progreso
+- Issue #2: FileSystemService
+- Issue #3: ConfigurationService
+- Issue #4: TemplateService
+- Issue #5: Comando `init` funcional
+- Issue #6: Comando `doctor` funcional
+
+### Completado recientemente
+- ✅ **2024-11-19**: Issue #1 - Estructura base del proyecto
+  - Solución .NET 10 configurada y funcional
+  - Proyectos principal y de tests creados
+  - Todos los paquetes NuGet instalados
+  - Build exitoso (0 errores)
+  - Tests ejecutándose correctamente (1/1 passing)
+  - Nullable reference types habilitado
+  - C# 13 configurado
 
 ## [0.1.0] - TBD (Fase 1 - MVP)
 

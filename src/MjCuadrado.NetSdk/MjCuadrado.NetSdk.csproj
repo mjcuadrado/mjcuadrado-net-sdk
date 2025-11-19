@@ -5,11 +5,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>13</LangVersion>
     <AssemblyName>mjcuadrado-net-sdk</AssemblyName>
     <Version>0.1.0</Version>
     <Authors>@mjcuadrado</Authors>
-    <Description>SDK para desarrollo automatizado con IA - Inspirado en moai-adk</Description>
+    <Description>SDK para desarrollo automatizado con IA - Inspirado en moai-adk. Compatible con .NET 9.0+</Description>
   </PropertyGroup>
 
   <ItemGroup>
