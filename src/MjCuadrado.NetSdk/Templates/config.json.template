@@ -1,0 +1,30 @@
+{
+  "project": {
+    "name": "{{PROJECT_NAME}}",
+    "version": "0.1.0",
+    "template_version": "0.1.0",
+    "created": "{{DATE}}",
+    "updated": "{{DATE}}",
+    "language": "csharp",
+    "framework": "{{FRAMEWORK}}",
+    "mode": "personal",
+    "author": "{{AUTHOR}}"
+  },
+  "sdk": {
+    "version": "{{SDK_VERSION}}",
+    "min_dotnet_version": "9.0.0"
+  },
+  "language": {
+    "conversation_language": "es",
+    "conversation_language_name": "Spanish"
+  },
+  "github": {
+    "enabled": false,
+    "repository": null,
+    "auto_delete_branches": null
+  },
+  "optimization": {
+    "last_sync": null,
+    "template_synced": false
+  }
+}

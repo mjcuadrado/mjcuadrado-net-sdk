@@ -1,0 +1,76 @@
+# Changelog
+
+Todos los cambios notables en este proyecto serán documentados en este archivo.
+
+El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
+y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Planeado para v0.1.0
+- Comando `init` funcional para inicializar proyectos
+- Comando `doctor` funcional para diagnóstico del sistema
+- Sistema de templates completo
+- Servicios core: FileSystemService, ConfigurationService, TemplateService
+- Tests unitarios con cobertura ≥ 85%
+- CI/CD con GitHub Actions
+
+## [0.1.0] - TBD (Fase 1 - MVP)
+
+### Added (Agregado)
+- ✅ Estructura base del proyecto .NET 10
+- ✅ Solución y proyectos configurados
+- ✅ Comando `version` implementado
+- ✅ Interfaces de servicios definidas
+- ✅ Modelos de configuración
+- ✅ Templates embebidos
+- ✅ Documentación completa (README, arquitectura, comandos)
+- ✅ 9 GitHub Issues para desarrollo iterativo
+- ✅ CI/CD con GitHub Actions
+- ✅ Archivos de ejemplo en `.mjcuadrado-net-sdk/`
+
+### Planned (Planeado)
+- [ ] Comando `init` funcional
+- [ ] Comando `doctor` funcional
+- [ ] FileSystemService implementado
+- [ ] ConfigurationService implementado
+- [ ] TemplateService implementado
+- [ ] Tests unitarios completos
+- [ ] Coverage ≥ 85%
+
+## Próximas versiones
+
+### [0.2.0] - Fase 2: SPECs y TAGs
+- Sistema completo de SPECs con formato EARS
+- Comando `spec new`
+- Comando `spec validate`
+- Comando `tags validate`
+- Sistema de TAGs con trazabilidad completa
+
+### [0.3.0] - Fase 3: Base de datos
+- Integración Entity Framework Core
+- Soporte SQL Server
+- Soporte PostgreSQL
+- Migraciones automáticas
+
+### [0.4.0] - Fase 4: Automatización avanzada
+- Hooks automáticos pre-commit
+- Generación automática de tests desde SPECs
+- Integración CI/CD avanzada
+
+### [1.0.0] - Fase 5: IA Completa
+- Agentes especializados completos
+- Skills para tareas comunes
+- Generación de código desde SPECs
+- Análisis automático con IA
+
+---
+
+## Tipos de cambios
+
+- **Added** (Agregado): Nueva funcionalidad
+- **Changed** (Cambiado): Cambios en funcionalidad existente
+- **Deprecated** (Deprecado): Funcionalidad que será removida
+- **Removed** (Removido): Funcionalidad removida
+- **Fixed** (Corregido): Corrección de bugs
+- **Security** (Seguridad): Cambios de seguridad

@@ -1,0 +1,55 @@
+# Technical Stack - {{PROJECT_NAME}}
+
+## Stack tecnológico
+
+### Framework
+- **{{FRAMEWORK}}**: Framework principal del proyecto
+
+### Lenguajes
+- **C#**: Lenguaje principal de desarrollo
+
+### Herramientas de desarrollo
+- **.NET SDK**: {{SDK_VERSION}}
+- **Git**: Control de versiones
+
+## Configuración del entorno
+
+### Requisitos previos
+1. .NET SDK 9.0 o superior
+2. Git configurado
+3. IDE recomendado: Visual Studio 2022, Rider o VS Code
+
+### Instalación
+```bash
+# Clonar repositorio
+git clone [URL]
+
+# Restaurar dependencias
+dotnet restore
+
+# Compilar
+dotnet build
+
+# Ejecutar tests
+dotnet test
+```
+
+## Convenciones de código
+
+- Seguir las convenciones estándar de C#
+- Usar nullable reference types
+- Documentar métodos públicos con XML comments
+- Mantener coverage de tests ≥ 85%
+
+## Comandos útiles
+
+```bash
+# Compilar en modo Release
+dotnet build -c Release
+
+# Ejecutar con hot reload
+dotnet watch run
+
+# Generar reporte de coverage
+dotnet test /p:CollectCoverage=true
+```

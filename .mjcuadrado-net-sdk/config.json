@@ -1,0 +1,30 @@
+{
+  "project": {
+    "name": "mjcuadrado-net-sdk",
+    "version": "0.1.0",
+    "template_version": "0.1.0",
+    "created": "2024-11-19",
+    "updated": "2024-11-19",
+    "language": "csharp",
+    "framework": "net10.0",
+    "mode": "personal",
+    "author": "@mjcuadrado"
+  },
+  "sdk": {
+    "version": "0.1.0",
+    "min_dotnet_version": "9.0.0"
+  },
+  "language": {
+    "conversation_language": "es",
+    "conversation_language_name": "Spanish"
+  },
+  "github": {
+    "enabled": false,
+    "repository": null,
+    "auto_delete_branches": null
+  },
+  "optimization": {
+    "last_sync": null,
+    "template_synced": false
+  }
+}

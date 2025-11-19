@@ -1,0 +1,29 @@
+# Project Structure - {{PROJECT_NAME}}
+
+## Arquitectura general
+
+[Describe la arquitectura de alto nivel del proyecto]
+
+## Componentes principales
+
+### Componente 1
+[Descripción]
+
+### Componente 2
+[Descripción]
+
+## Flujos de datos
+
+[Describe cómo fluyen los datos a través del sistema]
+
+## Decisiones arquitectónicas
+
+### Decisión 1
+**Contexto**: [Por qué era necesario tomar esta decisión]
+**Decisión**: [Qué se decidió]
+**Consecuencias**: [Qué implica esta decisión]
+
+## Dependencias externas
+
+- Dependencia 1: [Propósito]
+- Dependencia 2: [Propósito]
