@@ -8,13 +8,19 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 
 ### En progreso
-- Issue #2: FileSystemService
 - Issue #3: ConfigurationService
 - Issue #4: TemplateService
 - Issue #5: Comando `init` funcional
 - Issue #6: Comando `doctor` funcional
 
 ### Completado recientemente
+- ✅ **2024-11-19**: Issue #2 - FileSystemService
+  - FileSystemService implementado con 11 métodos
+  - 44 tests unitarios (100% passing)
+  - Normalización cross-platform de rutas
+  - Manejo robusto de excepciones
+  - Validación de permisos y espacio en disco
+
 - ✅ **2024-11-19**: Issue #1 - Estructura base del proyecto
   - Solución .NET 10 configurada y funcional
   - Proyectos principal y de tests creados
