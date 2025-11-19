@@ -8,12 +8,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 
 ### En progreso
-- Issue #3: ConfigurationService
 - Issue #4: TemplateService
 - Issue #5: Comando `init` funcional
 - Issue #6: Comando `doctor` funcional
 
 ### Completado recientemente
+- ✅ **2024-11-19**: Issue #3 - ConfigurationService
+  - ConfigurationService implementado con 6 métodos
+  - 38 tests unitarios (100% passing)
+  - Validación completa: semver, ISO dates, project names, languages
+  - System.Text.Json con camelCase y comentarios
+  - Merge de configuraciones y búsqueda en directorios padres
+
 - ✅ **2024-11-19**: Issue #2 - FileSystemService
   - FileSystemService implementado con 11 métodos
   - 44 tests unitarios (100% passing)
