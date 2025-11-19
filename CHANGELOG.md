@@ -8,11 +8,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 
 ### En progreso
-- Issue #4: TemplateService
 - Issue #5: Comando `init` funcional
 - Issue #6: Comando `doctor` funcional
 
 ### Completado recientemente
+- ✅ **2024-11-19**: Issue #4 - TemplateService
+  - TemplateService implementado con 6 métodos
+  - 37 tests unitarios (100% passing)
+  - Lectura de 11 templates embebidos
+  - Generación de 9 carpetas + 10 archivos de documentación
+  - Reemplazo de 6 variables en templates
+
 - ✅ **2024-11-19**: Issue #3 - ConfigurationService
   - ConfigurationService implementado con 6 métodos
   - 38 tests unitarios (100% passing)
