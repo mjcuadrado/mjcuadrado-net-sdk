@@ -8,9 +8,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 
 ### En progreso
-- Issue #6: Comando `doctor` funcional
+- Ninguno (Fase 1 MVP completada)
 
 ### Completado recientemente
+- ✅ **2024-11-20**: Issue #6 - Comando doctor
+  - DoctorService implementado con 5 verificaciones
+  - 31 tests unitarios (188/189 passing, 99.5%)
+  - Verifica: .NET SDK ≥9.0, Git, estructura proyecto, disco, permisos
+  - Interfaz CLI con spinner, tabla, warnings y sugerencias
+  - Cross-platform (Windows, Linux, macOS)
+  - Smart suggestions para resolver problemas
+  - Flag --verbose para detalles adicionales
 - ✅ **2024-11-20**: Issue #5 - Comando init
   - InitCommand implementado con CLI completa
   - 25 tests unitarios (100% passing, 158 tests totales)

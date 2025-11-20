@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using MjCuadrado.NetSdk.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -9,6 +10,13 @@ namespace MjCuadrado.NetSdk.Commands;
 /// </summary>
 public class DoctorCommand : Command<DoctorCommand.Settings>
 {
+    private readonly IDoctorService _doctorService;
+
+    public DoctorCommand(IDoctorService doctorService)
+    {
+        _doctorService = doctorService ?? throw new ArgumentNullException(nameof(doctorService));
+    }
+
     public class Settings : CommandSettings
     {
         [CommandOption("--verbose")]
@@ -18,29 +26,130 @@ public class DoctorCommand : Command<DoctorCommand.Settings>
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        AnsiConsole.MarkupLine("[bold cyan]Diagnóstico del sistema[/]\n");
+        try
+        {
+            // Header
+            var panel = new Panel(
+                Align.Center(
+                    new Markup("[bold yellow]🏥 Diagnóstico del Sistema[/]"),
+                    VerticalAlignment.Middle))
+            {
+                Border = BoxBorder.Rounded,
+                Padding = new Padding(1, 0, 1, 0)
+            };
+            AnsiConsole.Write(panel);
+            AnsiConsole.WriteLine();
 
-        // TODO: Implementar lógica completa en Issue #6
-        // 1. Verificar .NET SDK instalado y versión
-        // 2. Verificar Git instalado y configurado
-        // 3. Verificar estructura del proyecto (si existe)
-        // 4. Verificar permisos de escritura
-        // 5. Verificar espacio en disco
-        // 6. Mostrar tabla con resultados
+            // Ejecutar diagnóstico con spinner
+            DiagnosticResult? result = null;
+            AnsiConsole.Status()
+                .Spinner(Spinner.Known.Dots)
+                .Start("[yellow]Ejecutando verificaciones...[/]", ctx =>
+                {
+                    result = _doctorService.RunFullDiagnostic();
+                });
 
+            if (result == null)
+            {
+                AnsiConsole.MarkupLine("[red]✗ Error al ejecutar el diagnóstico[/]");
+                return 1;
+            }
+
+            // Mostrar tabla de resultados
+            DisplayResults(result, settings.Verbose);
+
+            // Mostrar warnings
+            if (result.Warnings.Count > 0)
+            {
+                AnsiConsole.WriteLine();
+                var warningsPanel = new Panel(
+                    string.Join("\n", result.Warnings.Select(w => $"⚠ {w}")))
+                {
+                    Header = new PanelHeader(" Warnings ", Justify.Left),
+                    Border = BoxBorder.Rounded,
+                    BorderStyle = new Style(Color.Yellow)
+                };
+                AnsiConsole.Write(warningsPanel);
+            }
+
+            // Mostrar sugerencias
+            if (result.Suggestions.Count > 0)
+            {
+                AnsiConsole.WriteLine();
+                var suggestionsPanel = new Panel(
+                    string.Join("\n", result.Suggestions.Select((s, i) => $"{i + 1}. {s}")))
+                {
+                    Header = new PanelHeader(" 💡 Sugerencias ", Justify.Left),
+                    Border = BoxBorder.Rounded,
+                    BorderStyle = new Style(Color.Cyan1)
+                };
+                AnsiConsole.Write(suggestionsPanel);
+            }
+
+            // Resumen final
+            AnsiConsole.WriteLine();
+            if (result.AllChecksPassed)
+            {
+                var successPanel = new Panel(
+                    Align.Center(
+                        new Markup("[bold green]✓ ¡Todo listo! El sistema está correctamente configurado.[/]"),
+                        VerticalAlignment.Middle))
+                {
+                    Border = BoxBorder.Rounded,
+                    BorderStyle = new Style(Color.Green),
+                    Padding = new Padding(1, 0, 1, 0)
+                };
+                AnsiConsole.Write(successPanel);
+                return 0;
+            }
+            else
+            {
+                var failedCount = result.Checks.Count(c => !c.Success);
+                var errorPanel = new Panel(
+                    Align.Center(
+                        new Markup($"[bold red]✗ Se encontraron {failedCount} problema(s). Revisa las sugerencias arriba.[/]"),
+                        VerticalAlignment.Middle))
+                {
+                    Border = BoxBorder.Rounded,
+                    BorderStyle = new Style(Color.Red),
+                    Padding = new Padding(1, 0, 1, 0)
+                };
+                AnsiConsole.Write(errorPanel);
+                return 1;
+            }
+        }
+        catch (Exception ex)
+        {
+            AnsiConsole.MarkupLine($"[red]✗ Error inesperado: {ex.Message}[/]");
+            return 1;
+        }
+    }
+
+    private void DisplayResults(DiagnosticResult result, bool verbose)
+    {
         var table = new Table();
-        table.AddColumn("Check");
-        table.AddColumn("Status");
-        table.AddColumn("Details");
+        table.Border(TableBorder.Rounded);
+        table.AddColumn(new TableColumn("[bold]Check[/]"));
+        table.AddColumn(new TableColumn("[bold]Status[/]"));
+        table.AddColumn(new TableColumn("[bold]Details[/]"));
 
-        table.AddRow(".NET SDK", "[yellow]⚠ Pendiente[/]", "Por implementar");
-        table.AddRow("Git", "[yellow]⚠ Pendiente[/]", "Por implementar");
-        table.AddRow("Estructura", "[yellow]⚠ Pendiente[/]", "Por implementar");
+        foreach (var check in result.Checks)
+        {
+            var statusMarkup = check.Success
+                ? "[green]✓ " + check.Message + "[/]"
+                : "[red]✗ " + check.Message + "[/]";
+
+            var details = verbose || !check.Success
+                ? (check.Details ?? "N/A")
+                : (check.Details ?? "OK");
+
+            table.AddRow(
+                check.Name,
+                statusMarkup,
+                details
+            );
+        }
 
         AnsiConsole.Write(table);
-
-        AnsiConsole.MarkupLine("\n[yellow]⚠ Este comando será implementado completamente en la Fase 1 (Issue #6)[/]");
-
-        return 0;
     }
 }

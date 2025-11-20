@@ -10,6 +10,7 @@ var services = new ServiceCollection();
 services.AddSingleton<IFileSystemService, FileSystemService>();
 services.AddSingleton<IConfigurationService, ConfigurationService>();
 services.AddSingleton<ITemplateService, TemplateService>();
+services.AddSingleton<IDoctorService, DoctorService>();
 
 var registrar = new TypeRegistrar(services);
 var app = new CommandApp(registrar);
