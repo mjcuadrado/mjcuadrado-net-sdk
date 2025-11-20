@@ -21,15 +21,16 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 
 ## Características
 
-### Fase 1 (MVP) - En desarrollo
+### Fase 1 (MVP) - ✅ COMPLETADA
 
 - ✅ Estructura de proyecto completa y automatizada
 - ✅ CLI funcional con Spectre.Console
-- ⏳ Comando `init` para inicializar proyectos
-- ⏳ Comando `doctor` para diagnóstico del sistema
+- ✅ Comando `init` para inicializar proyectos
+- ✅ Comando `doctor` para diagnóstico del sistema
 - ✅ Comando `version` para ver versión del SDK
-- ⏳ Sistema de templates embebidos
-- ⏳ Configuración centralizada en `config.json`
+- ✅ Sistema de templates embebidos
+- ✅ Configuración centralizada en `config.json`
+- ✅ Tests unitarios (194/195 passing, 99.5% coverage)
 
 ### Fases futuras
 
@@ -202,12 +203,14 @@ Ver [CONTRIBUTING.md](docs/contributing.md) para detalles sobre cómo contribuir
 
 ## Roadmap
 
-### Fase 1: MVP (En desarrollo) - Issues #1-#9
+### Fase 1: MVP ✅ COMPLETADA - Issues #1-#7
 - [x] Estructura base del proyecto
-- [ ] Comando `init` funcional
-- [ ] Comando `doctor` funcional
-- [ ] Sistema de templates
-- [ ] Documentación completa
+- [x] Comando `init` funcional
+- [x] Comando `doctor` funcional
+- [x] Comando `version` funcional
+- [x] Sistema de templates
+- [x] FileSystemService, ConfigurationService, TemplateService, DoctorService
+- [x] 194 tests unitarios (99.5% passing)
 
 ### Fase 2: SPECs y TAGs
 - [ ] Comando `spec new`
