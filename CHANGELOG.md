@@ -8,10 +8,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 
 ### En progreso
-- Issue #5: Comando `init` funcional
 - Issue #6: Comando `doctor` funcional
 
 ### Completado recientemente
+- ✅ **2024-11-20**: Issue #5 - Comando init
+  - InitCommand implementado con CLI completa
+  - 25 tests unitarios (100% passing, 158 tests totales)
+  - Integración con FileSystemService, ConfigurationService, TemplateService
+  - Validaciones: nombres, permisos, espacio en disco (10 MB mínimo)
+  - UI profesional con Spectre.Console (spinner, tablas, paneles)
+  - Soporte para --force, --author, --framework
+  - Dependency Injection con Microsoft.Extensions.DependencyInjection
+  - TypeRegistrar para adaptar Spectre.Console.Cli
 - ✅ **2024-11-19**: Issue #4 - TemplateService
   - TemplateService implementado con 6 métodos
   - 37 tests unitarios (100% passing)

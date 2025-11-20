@@ -1,8 +1,18 @@
-﻿using MjCuadrado.NetSdk.Commands;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MjCuadrado.NetSdk;
+using MjCuadrado.NetSdk.Commands;
+using MjCuadrado.NetSdk.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-var app = new CommandApp();
+// Configurar servicios con DI
+var services = new ServiceCollection();
+services.AddSingleton<IFileSystemService, FileSystemService>();
+services.AddSingleton<IConfigurationService, ConfigurationService>();
+services.AddSingleton<ITemplateService, TemplateService>();
+
+var registrar = new TypeRegistrar(services);
+var app = new CommandApp(registrar);
 
 app.Configure(config =>
 {
