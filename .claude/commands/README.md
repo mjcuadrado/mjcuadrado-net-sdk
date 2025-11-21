@@ -1,79 +1,91 @@
-# Claude Commands
+# MJ² Commands
 
-Esta carpeta contiene slash commands personalizados para Claude Code.
+Quick reference for mj2 commands in Claude Code.
 
-## ¿Qué son los slash commands?
+## Main Workflow
 
-Los slash commands son atajos que expanden prompts predefinidos cuando los escribes en Claude Code.
-
-## Estructura de un comando
-
-Archivo: `mi-comando.md`
-
-```markdown
----
-description: Descripción breve del comando
----
-
-[Prompt que se expandirá cuando ejecutes /mi-comando]
-
-Puedes usar variables:
-- {{FILE}}: Archivo actual
-- {{SELECTION}}: Texto seleccionado
-- {{PROJECT}}: Nombre del proyecto
-```
-
-## Ejemplos de comandos útiles
-
-### /review-spec
-Revisa una SPEC para validar que sigue el formato EARS correcto.
-
-### /generate-test
-Genera tests unitarios para el archivo actual.
-
-### /explain-code
-Explica el código seleccionado en detalle.
-
-### /refactor
-Sugiere refactorings para mejorar el código seleccionado.
-
-## Creación de comandos
-
-1. Crea un archivo `.md` en `.claude/commands/`
-2. Agrega el frontmatter con `description`
-3. Escribe el prompt del comando
-4. Úsalo con `/nombre-archivo` (sin la extensión .md)
-
-Ejemplo - `.claude/commands/review-pr.md`:
-```markdown
----
-description: Revisa un Pull Request en busca de problemas
----
-
-Por favor revisa el Pull Request actual y busca:
-- Problemas de seguridad
-- Code smells
-- Tests faltantes
-- Documentación faltante
-
-Genera un reporte estructurado con tus hallazgos.
-```
-
-Uso:
-```
-/review-pr
-```
-
-## Próximos pasos
-
-En futuras fases, el SDK incluirá:
 ```bash
-# Listar comandos disponibles
-mjcuadrado-net-sdk command list
+# 1. Initialize project
+/mj2:0-project
 
-# Crear nuevo comando
-mjcuadrado-net-sdk command new mi-comando
+# 2. Create SPEC
+/mj2:1-plan "feature description"
 
-# Validar comandos
-mjcuadrado-net-sdk command validate
+# 3. Implement with TDD
+/mj2:2-run SPEC-ID
+
+# 4. Sync documentation
+/mj2:3-sync SPEC-ID
 ```
+
+## Auxiliary Commands
+
+```bash
+# Check quality manually
+/mj2:quality-check SPEC-ID
+
+# Merge feature branch
+/mj2:git-merge SPEC-ID
+```
+
+## Complete Example
+
+```bash
+# Initialize
+/mj2:0-project
+
+# Plan authentication feature
+/mj2:1-plan "User authentication with JWT"
+# → Creates SPEC-AUTH-001
+
+# Implement with TDD
+/mj2:2-run AUTH-001
+# → RED, GREEN, REFACTOR cycle
+
+# Sync docs
+/mj2:3-sync AUTH-001
+# → Updates README, docs, changelog
+
+# Feature complete! 🎉
+```
+
+## Command Reference
+
+| Command | Agent | Description |
+|---------|-------|-------------|
+| `/mj2:0-project` | project-manager | Initialize/optimize project |
+| `/mj2:1-plan` | spec-builder | Create SPEC |
+| `/mj2:2-run` | tdd-implementer | Implement with TDD |
+| `/mj2:3-sync` | doc-syncer | Sync documentation |
+| `/mj2:quality-check` | quality-gate | Validate quality |
+| `/mj2:git-merge` | git-manager | Merge feature |
+
+## Skills Loaded
+
+Commands automatically load relevant Skills:
+
+- **foundation/trust.md** - TRUST 5 principles
+- **foundation/tags.md** - TAG system
+- **foundation/specs.md** - SPEC format
+- **foundation/ears.md** - EARS syntax
+- **foundation/git.md** - Git workflows
+- **dotnet/csharp.md** - C# conventions
+- **dotnet/xunit.md** - Test patterns
+
+## Notes
+
+- Commands respect project mode (personal vs team)
+- Commands respect language setting (es/en)
+- Each command is ≤200 lines
+- Commands delegate to agents
+- Agents delegate to Skills
+
+## Philosophy
+
+```
+Command (short)
+  → Agent (orchestration)
+    → Skill (knowledge)
+```
+
+Keep it simple. Delegate everything.
