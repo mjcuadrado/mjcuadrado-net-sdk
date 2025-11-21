@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2024-11-21
+**Última actualización:** 2024-11-21 (v0.5.0 added)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -546,7 +546,19 @@ v0.4.0 (4-5 semanas) ← NICE TO HAVE
   └── Accessibility (#43)
       │
       ↓
-v1.0.0 - FULL STACK READY
+v0.5.0 (3-4 semanas) ← ADVANCED 🆕
+  ├── Feedback System (#44)
+  ├── Agent/Skill Factory (#45)
+  ├── Release Management (#46)
+  ├── Personalization (#47)
+  ├── Debug & Migration (#48)
+  ├── Component Designer (#49)
+  ├── Advanced Hooks (#50)
+  ├── Output Styles (#51)
+  └── MCP Integrations (#52)
+      │
+      ↓
+v1.0.0 - FULL STACK READY + EXTENSIBLE
 ```
 
 ---
@@ -560,29 +572,160 @@ v1.0.0 - FULL STACK READY
 | v0.2.0 | #24-32 (9 issues) | 6-7 | 🔴 CRÍTICO |
 | v0.3.0 | #33-38 (6 issues) | 5-6 | 🟡 IMPORTANTE |
 | v0.4.0 | #39-43 (5 issues) | 4-5 | 🟢 NICE TO HAVE |
-| **Total** | **20 issues** | **15-18 semanas** | **(~4 meses)** |
+| v0.5.0 | #44-52 (9 issues) | 3-4 | 🔵 ADVANCED |
+| **Total** | **29 issues** | **18-22 semanas** | **(~5 meses)** |
 
 ### Skills Totales
 
-| Categoría | v0.1.0 (actual) | v0.2.0 | v0.3.0 | v0.4.0 | v1.0.0 (total) |
-|-----------|-----------------|--------|--------|--------|----------------|
-| Foundation | 5 | 5 | 5 | 5 | 5 |
-| .NET | 4 | 9 | 10 | 11 | 11 |
-| Frontend | 0 | 8 | 11 | 12 | 12 |
-| Architecture | 0 | 5 | 5 | 5 | 5 |
-| Testing | 1 | 3 | 5 | 5 | 5 |
-| DevOps | 0 | 0 | 5 | 5 | 5 |
-| Security | 0 | 0 | 0 | 3 | 3 |
-| Performance | 0 | 0 | 0 | 2 | 2 |
-| MJ² | 2 | 2 | 2 | 2 | 2 |
-| **Total** | **11** | **32** | **43** | **50** | **50** |
+| Categoría | v0.1.0 (actual) | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 | v1.0.0 (total) |
+|-----------|-----------------|--------|--------|--------|--------|----------------|
+| Foundation | 5 | 5 | 5 | 5 | 5 | 5 |
+| .NET | 4 | 9 | 10 | 11 | 11 | 11 |
+| Frontend | 0 | 8 | 11 | 12 | 12 | 12 |
+| Architecture | 0 | 5 | 5 | 5 | 5 | 5 |
+| Testing | 1 | 3 | 5 | 5 | 5 | 5 |
+| DevOps | 0 | 0 | 5 | 5 | 5 | 5 |
+| Security | 0 | 0 | 0 | 3 | 3 | 3 |
+| Performance | 0 | 0 | 0 | 2 | 2 | 2 |
+| MJ² | 2 | 2 | 2 | 2 | 2 | 2 |
+| System | 0 | 0 | 0 | 0 | 3 | 3 |
+| **Total** | **11** | **32** | **43** | **50** | **53** | **53** |
 
 ### Agentes Totales
 
-| Tipo | v0.1.0 (actual) | v0.2.0 | v0.3.0 | v0.4.0 | v1.0.0 (total) |
-|------|-----------------|--------|--------|--------|----------------|
-| Core | 6 | 8 | 10 | 15 | 15 |
-| **Total** | **6** | **8** | **10** | **15** | **15** |
+| Tipo | v0.1.0 (actual) | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 | v1.0.0 (total) |
+|------|-----------------|--------|--------|--------|--------|----------------|
+| Core | 6 | 8 | 10 | 15 | 21 | 21 |
+| **Total** | **6** | **8** | **10** | **15** | **21** | **21** |
+
+---
+
+### 🔵 ADVANCED - v0.5.0 (Issues #44-52) - System Evolution
+
+**Inspirado en moai-adk - Extensibilidad y Mejora Continua**
+
+**Issue #44: Feedback & Learning System** (4-5 días)
+- `.claude/agents/mj2/feedback-manager.md` (~550 líneas)
+  - Sistema estructurado de feedback
+  - Tracking de errores comunes
+  - Aprendizaje continuo
+- `.claude/commands/mj2-9-feedback.md` (~150 líneas)
+- `.mj2/memory/` directory
+  - Persistencia de aprendizajes
+  - Session state
+  - Execution rules
+- **Adaptar de:** moai-adk/learning, moai-adk/memory
+- **Prioridad:** 🔴 Alta (mejora experiencia usuario)
+- **Tiempo:** 4-5 días
+
+**Issue #45: Agent Factory & Skill Factory** (6-7 días)
+- `.claude/agents/mj2/agent-factory.md` (~700 líneas)
+  - Meta-agente que crea nuevos agentes
+  - Template generation
+  - Validation y testing
+- `.claude/agents/mj2/skill-factory.md` (~650 líneas)
+  - Meta-skill que crea nuevos skills
+  - Knowledge extraction
+  - Documentation generation
+- `.claude/commands/mj2-create-agent.md` (~150 líneas)
+- `.claude/commands/mj2-create-skill.md` (~150 líneas)
+- **Adaptar de:** moai-adk/agent-factory, moai-adk/skill-factory
+- **Prioridad:** 🔴 Alta (hace mj2 extensible por usuarios)
+- **Impacto:** GAME CHANGER - usuarios pueden extender mj2
+- **Tiempo:** 6-7 días
+
+**Issue #46: Release Management System** (5-6 días)
+- `.claude/agents/mj2/release-manager.md` (~600 líneas)
+  - Workflow completo de release
+  - Validación pre-release
+  - Versionado semántico
+  - CHANGELOG automático
+- `.claude/commands/mj2-99-release.md` (~150 líneas)
+- Templates de release notes
+- Integration con Git tags
+- **Adaptar de:** moai-adk/release system
+- **Prioridad:** 🔴 Alta (crítico para v1.0.0)
+- **Tiempo:** 5-6 días
+
+**Issue #47: Personalization System** (4-5 días)
+- Actualizar `.mjcuadrado-net-sdk/config.json` template:
+  - `user.name` field (personalización)
+  - `language.conversation_language` (es, en)
+  - `language.agent_prompt_language` (en recomendado)
+- Actualizar todos los agentes para usar nombre del usuario
+- Sistema multilenguaje básico (español/inglés)
+- **Adaptar de:** moai-adk/configuration, moai-adk/language-detection
+- **Prioridad:** 🟡 Media (mejor UX)
+- **Tiempo:** 4-5 días
+
+**Issue #48: Debug & Migration Helpers** (5-6 días)
+- `.claude/agents/mj2/debug-helper.md` (~550 líneas)
+  - Debugging assistant especializado
+  - Análisis de errores
+  - Sugerencias de fix
+- `.claude/agents/mj2/migration-expert.md` (~600 líneas)
+  - Migrar proyectos legacy a mj2
+  - Análisis de código existente
+  - Plan de migración
+- `.claude/commands/mj2-debug.md` (~150 líneas)
+- `.claude/commands/mj2-migrate.md` (~150 líneas)
+- **Adaptar de:** moai-adk/debug-helper, moai-adk/migration-expert
+- **Prioridad:** 🟡 Media (expande casos de uso)
+- **Tiempo:** 5-6 días
+
+**Issue #49: Component Designer (Design-First)** (5-6 días)
+- `.claude/agents/mj2/component-designer.md` (~700 líneas)
+  - Design-first approach para componentes
+  - Análisis UX/UI requirements
+  - Diseño de API de componente
+  - Validación de accesibilidad
+  - Generación de SPEC de componente
+- `.claude/commands/mj2-design-component.md` (~150 líneas)
+- Integration con frontend-builder (#31)
+- **Adaptar de:** moai-adk/component-designer
+- **Prioridad:** 🟡 Media (mejora workflow frontend)
+- **Workflow:** Design → SPEC → Implement (frontend-builder)
+- **Tiempo:** 5-6 días
+
+**Issue #50: Advanced Hooks System** (4-5 días)
+- `.claude/hooks/` directory (diferente de Git hooks)
+  - pre-command hook
+  - post-command hook
+  - on-spec-created hook
+  - on-sync-done hook
+- Hook templates y documentation
+- Integration en agentes principales
+- **Use cases:**
+  - Notificaciones (Slack, email)
+  - Metrics tracking
+  - Auto-backup de SPECs
+  - Integración con herramientas externas
+- **Adaptar de:** moai-adk/hooks system
+- **Prioridad:** 🟡 Media (extensibilidad)
+- **Tiempo:** 4-5 días
+
+**Issue #51: Output Styles Customization** (3-4 días)
+- `.claude/output-styles/` directory
+  - minimal.md
+  - detailed.md
+  - emoji-rich.md
+- Configuración en `config.json`
+- Templates de output
+- **Adaptar de:** moai-adk/output-styles
+- **Prioridad:** 🟢 Baja (cosmético, mejora UX)
+- **Tiempo:** 3-4 días
+
+**Issue #52: MCP Integrations (Evaluación)** (Variable)
+- Evaluar integraciones MCP útiles:
+  - **Figma:** Diseños → Componentes React
+  - **Notion:** SPECs en Notion
+  - **Linear/Jira:** Issues → SPECs
+- Crear agentes integrador según evaluación
+- **Adaptar de:** moai-adk/mcp-* integrators
+- **Prioridad:** 🟢 Baja (evaluar ROI caso por caso)
+- **Tiempo:** Variable según integración
+
+**Tiempo Total v0.5.0:** 3-4 semanas
 
 ---
 
