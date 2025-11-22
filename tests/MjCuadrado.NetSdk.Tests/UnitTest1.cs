@@ -1,4 +1,4 @@
-﻿namespace MjCuadrado.NetSdk.Tests;
+namespace MjCuadrado.NetSdk.Tests;
 
 public class UnitTest1
 {
