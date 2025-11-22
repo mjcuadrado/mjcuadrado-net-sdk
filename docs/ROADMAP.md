@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-34 completed)
+**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-35 completed)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -387,13 +387,28 @@
 - **Referencia:** STACK.md > DevOps > Docker
 - **Tiempo:** 5-6 días
 
-**Issue #35: DevOps Agent**
-- `.claude/agents/mj2/devops-expert.md` (~700 líneas)
-  - Docker setup
+**Issue #35: DevOps Agent** ✅ COMPLETADO
+- `.claude/agents/mj2/devops-expert.md` (696 líneas) ✅
+  - Persona y filosofía del agente
+  - TRUST 5 principles para DevOps
+  - Workflow de 4 fases (PLAN → BUILD → DEPLOY → VERIFY)
+  - Deployment strategies (Blue-Green, Rolling, Canary)
+  - Docker y containerización
   - CI/CD orchestration
-  - Deployment strategies
-- `.claude/commands/mj2-5-deploy.md` (~150 líneas)
-  - Comando para deployment
+  - Security best practices
+  - Monitoring y observability
+  - Rollback automation
+  - Integration con otros agentes
+- `.claude/commands/mj2-5-deploy.md` (444 líneas) ✅
+  - Comando slash para deployment automatizado
+  - Parámetros y opciones completas
+  - Workflow de 4 fases documentado
+  - Ejemplos exhaustivos (dry-run, canary, etc.)
+  - Validaciones pre-deployment
+  - Rollback automático
+  - Tips y best practices
+- `.github/issues/issue-35.md` (documentación completa) ✅
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/devops-expert
 - **Referencia:** STACK.md > DevOps
 - **Tiempo:** 5 días
