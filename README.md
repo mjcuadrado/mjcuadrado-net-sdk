@@ -302,10 +302,34 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 
 **v0.3.0 Full Stack + DevOps:** ✅ **COMPLETA** (Issues #33-38)
 
-### v0.4.0: Advanced Features
-- [ ] Backend avanzado (API design, performance)
-- [ ] Security & monitoring
-- [ ] Advanced testing patterns
+### v0.4.0: Advanced Features 🚧 EN PROGRESO (Issues #39-43)
+
+**Security Expert** ✅ Issue #39
+- ✅ jwt.md skill (370 líneas) - JWT + Refresh Tokens, claims-based auth
+- ✅ owasp-asvs.md skill (430 líneas) - OWASP ASVS nivel 2 completo
+- ✅ rate-limiting.md skill (280 líneas) - Rate limiting y DDoS protection
+- ✅ security-expert.md agent (730 líneas) - Security auditing y threat modeling
+- ✅ OWASP Top 10:2021 mitigación completa
+- ✅ Workflow de 4 fases: ASSESS → DESIGN → IMPLEMENT → VERIFY
+
+**API Designer Agent** 📋 Issue #40
+- 📋 API design best practices (RESTful/GraphQL)
+- 📋 OpenAPI/Swagger documentation
+- 📋 API versioning strategies
+
+**Project Templates** 📋 Issue #41
+- 📋 Clean Architecture template
+- 📋 Vertical Slice template
+- 📋 Full-stack React + .NET template
+
+**Performance Engineer** 📋 Issue #42
+- 📋 Backend performance optimization
+- 📋 Frontend performance patterns
+- 📋 Caching strategies
+
+**Accessibility Expert** 📋 Issue #43
+- 📋 WCAG 2.1 Level AA compliance
+- 📋 Accessibility testing automation
 
 ### v0.5.0: Multi-language & Integrations
 - [ ] Multi-language support
@@ -349,6 +373,13 @@ Ver documentación completa en `.github/issues/issue-*.md`
 - [#38 - Database Expert Agent](/.github/issues/issue-38.md) ✅
 
 **Versión 0.3.0 completada:** Full-stack + DevOps + Observability + Database
+
+### v0.4.0 - Advanced Features 🚧 EN PROGRESO (Issues #39-43)
+- [#39 - Security Expert](/.github/issues/issue-39.md) ✅
+- #40 - API Designer Agent 📋
+- #41 - Project Templates 📋
+- #42 - Performance Engineer 📋
+- #43 - Accessibility Expert 📋
 
 ## Inspiración
 

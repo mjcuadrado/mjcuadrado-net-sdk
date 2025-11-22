@@ -510,27 +510,51 @@
 
 ### 🟢 NICE TO HAVE - v0.4.0 (Issues #39-43) - Advanced Features
 
-**Security - Issue #39** (1 semana)
+**Security - Issue #39** (1 semana) ✅ COMPLETADO
 
-**Issue #39: Security Expert**
-- `.claude/skills/security/jwt.md` (~350 líneas)
-  - JWT + Refresh tokens
-  - Claims-based auth
-  - Cookie strategies
-- `.claude/skills/security/owasp-asvs.md` (~400 líneas)
-  - OWASP ASVS nivel 2
-  - Security checklist
-  - Best practices
-- `.claude/skills/security/rate-limiting.md` (~250 líneas)
-  - Rate limiting patterns
-  - DDoS protection
-- `.claude/agents/mj2/security-expert.md` (~700 líneas)
-  - Security auditing
-  - Threat modeling
-  - Vulnerability scanning
+**Issue #39: Security Expert** ✅ COMPLETADO
+- `.claude/skills/security/jwt.md` (370 líneas) ✅
+  - JWT (JSON Web Tokens) fundamentals
+  - Access tokens (15 min) + Refresh tokens (7 días)
+  - Claims-based authentication con custom claims
+  - Cookie vs Header strategies (HttpOnly, Secure, SameSite)
+  - Token generation, validation, y revocation
+  - Integration con ASP.NET Core Identity
+  - Policy-based authorization con claims
+- `.claude/skills/security/owasp-asvs.md` (430 líneas) ✅
+  - OWASP ASVS (Application Security Verification Standard) nivel 2
+  - Security checklist completo
+  - 9 categorías principales (V1-V9)
+  - Implementation guidelines para .NET
+  - Security testing con xUnit
+  - Configuración segura (passwords, lockout, encryption)
+- `.claude/skills/security/rate-limiting.md` (280 líneas) ✅
+  - 4 algoritmos: Fixed Window, Sliding Window, Token Bucket, Leaky Bucket
+  - ASP.NET Core 7+ built-in rate limiting
+  - AspNetCoreRateLimit library
+  - Redis-based distributed rate limiting
+  - Multi-layer rate limiting (Global, Per-IP, Per-User)
+  - DDoS protection patterns
+  - Tiered limits (Premium vs Free)
+  - Adaptive rate limiting
+- `.claude/agents/mj2/security-expert.md` (730 líneas) ✅
+  - TRUST 5 principles para seguridad
+  - Workflow 4 fases: ASSESS → DESIGN → IMPLEMENT → VERIFY
+  - Threat modeling con STRIDE framework
+  - OWASP Top 10:2021 mitigación completa (A01-A10)
+  - Security auditing automation
+  - Vulnerability scanning workflow
+  - Integration con otros agentes
+  - Security checklist completo (10 categorías)
+  - Automated security testing examples
+- `.github/issues/issue-39.md` (documentación completa) ✅
+- **Métricas:** ~1,810 líneas totales
+- **OWASP Coverage:** ASVS nivel 2 (9 categorías) + Top 10 (10 amenazas)
+- **Rate Limiting:** 4 algoritmos implementados
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/security-* (10 skills)
 - **Referencia:** STACK.md > Security
-- **Tiempo:** 6-7 días
+- **Tiempo:** Completado
 
 **API Design - Issue #40** (5 días)
 
