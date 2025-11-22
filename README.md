@@ -284,9 +284,16 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ 33 jobs totales, 3 deployment strategies
 - ✅ Caching, security scanning, rollback automation
 
+**OpenTelemetry Stack (Observability)** ✅ Issue #37
+- ✅ opentelemetry.md skill (434 líneas) - Traces, Metrics, Logs completo
+- ✅ grafana.md skill (365 líneas) - Dashboards, alerting, visualización
+- ✅ serilog.md skill (318 líneas) - Structured logging con OTel integration
+- ✅ 3 telemetry signals (Traces, Metrics, Logs)
+- ✅ Collector configuration, exporters, correlation automática
+- ✅ Stack completo: Jaeger + Prometheus + Loki + Grafana
+
 **Próximos pasos:**
-- [ ] CI/CD optimization (Issue #37)
-- [ ] Deployment automation (Issue #38)
+- [ ] Database Expert Agent (Issue #38)
 
 ### v0.4.0: Advanced Features
 - [ ] Backend avanzado (API design, performance)
@@ -331,7 +338,8 @@ Ver documentación completa en `.github/issues/issue-*.md`
 - [#34 - Docker Foundation](/.github/issues/issue-34.md) ✅
 - [#35 - DevOps Expert Agent](/.github/issues/issue-35.md) ✅
 - [#36 - GitHub Actions CI/CD](/.github/issues/issue-36.md) ✅
-Próximamente: CI/CD optimization, Deployment automation...
+- [#37 - OpenTelemetry Stack](/.github/issues/issue-37.md) ✅
+Próximamente: Database Expert Agent...
 
 ## Inspiración
 
