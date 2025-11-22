@@ -1,0 +1,161 @@
+# ==============================================
+# Multi-stage Dockerfile para React + Vite Frontend
+# ==============================================
+# Optimizado para mjcuadrado-net-sdk
+# Soporta: desarrollo (HMR) y producción (Nginx)
+# ==============================================
+
+# ================================
+# Stage 1: Dependencies
+# ================================
+FROM node:18-alpine AS deps
+WORKDIR /app
+
+# Copiar archivos de dependencias
+COPY package.json package-lock.json ./
+
+# Instalar dependencias
+RUN npm ci --only=production && \
+    npm ci --only=development
+
+# ================================
+# Stage 2: Build
+# ================================
+FROM node:18-alpine AS build
+WORKDIR /app
+
+# Copiar dependencias desde stage anterior
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copiar código fuente
+COPY . .
+
+# Build arguments para variables de entorno en build time
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+# Compilar aplicación
+RUN npm run build
+
+# ================================
+# Stage 3: Development (HMR)
+# ================================
+FROM node:18-alpine AS development
+WORKDIR /app
+
+# Copiar package files
+COPY package.json package-lock.json ./
+
+# Instalar todas las dependencias (dev + prod)
+RUN npm ci
+
+# Copiar código (se puede montar como volume para HMR)
+COPY . .
+
+# Exponer puerto de Vite
+EXPOSE 5173
+
+# Variables de entorno por defecto
+ENV VITE_API_URL=http://localhost:5000
+
+# Iniciar dev server con HMR
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+# ================================
+# Stage 4: Runtime con Nginx (Producción)
+# ================================
+FROM nginx:alpine AS final
+
+# Copiar configuración personalizada de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copiar archivos estáticos compilados
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Añadir script de inicio para variables de entorno runtime
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget --quiet --tries=1 --spider http://localhost:80/ || exit 1
+
+# Metadata
+LABEL org.opencontainers.image.title="MyApp Frontend"
+LABEL org.opencontainers.image.description="Frontend React para mjcuadrado-net-sdk"
+LABEL org.opencontainers.image.version="1.0.0"
+LABEL org.opencontainers.image.source="https://github.com/mjcuadrado/mjcuadrado-net-sdk"
+
+EXPOSE 80
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
+
+# ==============================================
+# Archivos Adicionales Requeridos:
+# ==============================================
+
+# nginx.conf
+# ----------
+# server {
+#     listen 80;
+#     server_name _;
+#     root /usr/share/nginx/html;
+#     index index.html;
+#
+#     # SPA routing
+#     location / {
+#         try_files $uri $uri/ /index.html;
+#     }
+#
+#     # API proxy (opcional)
+#     location /api {
+#         proxy_pass http://backend:80;
+#         proxy_http_version 1.1;
+#         proxy_set_header Upgrade $http_upgrade;
+#         proxy_set_header Connection 'upgrade';
+#         proxy_set_header Host $host;
+#         proxy_cache_bypass $http_upgrade;
+#     }
+#
+#     # Cache para assets estáticos
+#     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+#         expires 1y;
+#         add_header Cache-Control "public, immutable";
+#     }
+#
+#     # Gzip compression
+#     gzip on;
+#     gzip_types text/plain text/css application/json application/javascript text/xml application/xml text/javascript;
+#     gzip_min_length 1000;
+# }
+
+# docker-entrypoint.sh
+# --------------------
+# #!/bin/sh
+# set -e
+#
+# # Reemplazar variables de entorno en archivos JS
+# # (Para variables RUNTIME, no build-time)
+# if [ -n "$VITE_API_URL" ]; then
+#     echo "Setting VITE_API_URL to: $VITE_API_URL"
+#     find /usr/share/nginx/html -type f -name "*.js" -exec sed -i "s|VITE_API_URL_PLACEHOLDER|$VITE_API_URL|g" {} \;
+# fi
+#
+# # Ejecutar comando de Nginx
+# exec "$@"
+
+# ==============================================
+# Uso:
+# ==============================================
+# Desarrollo (con HMR):
+#   docker build --target development -t myapp-ui:dev .
+#   docker run -p 5173:5173 -v $(pwd)/src:/app/src myapp-ui:dev
+#
+# Producción:
+#   docker build --target final --build-arg VITE_API_URL=https://api.ejemplo.com -t myapp-ui:prod .
+#   docker run -p 80:80 myapp-ui:prod
+#
+# Con Docker Compose:
+#   Ver docker-compose.fullstack.yml
+# ==============================================

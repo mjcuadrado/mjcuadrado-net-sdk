@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issue #33 completed)
+**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-34 completed)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -356,21 +356,33 @@
 
 **Docker & Local Dev - Issues #34-35** (1.5 semanas)
 
-**Issue #34: Docker Foundation**
-- `.claude/skills/tools/docker.md` (~400 líneas)
-  - Multi-stage builds
-  - Best practices
-  - Security
-  - Optimization
-- `.claude/skills/tools/docker-compose.md` (~350 líneas)
-  - Local development
-  - Service orchestration
-  - PostgreSQL + backend + frontend
-- **Templates:**
-  - `templates/docker/Dockerfile.backend`
-  - `templates/docker/Dockerfile.frontend`
-  - `templates/docker/docker-compose.yml`
-  - `templates/docker/.dockerignore`
+**Issue #34: Docker Foundation** ✅ COMPLETADO
+- `.claude/skills/tools/docker.md` (811 líneas) ✅
+  - Instalación y configuración
+  - Conceptos básicos (imagen vs contenedor)
+  - Dockerfile: instrucciones y best practices
+  - Multi-stage builds (.NET y Node.js)
+  - Optimización de imágenes (86% reducción)
+  - Security best practices (no-root, health checks)
+  - Networking (bridge, host, overlay)
+  - Volumes y persistencia
+  - Comandos comunes y debugging
+- `.claude/skills/tools/docker-compose.md` (913 líneas) ✅
+  - Instalación Docker Compose
+  - Estructura docker-compose.yml
+  - Configuración de servicios
+  - Variables de entorno (.env files)
+  - Redes y volúmenes
+  - Dependencias y health checks
+  - Ejemplo full stack (.NET + React + PostgreSQL)
+  - Perfiles para servicios opcionales
+  - Security hardening
+- **Templates:** ✅
+  - `.claude/templates/docker/Dockerfile.dotnet` (90 líneas)
+  - `.claude/templates/docker/Dockerfile.react` (126 líneas)
+  - `.claude/templates/docker/docker-compose.fullstack.yml` (350 líneas)
+- `.github/issues/issue-34.md` (documentación completa) ✅
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/domain-devops
 - **Referencia:** STACK.md > DevOps > Docker
 - **Tiempo:** 5-6 días
