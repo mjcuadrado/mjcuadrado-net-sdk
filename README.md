@@ -261,8 +261,15 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Patrones de testing y best practices
 - ✅ 100% contenido en español
 
+**Docker Foundation** ✅ Issue #34
+- ✅ Docker skill (811 líneas) - Containerización, multi-stage builds, security
+- ✅ Docker Compose skill (913 líneas) - Orquestación multi-contenedor
+- ✅ Templates: Dockerfile.dotnet, Dockerfile.react, docker-compose.fullstack.yml
+- ✅ Optimización 86% en tamaño de imágenes
+- ✅ Security hardening completo
+
 **Próximos pasos:**
-- [ ] Docker & Docker Compose (Issues #34-35)
+- [ ] Docker Compose Advanced (Issue #35)
 - [ ] PostgreSQL integration (Issue #36)
 - [ ] CI/CD optimization (Issue #37)
 - [ ] Deployment automation (Issue #38)
@@ -307,7 +314,8 @@ Ver documentación completa en `.github/issues/issue-*.md`
 
 ### v0.3.0 - Full Stack + DevOps 🚧 (Issues #33-38)
 - [#33 - Frontend Testing Stack](/.github/issues/issue-33.md) ✅
-Próximamente: Docker, PostgreSQL, CI/CD...
+- [#34 - Docker Foundation](/.github/issues/issue-34.md) ✅
+Próximamente: Docker Compose Advanced, PostgreSQL, CI/CD...
 
 ## Inspiración
 

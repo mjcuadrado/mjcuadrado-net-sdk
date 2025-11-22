@@ -1,0 +1,108 @@
+# ==============================================
+# Multi-stage Dockerfile para .NET 8+ Backend
+# ==============================================
+# Optimizado para mjcuadrado-net-sdk
+# Soporta: desarrollo (hot reload) y producción
+# ==============================================
+
+# ================================
+# Stage 1: Build
+# ================================
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copiar archivos de proyecto y restaurar dependencias
+# (Esto permite cachear la capa de dependencias)
+COPY ["MyApp.Api/MyApp.Api.csproj", "MyApp.Api/"]
+COPY ["MyApp.Core/MyApp.Core.csproj", "MyApp.Core/"]
+COPY ["MyApp.Infrastructure/MyApp.Infrastructure.csproj", "MyApp.Infrastructure/"]
+RUN dotnet restore "MyApp.Api/MyApp.Api.csproj"
+
+# Copiar código fuente y compilar
+COPY . .
+WORKDIR "/src/MyApp.Api"
+RUN dotnet build "MyApp.Api.csproj" -c Release -o /app/build
+
+# ================================
+# Stage 2: Publish
+# ================================
+FROM build AS publish
+RUN dotnet publish "MyApp.Api.csproj" \
+    -c Release \
+    -o /app/publish \
+    /p:UseAppHost=false
+
+# ================================
+# Stage 3: Development (Hot Reload)
+# ================================
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS development
+WORKDIR /app
+
+# Instalar dotnet-ef para migraciones
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="${PATH}:/root/.dotnet/tools"
+
+# Copiar archivos de proyecto
+COPY ["MyApp.Api/MyApp.Api.csproj", "MyApp.Api/"]
+COPY ["MyApp.Core/MyApp.Core.csproj", "MyApp.Core/"]
+COPY ["MyApp.Infrastructure/MyApp.Infrastructure.csproj", "MyApp.Infrastructure/"]
+RUN dotnet restore "MyApp.Api/MyApp.Api.csproj"
+
+# Copiar código (se puede montar como volume para hot reload)
+COPY . .
+WORKDIR "/app/MyApp.Api"
+
+EXPOSE 80
+EXPOSE 443
+
+# Hot reload con dotnet watch
+CMD ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:80"]
+
+# ================================
+# Stage 4: Runtime (Producción)
+# ================================
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+
+# Instalar dependencias del sistema si es necesario
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear usuario no-root (seguridad)
+RUN adduser --disabled-password --gecos '' appuser && \
+    chown -R appuser /app
+USER appuser
+
+# Copiar artefactos publicados desde stage 'publish'
+COPY --from=publish --chown=appuser:appuser /app/publish .
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:80/health || exit 1
+
+# Metadata
+LABEL org.opencontainers.image.title="MyApp Backend"
+LABEL org.opencontainers.image.description="Backend API para mjcuadrado-net-sdk"
+LABEL org.opencontainers.image.version="1.0.0"
+LABEL org.opencontainers.image.source="https://github.com/mjcuadrado/mjcuadrado-net-sdk"
+
+EXPOSE 80
+EXPOSE 443
+
+ENTRYPOINT ["dotnet", "MyApp.Api.dll"]
+
+# ==============================================
+# Uso:
+# ==============================================
+# Desarrollo (con hot reload):
+#   docker build --target development -t myapp:dev .
+#   docker run -p 5000:80 -v $(pwd):/app myapp:dev
+#
+# Producción:
+#   docker build --target final -t myapp:prod .
+#   docker run -p 5000:80 myapp:prod
+#
+# Con Docker Compose:
+#   Ver docker-compose.fullstack.yml
+# ==============================================
