@@ -292,8 +292,15 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Collector configuration, exporters, correlation automática
 - ✅ Stack completo: Jaeger + Prometheus + Loki + Grafana
 
-**Próximos pasos:**
-- [ ] Database Expert Agent (Issue #38)
+**Database Expert Agent** ✅ Issue #38
+- ✅ sqlserver.md skill (442 líneas) - SQL Server 2022+ con EF Core 9
+- ✅ database-expert.md agent (665 líneas) - Experto PostgreSQL + SQL Server
+- ✅ mj2-db-migrate.md command (180 líneas) - Gestión de migraciones
+- ✅ 2 RDBMS completos (PostgreSQL + SQL Server)
+- ✅ Migration strategies: Expand-Contract, Blue-Green, Rolling
+- ✅ Database patterns: Aggregate, Soft Delete, Audit Trail
+
+**v0.3.0 Full Stack + DevOps:** ✅ **COMPLETA** (Issues #33-38)
 
 ### v0.4.0: Advanced Features
 - [ ] Backend avanzado (API design, performance)
@@ -333,13 +340,15 @@ Ver documentación completa en `.github/issues/issue-*.md`
 - [#31 - Frontend Builder Agent](/.github/issues/issue-31.md)
 - [#32 - Playwright E2E Testing](/.github/issues/issue-32.md)
 
-### v0.3.0 - Full Stack + DevOps 🚧 (Issues #33-38)
+### v0.3.0 - Full Stack + DevOps ✅ COMPLETA (Issues #33-38)
 - [#33 - Frontend Testing Stack](/.github/issues/issue-33.md) ✅
 - [#34 - Docker Foundation](/.github/issues/issue-34.md) ✅
 - [#35 - DevOps Expert Agent](/.github/issues/issue-35.md) ✅
 - [#36 - GitHub Actions CI/CD](/.github/issues/issue-36.md) ✅
 - [#37 - OpenTelemetry Stack](/.github/issues/issue-37.md) ✅
-Próximamente: Database Expert Agent...
+- [#38 - Database Expert Agent](/.github/issues/issue-38.md) ✅
+
+**Versión 0.3.0 completada:** Full-stack + DevOps + Observability + Database
 
 ## Inspiración
 
