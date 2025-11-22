@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using MjCuadrado.NetSdk;
 using MjCuadrado.NetSdk.Commands;
 using MjCuadrado.NetSdk.Services;
