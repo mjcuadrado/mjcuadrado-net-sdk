@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2024-11-21 (v0.5.0 added)
+**Última actualización:** 2025-11-22 (v0.2.0 completed)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -15,9 +15,21 @@
 - 11 skills (5 foundation + 4 .NET + 2 mj2)
 - Git Hooks (pre-commit, commit-msg, pre-push)
 - Workflow TDD estricto (RED → GREEN → REFACTOR)
-- Build + Tests passing (99.5%)
+- Build + Tests passing (100%)
 - CI/CD configurado
 - **PRODUCTION READY**
+
+### ✅ v0.2.0 - Frontend Foundation (COMPLETED - Issues #24-32)
+
+**Frontend stack completo:**
+- 7 agentes mj2 (añadido: frontend-builder, e2e-tester)
+- 9 comandos (añadidos: /mj2:2f-build, /mj2:4-e2e)
+- 20 skills totales (añadidos: 9 frontend + 5 architecture + 2 testing)
+- Testing Pyramid COMPLETA (Unit → Integration → Component → E2E)
+- React 18 + TypeScript 5 + Material UI v6
+- State management (Zod + React Hook Form + TanStack Query)
+- E2E testing (Playwright + axe-core)
+- **FRONTEND READY**
 
 ---
 
@@ -227,9 +239,9 @@
 - **Referencia:** STACK.md > Testing
 - **Tiempo:** 2-3 días
 
-**Frontend Foundation - Issues #28-30** (2 semanas)
+**Frontend Foundation - Issues #28-30** (2 semanas) ✅ COMPLETADO
 
-**Issue #28: React & TypeScript Core**
+**Issue #28: React & TypeScript Core** ✅ COMPLETADO
 - `.claude/skills/frontend/react.md` (~500 líneas)
   - React 18 patterns
   - Hooks best practices
@@ -243,7 +255,7 @@
 - **Referencia:** STACK.md > Frontend > Core
 - **Tiempo:** 4-5 días
 
-**Issue #29: Vite & MUI**
+**Issue #29: Vite & MUI** ✅ COMPLETADO
 - `.claude/skills/frontend/vite.md` (~300 líneas)
   - Vite configuration
   - Build optimization
@@ -257,7 +269,7 @@
 - **Referencia:** STACK.md > Frontend > UI Framework
 - **Tiempo:** 4-5 días
 
-**Issue #30: State & Data Management**
+**Issue #30: State & Data Management** ✅ COMPLETADO
 - `.claude/skills/frontend/react-query.md` (~400 líneas)
   - TanStack Query patterns
   - Caching strategies
@@ -278,9 +290,9 @@
 - **Referencia:** STACK.md > Frontend > State Management
 - **Tiempo:** 5-6 días
 
-**Frontend Agent - Issue #31** (1 semana)
+**Frontend Agent - Issue #31** (1 semana) ✅ COMPLETADO
 
-**Issue #31: Frontend Builder Agent**
+**Issue #31: Frontend Builder Agent** ✅ COMPLETADO
 - `.claude/agents/mj2/frontend-builder.md` (~800 líneas)
   - Component-Driven Development (CDD)
   - TDD para componentes React
@@ -293,9 +305,9 @@
 - **Referencia:** STACK.md > Frontend
 - **Tiempo:** 6-7 días
 
-**E2E Testing - Issue #32** (1 semana)
+**E2E Testing - Issue #32** (1 semana) ✅ COMPLETADO
 
-**Issue #32: Playwright E2E**
+**Issue #32: Playwright E2E** ✅ COMPLETADO
 - `.claude/skills/testing/playwright.md` (~450 líneas)
   - E2E test patterns
   - Page Object Model
@@ -311,7 +323,7 @@
 - **Referencia:** STACK.md > Testing > Playwright
 - **Tiempo:** 6-7 días
 
-**Tiempo Total v0.2.0:** 6-7 semanas
+**Tiempo Total v0.2.0:** 6-7 semanas ✅ COMPLETADO
 
 ---
 

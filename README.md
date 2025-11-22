@@ -21,7 +21,7 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 
 ## Características
 
-### Fase 1 (MVP) - ✅ COMPLETADA
+### v0.1.0 - Core System - ✅ COMPLETADA (Issues #1-22)
 
 - ✅ Estructura de proyecto completa y automatizada
 - ✅ CLI funcional con Spectre.Console
@@ -30,14 +30,42 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ Comando `version` para ver versión del SDK
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
-- ✅ Tests unitarios (194/195 passing, 99.5% coverage)
+- ✅ Tests unitarios (195/195 passing, 100%)
+- ✅ 6 agentes mj2 (doc-syncer, git-manager, project-manager, quality-gate, spec-builder, tdd-implementer)
+- ✅ 7 comandos (/mj2:0-project, 1-plan, 2-run, 3-sync, git-merge, quality-check)
+- ✅ 11 skills foundation (.NET, testing, architecture)
+- ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
-### Fases futuras
+### v0.2.0 - Frontend Foundation - 🚧 EN PROGRESO (Issues #24-32)
 
-- **Fase 2**: Sistema de SPECs y TAGs completo
-- **Fase 3**: Integración con EF Core (SQL Server / PostgreSQL)
-- **Fase 4**: Comandos avanzados (spec, tags, validate)
-- **Fase 5**: Agentes y Skills de Claude Code
+**Architecture Patterns** ✅ Issues #24-26
+- ✅ Clean Architecture, CQRS, DDD, Vertical Slice, Result Pattern skills
+
+**Testing Infrastructure** ✅ Issue #27
+- ✅ Testcontainers skill para integration tests
+
+**Frontend Core** ✅ Issues #28-30
+- ✅ React 18 & TypeScript 5 skills (Issue #28)
+- ✅ Vite & Material UI v6 skills (Issue #29)
+- ✅ State Management: Zod, React Hook Form, TanStack Query, openapi-typescript (Issue #30)
+
+**Frontend Agent** ✅ Issue #31
+- ✅ frontend-builder agent (Component-Driven Development)
+- ✅ /mj2:2f-build command (TEST → COMPONENT → STYLE → REFACTOR)
+
+**E2E Testing** ✅ Issue #32
+- ✅ Playwright skill (E2E testing, visual regression, accessibility)
+- ✅ e2e-tester agent (PLAN → GENERATE → EXECUTE → REPORT)
+- ✅ /mj2:4-e2e command
+- ✅ **Testing Pyramid COMPLETA**: Unit → Integration → Component → E2E
+
+### v0.3.0 - Full Stack + DevOps - 📋 PLANEADA
+
+- 📋 Frontend Testing Stack detail (Vitest + RTL)
+- 📋 Docker & Docker Compose
+- 📋 PostgreSQL integration
+- 📋 CI/CD optimization
+- 📋 Deployment automation
 
 ## Instalación
 
@@ -203,36 +231,44 @@ Ver [CONTRIBUTING.md](docs/contributing.md) para detalles sobre cómo contribuir
 
 ## Roadmap
 
-### Fase 1: MVP ✅ COMPLETADA - Issues #1-#7
+Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
+
+### v0.1.0: Core System ✅ COMPLETADA (Issues #1-22)
 - [x] Estructura base del proyecto
-- [x] Comando `init` funcional
-- [x] Comando `doctor` funcional
-- [x] Comando `version` funcional
-- [x] Sistema de templates
-- [x] FileSystemService, ConfigurationService, TemplateService, DoctorService
-- [x] 194 tests unitarios (99.5% passing)
+- [x] Comandos CLI (init, doctor, version)
+- [x] 6 agentes mj2
+- [x] 7 comandos slash
+- [x] 11 skills foundation
+- [x] Workflow TDD (RED → GREEN → REFACTOR)
+- [x] 195 tests unitarios (100% passing)
+- [x] CI/CD configurado
 
-### Fase 2: SPECs y TAGs
-- [ ] Comando `spec new`
-- [ ] Comando `spec validate`
-- [ ] Comando `tags validate`
-- [ ] Generación automática de reportes
+### v0.2.0: Frontend Foundation ✅ COMPLETADA (Issues #24-32)
+- [x] Architecture Patterns skills (Issues #24-26)
+- [x] Testcontainers skill (Issue #27)
+- [x] React 18 & TypeScript 5 skills (Issue #28)
+- [x] Vite & Material UI v6 skills (Issue #29)
+- [x] State Management skills (Issue #30)
+- [x] frontend-builder agent (Issue #31)
+- [x] Playwright E2E testing (Issue #32)
+- [x] **Testing Pyramid completa**
 
-### Fase 3: Base de datos
-- [ ] Integración EF Core
-- [ ] Soporte SQL Server
-- [ ] Soporte PostgreSQL
-- [ ] Migraciones automáticas
+### v0.3.0: Full Stack + DevOps 📋 PRÓXIMA (Issues #33-38)
+- [ ] Frontend Testing Stack detail (Issue #33)
+- [ ] Docker & Docker Compose (Issues #34-35)
+- [ ] PostgreSQL integration (Issue #36)
+- [ ] CI/CD optimization (Issue #37)
+- [ ] Deployment automation (Issue #38)
 
-### Fase 4: Automatización avanzada
-- [ ] Hooks automáticos
-- [ ] Integración CI/CD
-- [ ] Validaciones pre-commit
+### v0.4.0: Advanced Features
+- [ ] Backend avanzado (API design, performance)
+- [ ] Security & monitoring
+- [ ] Advanced testing patterns
 
-### Fase 5: IA Completa
-- [ ] Agentes especializados
-- [ ] Skills completas
-- [ ] Generación automática de código desde SPECs
+### v0.5.0: Multi-language & Integrations
+- [ ] Multi-language support
+- [ ] MCP integrations
+- [ ] BaaS providers
 
 ## Arquitectura
 
@@ -248,17 +284,22 @@ Ver documentación detallada de arquitectura en:
 
 ## Issues y desarrollo iterativo
 
-El desarrollo se realiza siguiendo las **9 GitHub Issues** de la Fase 1:
+El desarrollo sigue un enfoque iterativo documentado en GitHub Issues:
 
-1. [#1 - Estructura base del proyecto](/.github/issues/issue-01.md)
-2. [#2 - Sistema de gestión de archivos](/.github/issues/issue-02.md)
-3. [#3 - Sistema de configuración](/.github/issues/issue-03.md)
-4. [#4 - Servicio de templates](/.github/issues/issue-04.md)
-5. [#5 - Comando init](/.github/issues/issue-05.md)
-6. [#6 - Comando doctor](/.github/issues/issue-06.md)
-7. [#7 - Comando version](/.github/issues/issue-07.md)
-8. [#8 - Documentación](/.github/issues/issue-08.md)
-9. [#9 - CI/CD](/.github/issues/issue-09.md)
+### v0.1.0 - Core System ✅ (Issues #1-22)
+Ver documentación completa en `.github/issues/issue-*.md`
+
+### v0.2.0 - Frontend Foundation ✅ (Issues #24-32)
+- [#24-26 - Architecture Patterns](/.github/issues/issue-26.md)
+- [#27 - Testcontainers](/.github/issues/issue-27.md)
+- [#28 - React & TypeScript](/.github/issues/issue-28.md)
+- [#29 - Vite & MUI](/.github/issues/issue-29.md)
+- [#30 - State Management](/.github/issues/issue-30.md)
+- [#31 - Frontend Builder Agent](/.github/issues/issue-31.md)
+- [#32 - Playwright E2E Testing](/.github/issues/issue-32.md)
+
+### v0.3.0 - Full Stack + DevOps 📋 (Issues #33-38)
+Próximamente...
 
 ## Inspiración
 
