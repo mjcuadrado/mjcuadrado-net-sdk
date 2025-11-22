@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-37 completed)
+**Última actualización:** 2025-11-22 (v0.3.0 COMPLETED - Issues #33-38 ✅)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -470,21 +470,41 @@
 - **Referencia:** STACK.md > Observability
 - **Tiempo:** 5 días
 
-**Database Expert - Issue #38** (5 días)
+**Database Expert - Issue #38** (5 días) ✅ COMPLETADO
 
-**Issue #38: Database Expert Agent**
-- `.claude/agents/mj2/database-expert.md` (~650 líneas)
-  - Database design
-  - Migration strategies
-  - Query optimization
-  - Integration con PostgreSQL skill
-- `.claude/commands/mj2-db-migrate.md` (~150 líneas)
-  - Comando para migraciones
+**Issue #38: Database Expert Agent** ✅ COMPLETADO
+- `.claude/skills/dotnet/sqlserver.md` (442 líneas) ✅
+  - SQL Server 2022+ con EF Core 9
+  - Connection strings (Windows Auth, SQL Auth, Azure SQL)
+  - T-SQL queries y stored procedures
+  - Índices avanzados (Clustered, Covering, Filtered, Columnstore)
+  - Transactions, isolation levels, performance
+  - Docker con SQL Server
+  - Best practices
+- `.claude/agents/mj2/database-expert.md` (665 líneas) ✅
+  - Experto en PostgreSQL + SQL Server
+  - TRUST 5 principles para databases
+  - Workflow: ANALYZE → DESIGN → MIGRATE → OPTIMIZE
+  - Migration strategies (Expand-Contract, Blue-Green, Rolling)
+  - Database patterns (Aggregate, Soft Delete, Audit Trail)
+  - Performance optimization (ambos RDBMS)
+  - Security best practices
+- `.claude/commands/mj2-db-migrate.md` (180 líneas) ✅
+  - Comando para migraciones EF Core
+  - Parámetros: add, update, rollback, script, remove
+  - Workflow seguro para producción
+  - Integration con deployment
+- `.github/issues/issue-38.md` (documentación completa) ✅
+- **PostgreSQL skill:** Ya existía en `.claude/skills/dotnet/postgresql.md`
+- **2 RDBMS completos:** PostgreSQL + SQL Server
+- **Migration strategies:** 3 (Expand-Contract, Blue-Green, Rolling)
+- **Database patterns:** 3 (Aggregate, Soft Delete, Audit Trail)
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/database-expert
 - **Referencia:** STACK.md > Backend > Database
 - **Tiempo:** 5 días
 
-**Tiempo Total v0.3.0:** 5-6 semanas
+**Tiempo Total v0.3.0:** 5-6 semanas ✅ COMPLETADO
 
 ---
 
