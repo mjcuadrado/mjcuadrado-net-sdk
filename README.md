@@ -253,8 +253,15 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - [x] Playwright E2E testing (Issue #32)
 - [x] **Testing Pyramid completa**
 
-### v0.3.0: Full Stack + DevOps 📋 PRÓXIMA (Issues #33-38)
-- [ ] Frontend Testing Stack detail (Issue #33)
+### v0.3.0: Full Stack + DevOps 🚧 EN PROGRESO (Issues #33-38)
+
+**Frontend Testing Detail** ✅ Issue #33
+- ✅ Vitest skill (Framework de testing moderno con Vite)
+- ✅ React Testing Library skill (Testing user-centric)
+- ✅ Patrones de testing y best practices
+- ✅ 100% contenido en español
+
+**Próximos pasos:**
 - [ ] Docker & Docker Compose (Issues #34-35)
 - [ ] PostgreSQL integration (Issue #36)
 - [ ] CI/CD optimization (Issue #37)
@@ -298,8 +305,9 @@ Ver documentación completa en `.github/issues/issue-*.md`
 - [#31 - Frontend Builder Agent](/.github/issues/issue-31.md)
 - [#32 - Playwright E2E Testing](/.github/issues/issue-32.md)
 
-### v0.3.0 - Full Stack + DevOps 📋 (Issues #33-38)
-Próximamente...
+### v0.3.0 - Full Stack + DevOps 🚧 (Issues #33-38)
+- [#33 - Frontend Testing Stack](/.github/issues/issue-33.md) ✅
+Próximamente: Docker, PostgreSQL, CI/CD...
 
 ## Inspiración
 

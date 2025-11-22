@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-22 (v0.2.0 completed)
+**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issue #33 completed)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -329,17 +329,27 @@
 
 ### 🟡 IMPORTANTE - v0.3.0 (Issues #33-38) - Full Stack + DevOps
 
-**Frontend Testing - Issue #33** (4 días)
+**Frontend Testing - Issue #33** (4 días) ✅ COMPLETADO
 
-**Issue #33: Frontend Testing Stack**
-- `.claude/skills/testing/vitest.md` (~350 líneas)
-  - Vitest configuration
-  - Unit test patterns
-  - Mocking
-- `.claude/skills/testing/react-testing-library.md` (~400 líneas)
-  - Component testing
-  - User-centric tests
+**Issue #33: Frontend Testing Stack** ✅ COMPLETADO
+- `.claude/skills/testing/vitest.md` (622 líneas) ✅
+  - Framework de testing moderno con Vite
+  - Configuración y setup
+  - Matchers y aserciones
+  - Mocking (funciones, módulos, implementaciones)
+  - Coverage configuration
+  - Watch mode y UI mode
   - Best practices
+- `.claude/skills/testing/react-testing-library.md` (570 líneas) ✅
+  - Testing user-centric de componentes
+  - Prioridad de queries (getByRole, getByLabel, etc.)
+  - userEvent para interacciones
+  - Testing asíncrono
+  - Custom render con proveedores
+  - Patrones de testing (formularios, hooks)
+  - Anti-patterns documentados
+- `.github/issues/issue-33.md` (documentación completa) ✅
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/domain-testing
 - **Referencia:** STACK.md > Testing
 - **Tiempo:** 4 días
