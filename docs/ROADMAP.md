@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-36 completed)
+**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-37 completed)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -438,20 +438,34 @@
 - **Referencia:** STACK.md > CI/CD
 - **Tiempo:** 5 días
 
-**Observability - Issue #37** (5 días)
+**Observability - Issue #37** (5 días) ✅ COMPLETADO
 
-**Issue #37: OpenTelemetry Stack**
-- `.claude/skills/tools/opentelemetry.md` (~400 líneas)
-  - Instrumentation
-  - Traces, Metrics, Logs
-  - Collector configuration
-- `.claude/skills/tools/grafana.md` (~350 líneas)
-  - Dashboards
-  - Alerting
-  - Loki integration
-- `.claude/skills/tools/serilog.md` (~300 líneas)
-  - Structured logging
-  - Sinks configuration
+**Issue #37: OpenTelemetry Stack** ✅ COMPLETADO
+- `.claude/skills/tools/opentelemetry.md` (434 líneas) ✅
+  - Conceptos básicos (traces, metrics, logs)
+  - Auto-instrumentación (ASP.NET Core, HTTP, SQL)
+  - Instrumentación manual (ActivitySource, Meters)
+  - Exporters (Console, Jaeger, Prometheus, OTLP)
+  - OpenTelemetry Collector configuration
+  - Sampling strategies y best practices
+- `.claude/skills/tools/grafana.md` (365 líneas) ✅
+  - Data sources (Prometheus, Loki, Jaeger)
+  - Dashboards creation y provisioning
+  - Query builder (PromQL, LogQL)
+  - Alerting rules y contact points
+  - Variables y templating
+  - Best practices
+- `.claude/skills/tools/serilog.md` (318 líneas) ✅
+  - Structured logging concepts
+  - Sinks (Console, File, Seq, Loki)
+  - Enrichers (built-in y custom)
+  - Integración con OpenTelemetry
+  - Correlación automática con traces
+  - Best practices (secrets, PII, cardinality)
+- `.github/issues/issue-37.md` (documentación completa) ✅
+- **Stack completo:** Jaeger + Prometheus + Loki + Grafana
+- **Métricas:** 3 telemetry signals, 4 exporters, 4 sinks
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/monitoring-expert
 - **Referencia:** STACK.md > Observability
 - **Tiempo:** 5 días
