@@ -268,9 +268,15 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Optimización 86% en tamaño de imágenes
 - ✅ Security hardening completo
 
+**DevOps Expert Agent** ✅ Issue #35
+- ✅ devops-expert agent (696 líneas) - Orquestación de deployment y CI/CD
+- ✅ /mj2:5-deploy command (444 líneas) - Deployment automatizado
+- ✅ 3 deployment strategies: Blue-Green, Rolling, Canary
+- ✅ Security, monitoring, rollback automation
+- ✅ Workflow de 4 fases: PLAN → BUILD → DEPLOY → VERIFY
+
 **Próximos pasos:**
-- [ ] Docker Compose Advanced (Issue #35)
-- [ ] PostgreSQL integration (Issue #36)
+- [ ] GitHub Actions CI/CD (Issue #36)
 - [ ] CI/CD optimization (Issue #37)
 - [ ] Deployment automation (Issue #38)
 
@@ -315,7 +321,8 @@ Ver documentación completa en `.github/issues/issue-*.md`
 ### v0.3.0 - Full Stack + DevOps 🚧 (Issues #33-38)
 - [#33 - Frontend Testing Stack](/.github/issues/issue-33.md) ✅
 - [#34 - Docker Foundation](/.github/issues/issue-34.md) ✅
-Próximamente: Docker Compose Advanced, PostgreSQL, CI/CD...
+- [#35 - DevOps Expert Agent](/.github/issues/issue-35.md) ✅
+Próximamente: GitHub Actions, CI/CD optimization...
 
 ## Inspiración
 
