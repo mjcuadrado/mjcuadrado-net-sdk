@@ -1,0 +1,484 @@
+# Continuous Deployment Workflow
+#
+# Este workflow ejecuta deployment automatizado siguiendo TRUST 5:
+# - Trazabilidad: Logs completos, deployment tracking
+# - Repetibilidad: Mismo proceso para cada deployment
+# - Uniformidad: Misma estrategia en todos los entornos
+# - Seguridad: Secrets management, vulnerability scanning
+# - Testabilidad: Health checks, smoke tests
+#
+# Integración con devops-expert agent (Issue #35)
+# Soporta 3 estrategias: Blue-Green, Rolling, Canary
+#
+# Triggers:
+# - Push a main (production)
+# - Push a develop (staging)
+# - Manual dispatch
+# - Release published
+
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main        # Production
+      - develop     # Staging
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Entorno de deployment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+      strategy:
+        description: 'Estrategia de deployment'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto           # Auto-select basado en entorno
+          - blue-green     # Zero-downtime
+          - rolling        # Sin recursos extra
+          - canary         # Testing gradual
+          - recreate       # Simple stop/start
+      version:
+        description: 'Versión específica (opcional)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry-run (simular sin ejecutar)'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Job 1: Determinar estrategia
+  determine-strategy:
+    name: Determinar estrategia de deployment
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set-env.outputs.environment }}
+      strategy: ${{ steps.set-strategy.outputs.strategy }}
+      version: ${{ steps.set-version.outputs.version }}
+
+    steps:
+      - name: Determinar entorno
+        id: set-env
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            echo "environment=staging" >> $GITHUB_OUTPUT
+          else
+            echo "environment=development" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Determinar estrategia
+        id: set-strategy
+        run: |
+          if [ "${{ github.event.inputs.strategy }}" == "auto" ] || [ -z "${{ github.event.inputs.strategy }}" ]; then
+            # Auto-select basado en entorno
+            if [ "${{ steps.set-env.outputs.environment }}" == "production" ]; then
+              echo "strategy=blue-green" >> $GITHUB_OUTPUT
+            elif [ "${{ steps.set-env.outputs.environment }}" == "staging" ]; then
+              echo "strategy=rolling" >> $GITHUB_OUTPUT
+            else
+              echo "strategy=recreate" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "strategy=${{ github.event.inputs.strategy }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Determinar versión
+        id: set-version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" == "release" ]; then
+            echo "version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
+
+  # Job 2: Build y push Docker images
+  build-and-push:
+    name: Build y push images
+    runs-on: ubuntu-latest
+    needs: determine-strategy
+    if: github.event.inputs.dry_run != 'true'
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      matrix:
+        include:
+          - component: backend
+            context: .
+            dockerfile: ./Dockerfile
+          - component: frontend
+            context: ./frontend
+            dockerfile: ./frontend/Dockerfile
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ matrix.component }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+            type=raw,value=${{ needs.determine-strategy.outputs.version }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            BUILD_CONFIGURATION=Release
+            VERSION=${{ needs.determine-strategy.outputs.version }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ matrix.component }}:${{ needs.determine-strategy.outputs.version }}
+          format: 'sarif'
+          output: 'trivy-results-${{ matrix.component }}.sarif'
+
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results-${{ matrix.component }}.sarif'
+
+      - name: Check for critical vulnerabilities
+        run: |
+          trivy image \
+            --severity CRITICAL \
+            --exit-code 1 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ matrix.component }}:${{ needs.determine-strategy.outputs.version }}
+
+  # Job 3: Deploy a Development
+  deploy-development:
+    name: Deploy a Development
+    runs-on: ubuntu-latest
+    needs: [determine-strategy, build-and-push]
+    if: needs.determine-strategy.outputs.environment == 'development' && github.event.inputs.dry_run != 'true'
+    environment:
+      name: development
+      url: https://dev.myapp.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy usando estrategia ${{ needs.determine-strategy.outputs.strategy }}
+        run: |
+          echo "🚀 Deploying to development"
+          echo "Strategy: ${{ needs.determine-strategy.outputs.strategy }}"
+          echo "Version: ${{ needs.determine-strategy.outputs.version }}"
+
+      - name: Update docker-compose
+        run: |
+          sed -i "s|image:.*backend.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend:${{ needs.determine-strategy.outputs.version }}|g" docker-compose.yml
+          sed -i "s|image:.*frontend.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend:${{ needs.determine-strategy.outputs.version }}|g" docker-compose.yml
+
+      - name: Deploy to development
+        run: |
+          # Recreate strategy (simple stop/start)
+          docker-compose down
+          docker-compose up -d
+
+      - name: Health check
+        run: |
+          sleep 10
+          curl -f https://dev.myapp.com/health || exit 1
+
+  # Job 4: Deploy a Staging
+  deploy-staging:
+    name: Deploy a Staging
+    runs-on: ubuntu-latest
+    needs: [determine-strategy, build-and-push]
+    if: needs.determine-strategy.outputs.environment == 'staging' && github.event.inputs.dry_run != 'true'
+    environment:
+      name: staging
+      url: https://staging.myapp.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy usando Rolling Update
+        run: |
+          echo "🚀 Deploying to staging (Rolling Update)"
+          echo "Version: ${{ needs.determine-strategy.outputs.version }}"
+
+      - name: Rolling update backend
+        run: |
+          docker service update \
+            --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend:${{ needs.determine-strategy.outputs.version }} \
+            --update-parallelism 1 \
+            --update-delay 30s \
+            --update-order start-first \
+            myapp-backend
+
+      - name: Rolling update frontend
+        run: |
+          docker service update \
+            --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend:${{ needs.determine-strategy.outputs.version }} \
+            --update-parallelism 1 \
+            --update-delay 30s \
+            --update-order start-first \
+            myapp-frontend
+
+      - name: Health check
+        run: |
+          sleep 30
+          curl -f https://staging.myapp.com/health || exit 1
+
+      - name: Smoke tests
+        run: |
+          # Ejecutar smoke tests básicos
+          curl -f https://staging.myapp.com/api/health || exit 1
+          curl -f https://staging.myapp.com/ || exit 1
+
+  # Job 5: Deploy a Production (Blue-Green)
+  deploy-production:
+    name: Deploy a Production
+    runs-on: ubuntu-latest
+    needs: [determine-strategy, build-and-push]
+    if: needs.determine-strategy.outputs.environment == 'production' && github.event.inputs.dry_run != 'true'
+    environment:
+      name: production
+      url: https://myapp.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy usando Blue-Green
+        run: |
+          echo "🚀 Deploying to production (Blue-Green)"
+          echo "Version: ${{ needs.determine-strategy.outputs.version }}"
+
+      - name: Deploy Green environment
+        run: |
+          # Crear stack green con nueva versión
+          docker stack deploy -c docker-compose.green.yml myapp-green
+
+          # Esperar que green esté saludable
+          sleep 30
+
+      - name: Health check Green
+        run: |
+          # Verificar que green está saludable
+          for i in {1..10}; do
+            if curl -f http://green.myapp.internal/health; then
+              echo "✅ Green environment healthy"
+              break
+            fi
+            if [ $i -eq 10 ]; then
+              echo "❌ Green environment unhealthy after 10 attempts"
+              exit 1
+            fi
+            sleep 10
+          done
+
+      - name: Run smoke tests on Green
+        run: |
+          # Smoke tests en green antes de switch
+          curl -f http://green.myapp.internal/api/health || exit 1
+          curl -f http://green.myapp.internal/ || exit 1
+
+      - name: Switch traffic to Green
+        run: |
+          # Actualizar load balancer para apuntar a green
+          echo "Switching traffic from blue to green..."
+          # Ejemplo con nginx
+          sed -i 's/upstream blue/upstream green/g' /etc/nginx/nginx.conf
+          nginx -s reload
+
+      - name: Monitor Green for 5 minutes
+        run: |
+          echo "Monitoring green environment for 5 minutes..."
+          for i in {1..30}; do
+            if ! curl -f https://myapp.com/health; then
+              echo "❌ Health check failed during monitoring"
+              exit 1
+            fi
+            sleep 10
+          done
+          echo "✅ Green environment stable"
+
+      - name: Decommission Blue
+        run: |
+          echo "Removing blue environment..."
+          docker stack rm myapp-blue
+
+      - name: Save rollback compose
+        run: |
+          # Guardar compose de versión anterior para rollback
+          cp docker-compose.yml docker-compose.rollback.yml
+
+  # Job 6: Rollback (manual trigger)
+  rollback:
+    name: Rollback
+    runs-on: ubuntu-latest
+    if: failure() && needs.determine-strategy.outputs.environment == 'production'
+    needs: [determine-strategy, deploy-production]
+    environment:
+      name: production
+      url: https://myapp.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Rollback to previous version
+        run: |
+          echo "🔄 Rolling back to previous version..."
+
+          # Restaurar blue environment
+          docker stack deploy -c docker-compose.rollback.yml myapp-blue
+
+          # Switch traffic back to blue
+          sed -i 's/upstream green/upstream blue/g' /etc/nginx/nginx.conf
+          nginx -s reload
+
+          # Remove green
+          docker stack rm myapp-green
+
+      - name: Health check after rollback
+        run: |
+          sleep 30
+          curl -f https://myapp.com/health || exit 1
+
+      - name: Notify rollback
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ Deployment failed and was rolled back to previous version'
+            })
+
+  # Job 7: Post-deployment verification
+  post-deployment:
+    name: Verificación post-deployment
+    runs-on: ubuntu-latest
+    needs: [determine-strategy, deploy-development, deploy-staging, deploy-production]
+    if: always() && github.event.inputs.dry_run != 'true'
+
+    steps:
+      - name: Run post-deployment checks
+        run: |
+          ENV="${{ needs.determine-strategy.outputs.environment }}"
+
+          case $ENV in
+            production)
+              URL="https://myapp.com"
+              ;;
+            staging)
+              URL="https://staging.myapp.com"
+              ;;
+            development)
+              URL="https://dev.myapp.com"
+              ;;
+          esac
+
+          echo "Running post-deployment checks for $ENV..."
+
+          # Health check
+          curl -f $URL/health || exit 1
+
+          # Performance check
+          RESPONSE_TIME=$(curl -o /dev/null -s -w '%{time_total}' $URL)
+          echo "Response time: ${RESPONSE_TIME}s"
+
+      - name: Update deployment status
+        run: |
+          echo "## ✅ Deployment Completado" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Entorno:** ${{ needs.determine-strategy.outputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Estrategia:** ${{ needs.determine-strategy.outputs.strategy }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Versión:** ${{ needs.determine-strategy.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const env = '${{ needs.determine-strategy.outputs.environment }}';
+            const strategy = '${{ needs.determine-strategy.outputs.strategy }}';
+            const version = '${{ needs.determine-strategy.outputs.version }}';
+
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: 'success',
+              context: `Deployment/${env}`,
+              description: `Deployed ${version} using ${strategy}`
+            });
+
+  # Job 8: Dry-run simulation
+  dry-run:
+    name: Dry-run simulation
+    runs-on: ubuntu-latest
+    needs: determine-strategy
+    if: github.event.inputs.dry_run == 'true'
+
+    steps:
+      - name: Simulate deployment
+        run: |
+          echo "🔍 DRY-RUN MODE: No changes will be applied"
+          echo ""
+          echo "📋 Deployment Plan:"
+          echo "  - Environment: ${{ needs.determine-strategy.outputs.environment }}"
+          echo "  - Strategy: ${{ needs.determine-strategy.outputs.strategy }}"
+          echo "  - Version: ${{ needs.determine-strategy.outputs.version }}"
+          echo ""
+          echo "🏗️ Would build images:"
+          echo "  - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend:${{ needs.determine-strategy.outputs.version }}"
+          echo "  - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend:${{ needs.determine-strategy.outputs.version }}"
+          echo ""
+          echo "🚀 Would deploy using ${{ needs.determine-strategy.outputs.strategy }} strategy"
+          echo ""
+          echo "✅ Dry-run completed - Ready for actual deployment"

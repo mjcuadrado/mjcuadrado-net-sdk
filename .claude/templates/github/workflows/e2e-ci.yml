@@ -1,0 +1,593 @@
+# E2E CI - Playwright Workflow
+#
+# Este workflow ejecuta tests E2E con Playwright siguiendo TRUST 5:
+# - Trazabilidad: Reportes HTML, videos, screenshots
+# - Repetibilidad: Mismos tests en todos los browsers
+# - Uniformidad: Mismos tests en local y CI
+# - Seguridad: Tests de autenticación y autorización
+# - Testabilidad: Cobertura E2E completa
+#
+# Triggers:
+# - Push a main/develop
+# - Pull requests
+# - Manual dispatch
+# - Scheduled (nightly)
+
+name: E2E Tests
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'frontend/**'
+      - 'src/**'
+      - 'tests/e2e/**'
+      - '.github/workflows/e2e-ci.yml'
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Browser específico para ejecutar'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - chromium
+          - firefox
+          - webkit
+      headed:
+        description: 'Ejecutar en modo headed (visible)'
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    # Ejecutar tests E2E todas las noches a las 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '8.x'
+
+jobs:
+  # Job 1: Setup completo (Backend + Frontend)
+  setup:
+    name: Setup entorno E2E
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+  # Job 2: E2E Tests - Chromium
+  e2e-chromium:
+    name: E2E Tests (Chromium)
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event.inputs.browser == 'all' || github.event.inputs.browser == 'chromium' || github.event.inputs.browser == ''
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: e2edb
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Start backend
+        run: |
+          dotnet run --project src/MyApp.Api/MyApp.Api.csproj &
+          echo "Esperando backend..."
+          sleep 10
+          curl -f http://localhost:5000/health || exit 1
+        env:
+          ASPNETCORE_ENVIRONMENT: Test
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=e2edb;Username=testuser;Password=testpass"
+
+      - name: Start frontend
+        run: |
+          pnpm dev &
+          echo "Esperando frontend..."
+          sleep 10
+          curl -f http://localhost:5173 || exit 1
+
+      - name: Run E2E tests (Chromium)
+        run: pnpm exec playwright test --project=chromium
+        env:
+          CI: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-chromium
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots-chromium
+          path: test-results/
+          retention-days: 7
+
+  # Job 3: E2E Tests - Firefox
+  e2e-firefox:
+    name: E2E Tests (Firefox)
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event.inputs.browser == 'all' || github.event.inputs.browser == 'firefox' || github.event.inputs.browser == ''
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: e2edb
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install firefox --with-deps
+
+      - name: Start backend
+        run: |
+          dotnet run --project src/MyApp.Api/MyApp.Api.csproj &
+          echo "Esperando backend..."
+          sleep 10
+          curl -f http://localhost:5000/health || exit 1
+        env:
+          ASPNETCORE_ENVIRONMENT: Test
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=e2edb;Username=testuser;Password=testpass"
+
+      - name: Start frontend
+        run: |
+          pnpm dev &
+          echo "Esperando frontend..."
+          sleep 10
+          curl -f http://localhost:5173 || exit 1
+
+      - name: Run E2E tests (Firefox)
+        run: pnpm exec playwright test --project=firefox
+        env:
+          CI: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-firefox
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots-firefox
+          path: test-results/
+          retention-days: 7
+
+  # Job 4: E2E Tests - WebKit (Safari)
+  e2e-webkit:
+    name: E2E Tests (WebKit)
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event.inputs.browser == 'all' || github.event.inputs.browser == 'webkit' || github.event.inputs.browser == ''
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: e2edb
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install webkit --with-deps
+
+      - name: Start backend
+        run: |
+          dotnet run --project src/MyApp.Api/MyApp.Api.csproj &
+          echo "Esperando backend..."
+          sleep 10
+          curl -f http://localhost:5000/health || exit 1
+        env:
+          ASPNETCORE_ENVIRONMENT: Test
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=e2edb;Username=testuser;Password=testpass"
+
+      - name: Start frontend
+        run: |
+          pnpm dev &
+          echo "Esperando frontend..."
+          sleep 10
+          curl -f http://localhost:5173 || exit 1
+
+      - name: Run E2E tests (WebKit)
+        run: pnpm exec playwright test --project=webkit
+        env:
+          CI: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-webkit
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots-webkit
+          path: test-results/
+          retention-days: 7
+
+  # Job 5: Visual regression tests
+  visual-regression:
+    name: Visual regression tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event_name == 'pull_request'
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: e2edb
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Start backend
+        run: |
+          dotnet run --project src/MyApp.Api/MyApp.Api.csproj &
+          sleep 10
+        env:
+          ASPNETCORE_ENVIRONMENT: Test
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=e2edb;Username=testuser;Password=testpass"
+
+      - name: Start frontend
+        run: |
+          pnpm dev &
+          sleep 10
+
+      - name: Run visual regression tests
+        run: pnpm exec playwright test --grep @visual
+
+      - name: Upload visual diff
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-diff
+          path: test-results/
+          retention-days: 7
+
+  # Job 6: Accessibility tests
+  accessibility:
+    name: Accessibility tests
+    runs-on: ubuntu-latest
+    needs: setup
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: e2edb
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Start backend
+        run: |
+          dotnet run --project src/MyApp.Api/MyApp.Api.csproj &
+          sleep 10
+        env:
+          ASPNETCORE_ENVIRONMENT: Test
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=e2edb;Username=testuser;Password=testpass"
+
+      - name: Start frontend
+        run: |
+          pnpm dev &
+          sleep 10
+
+      - name: Run accessibility tests
+        run: pnpm exec playwright test --grep @a11y
+
+      - name: Upload accessibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: playwright-report/
+          retention-days: 7
+
+  # Job 7: Performance tests
+  performance:
+    name: Performance tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: e2edb
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Start backend
+        run: |
+          dotnet run --project src/MyApp.Api/MyApp.Api.csproj --configuration Release &
+          sleep 10
+        env:
+          ASPNETCORE_ENVIRONMENT: Production
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=e2edb;Username=testuser;Password=testpass"
+
+      - name: Start frontend
+        run: |
+          pnpm build
+          pnpm preview &
+          sleep 10
+
+      - name: Run performance tests
+        run: pnpm exec playwright test --grep @performance
+
+      - name: Upload performance metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-metrics
+          path: performance-results/
+          retention-days: 30
+
+  # Job 8: Status check final
+  e2e-success:
+    name: E2E Success
+    runs-on: ubuntu-latest
+    needs: [setup, e2e-chromium, e2e-firefox, e2e-webkit, accessibility]
+    if: always()
+
+    steps:
+      - name: Check E2E status
+        run: |
+          if [ "${{ needs.setup.result }}" != "success" ] || \
+             [ "${{ needs.e2e-chromium.result }}" != "success" ] || \
+             [ "${{ needs.e2e-firefox.result }}" != "success" ] || \
+             [ "${{ needs.e2e-webkit.result }}" != "success" ] || \
+             [ "${{ needs.accessibility.result }}" != "success" ]; then
+            echo "❌ E2E tests failed - revisar logs"
+            exit 1
+          else
+            echo "✅ E2E tests completados exitosamente"
+          fi
+
+      - name: Post summary
+        run: |
+          echo "## ✅ E2E Tests Completados" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Chromium tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Firefox tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ WebKit tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Accessibility tests" >> $GITHUB_STEP_SUMMARY

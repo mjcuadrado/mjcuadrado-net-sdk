@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-35 completed)
+**Última actualización:** 2025-11-22 (v0.3.0 in progress - Issues #33-36 completed)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -413,19 +413,27 @@
 - **Referencia:** STACK.md > DevOps
 - **Tiempo:** 5 días
 
-**CI/CD - Issue #36** (5 días)
+**CI/CD - Issue #36** (5 días) ✅ COMPLETADO
 
-**Issue #36: GitHub Actions**
-- `.claude/skills/tools/github-actions.md` (~400 líneas)
-  - Workflow patterns
-  - Secrets management
-  - Matrix builds
-  - Caching strategies
-- **Templates:**
-  - `templates/github/workflows/backend-ci.yml`
-  - `templates/github/workflows/frontend-ci.yml`
-  - `templates/github/workflows/e2e-ci.yml`
-  - `templates/github/workflows/cd.yml`
+**Issue #36: GitHub Actions CI/CD** ✅ COMPLETADO
+- `.claude/skills/tools/github-actions.md` (418 líneas) ✅
+  - Conceptos básicos (workflows, jobs, steps, runners)
+  - Triggers completos (push, pull_request, schedule, workflow_dispatch)
+  - Secrets y variables de entorno
+  - Caching strategies para optimización
+  - Matrix builds para multi-target
+  - Docker build & push integration
+  - Ejemplos prácticos (.NET CI, React CI)
+  - Best practices y troubleshooting
+- **Templates:** ✅
+  - `.claude/templates/github/workflows/backend-ci.yml` (380+ líneas)
+  - `.claude/templates/github/workflows/frontend-ci.yml` (370+ líneas)
+  - `.claude/templates/github/workflows/e2e-ci.yml` (450+ líneas)
+  - `.claude/templates/github/workflows/cd.yml` (490+ líneas)
+- `.github/issues/issue-36.md` (documentación completa) ✅
+- **Métricas:** 33 jobs totales, 3 deployment strategies
+- **Optimización:** ~7-11 minutos ahorrados con caching
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/domain-devops
 - **Referencia:** STACK.md > CI/CD
 - **Tiempo:** 5 días

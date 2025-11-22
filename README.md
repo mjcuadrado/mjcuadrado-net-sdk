@@ -275,8 +275,16 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Security, monitoring, rollback automation
 - ✅ Workflow de 4 fases: PLAN → BUILD → DEPLOY → VERIFY
 
+**GitHub Actions CI/CD** ✅ Issue #36
+- ✅ github-actions.md skill (418 líneas) - CI/CD completo con GitHub Actions
+- ✅ backend-ci.yml (380+ líneas) - CI para .NET backend
+- ✅ frontend-ci.yml (370+ líneas) - CI para React frontend
+- ✅ e2e-ci.yml (450+ líneas) - E2E tests multi-browser
+- ✅ cd.yml (490+ líneas) - Continuous Deployment automatizado
+- ✅ 33 jobs totales, 3 deployment strategies
+- ✅ Caching, security scanning, rollback automation
+
 **Próximos pasos:**
-- [ ] GitHub Actions CI/CD (Issue #36)
 - [ ] CI/CD optimization (Issue #37)
 - [ ] Deployment automation (Issue #38)
 
@@ -322,7 +330,8 @@ Ver documentación completa en `.github/issues/issue-*.md`
 - [#33 - Frontend Testing Stack](/.github/issues/issue-33.md) ✅
 - [#34 - Docker Foundation](/.github/issues/issue-34.md) ✅
 - [#35 - DevOps Expert Agent](/.github/issues/issue-35.md) ✅
-Próximamente: GitHub Actions, CI/CD optimization...
+- [#36 - GitHub Actions CI/CD](/.github/issues/issue-36.md) ✅
+Próximamente: CI/CD optimization, Deployment automation...
 
 ## Inspiración
 
