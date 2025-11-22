@@ -41,19 +41,9 @@ public class DoctorCommand : Command<DoctorCommand.Settings>
             AnsiConsole.WriteLine();
 
             // Ejecutar diagnóstico con spinner
-            DiagnosticResult? result = null;
-            AnsiConsole.Status()
+            var result = AnsiConsole.Status()
                 .Spinner(Spinner.Known.Dots)
-                .Start("[yellow]Ejecutando verificaciones...[/]", ctx =>
-                {
-                    result = _doctorService.RunFullDiagnostic();
-                });
-
-            if (result == null)
-            {
-                AnsiConsole.MarkupLine("[red]✗ Error al ejecutar el diagnóstico[/]");
-                return 1;
-            }
+                .Start("[yellow]Ejecutando verificaciones...[/]", ctx => _doctorService.RunFullDiagnostic());
 
             // Mostrar tabla de resultados
             DisplayResults(result, settings.Verbose);
