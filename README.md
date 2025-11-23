@@ -117,8 +117,15 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ 4 execution rules predefinidas
 - ✅ 4 common error patterns
 
+**Agent & Skill Factory** ✅ Issue #45 - 🚀 GAME CHANGER
+- ✅ agent-factory meta-agente (683 líneas)
+- ✅ skill-factory meta-agente (826 líneas)
+- ✅ /mj2:create-agent command (373 líneas)
+- ✅ /mj2:create-skill command (527 líneas)
+- ✅ 9 dominios, 5 workflow patterns, 3 niveles
+- ✅ **mj2 es ahora extensible por usuarios**
+
 **Próximos Issues**
-- 📋 Agent & Skill Factory (#45) - META-AGENTES
 - 📋 Release Management (#46)
 - 📋 Debug & Migration Helpers (#48)
 - 📋 Component Designer (#49)
