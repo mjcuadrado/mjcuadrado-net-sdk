@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-23 (v0.5.0 IN PROGRESS - Issues #44-46 ✅)
+**Última actualización:** 2025-11-23 (v0.5.0 IN PROGRESS - Issues #44-46,48 ✅)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---

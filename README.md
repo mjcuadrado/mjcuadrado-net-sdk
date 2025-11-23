@@ -133,8 +133,15 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ Pre-release validation (6 checks)
 - ✅ GitHub Release integration
 
+**Debug & Migration Helpers** ✅ Issue #48
+- ✅ debug-helper agent (768 líneas)
+- ✅ migration-expert agent (185 líneas)
+- ✅ /mj2:debug command (73 líneas)
+- ✅ /mj2:migrate command (57 líneas)
+- ✅ Debugging sistemático
+- ✅ Migration strategies (3)
+
 **Próximos Issues**
-- 📋 Debug & Migration Helpers (#48)
 - 📋 Component Designer (#49)
 - 📋 Advanced Hooks (#50)
 - 📋 Output Styles (#51)
