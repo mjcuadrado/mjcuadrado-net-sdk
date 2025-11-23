@@ -1,8 +1,8 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-23 (v0.5.0 CASI COMPLETA 6/9 - Issues #44-46,48-50 ✅ | Gap Analysis completo | Issues #54-63 creados)
-**Basado en:** Gap Analysis vs moai-adk + STACK.md
-**Roadmap extendido:** v0.6.0-v0.9.0 (10 issues nuevos | +27 skills | +5 agentes proyectados)
+**Última actualización:** 2025-11-23 (v0.5.0 CASI COMPLETA 6/9 - Issues #44-46,48-50 ✅ | Gap Analysis + Workflow Orchestration Analysis completos | Issues #54-64 creados)
+**Basado en:** Gap Analysis vs moai-adk + STACK.md + Workflow Orchestration Analysis
+**Roadmap extendido:** v0.6.0-v0.9.0 (11 issues nuevos | +27 skills | +5 agentes | +2 comandos proyectados)
 
 ---
 
@@ -716,10 +716,11 @@ v0.5.0 (3-4 semanas) ← ADVANCED 🆕
   └── MCP Integrations (#52)
       │
       ↓
-v0.6.0 (3 semanas) ← ESSENTIAL AGENTS 🆕
+v0.6.0 (3.5-4 semanas) ← ESSENTIAL AGENTS 🆕
   ├── Implementation Planner (#54)
   ├── Format Expert (#55)
-  └── Docs Manager (#56)
+  ├── Docs Manager (#56)
+  └── Workflow Orchestrator (#64)
       │
       ↓
 v0.7.0 (4 semanas) ← CLOUD & DEVOPS 🆕
@@ -753,11 +754,11 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 | v0.3.0 | #33-38 (6 issues) | 5-6 | 🟡 IMPORTANTE |
 | v0.4.0 | #39-43 (5 issues) | 4-5 | 🟢 NICE TO HAVE |
 | v0.5.0 | #44-52 (9 issues) | 3-4 | 🔵 ADVANCED |
-| v0.6.0 | #54-56 (3 issues) | 3 | 🟡 ESSENTIAL AGENTS |
+| v0.6.0 | #54-56,64 (4 issues) | 3.5-4 | 🟡 ESSENTIAL AGENTS |
 | v0.7.0 | #57-59 (3 issues) | 4 | 🔴 CLOUD & DEVOPS |
 | v0.8.0 | #60-61 (2 issues) | 2 | 🟡 ADVANCED AGENTS |
 | v0.9.0 | #62-63 (2 issues) | 2.5 | 🟡 SPECIALIZED |
-| **Total** | **38 issues** | **30-35 semanas** | **(~7.5 meses)** |
+| **Total** | **39 issues** | **31-36 semanas** | **(~7.5-8 meses)** |
 
 ### Skills Totales
 
@@ -1022,9 +1023,9 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 
 ---
 
-### 🟡 ESSENTIAL AGENTS - v0.6.0 (Issues #54-56) - Core Agents Expansion
+### 🟡 ESSENTIAL AGENTS - v0.6.0 (Issues #54-56, #64) - Core Agents Expansion
 
-**Gap Analysis: Agentes esenciales de moai-adk que completan el toolkit**
+**Gap Analysis: Agentes esenciales de moai-adk que completan el toolkit + Orquestación explícita**
 
 **Issue #54: Implementation Planner Agent** (6-7 días)
 - `.claude/agents/mj2/implementation-planner.md` (~800 líneas)
@@ -1070,7 +1071,27 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 - **Prioridad:** 🟡 Media (documentación profesional)
 - **Tiempo:** 5-6 días
 
-**Tiempo Total v0.6.0:** 3 semanas (~16-18 días)
+**Issue #64: Workflow Orchestrator & "Mr. mj2"** (3-4 días) 🆕
+- Hacer explícito el concepto de orquestación "Mr. mj2"
+- `.claude/skills/mj2/orchestration-patterns.md` (~400 líneas)
+  - Sequential workflow pattern
+  - Quality gate pattern (conditional)
+  - Agent responsibilities matrix
+  - Workflow state tracking con TAG chain
+- `.claude/agents/mj2/workflow-status.md` (~300 líneas)
+  - Analiza estado del proyecto y muestra progreso
+- `.claude/commands/mj2-status.md` (~150 líneas)
+  - Sintaxis: `/mj2:status [SPEC-ID]`
+- `.claude/commands/mj2-help.md` (~200 líneas)
+  - Lista comandos, explica workflow, guía contextual
+- Actualizar outputs de agentes con formato "Mr. mj2 recomienda"
+- README.md actualizado con sección "Mr. mj2"
+- **Inspirado en:** moai-adk "Mr. Alfred" (conceptual orchestrator)
+- **Análisis completo:** `.github/analysis/workflow-orchestration-analysis-2025-11-23.md`
+- **Prioridad:** 🟡 Media (mejor UX)
+- **Tiempo:** 3-4 días
+
+**Tiempo Total v0.6.0:** 3.5-4 semanas (~19-22 días)
 
 ---
 
