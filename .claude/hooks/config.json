@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "description": "MJ² Hooks System Configuration",
+  "version": "1.0.0",
+  "hooks": {
+    "enabled": true,
+    "timeout": 30000,
+    "hooks": [
+      {
+        "name": "metrics-tracker",
+        "description": "Track command execution metrics",
+        "event": "post-command",
+        "script": ".claude/hooks/examples/metrics-tracker.sh",
+        "enabled": true,
+        "async": true,
+        "continueOnError": true
+      },
+      {
+        "name": "coverage-reporter",
+        "description": "Monitor test coverage and generate reports",
+        "event": "on-test-run",
+        "script": ".claude/hooks/examples/coverage-reporter.sh",
+        "enabled": true,
+        "async": false,
+        "continueOnError": false,
+        "config": {
+          "threshold": 85,
+          "alertWebhook": "${COVERAGE_ALERT_WEBHOOK}"
+        }
+      },
+      {
+        "name": "spec-backup",
+        "description": "Backup SPECs to S3",
+        "event": "on-spec-created",
+        "script": ".claude/hooks/examples/spec-backup.sh",
+        "enabled": false,
+        "async": true,
+        "continueOnError": true,
+        "config": {
+          "s3Bucket": "${S3_BACKUP_BUCKET}"
+        }
+      },
+      {
+        "name": "spec-backup-update",
+        "description": "Backup SPECs to S3 on update",
+        "event": "on-spec-updated",
+        "script": ".claude/hooks/examples/spec-backup.sh",
+        "enabled": false,
+        "async": true,
+        "continueOnError": true
+      },
+      {
+        "name": "slack-deploy-notification",
+        "description": "Send Slack notification on deployment",
+        "event": "post-deploy",
+        "script": ".claude/hooks/examples/slack-notification.sh",
+        "enabled": false,
+        "async": true,
+        "continueOnError": true,
+        "config": {
+          "slackWebhook": "${SLACK_WEBHOOK_URL}",
+          "environments": ["staging", "production"]
+        }
+      }
+    ]
+  },
+  "events": {
+    "pre-command": {
+      "description": "Triggered before executing a /mj2:* command",
+      "variables": [
+        "MJ2_COMMAND",
+        "MJ2_ARGS",
+        "MJ2_USER",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "post-command": {
+      "description": "Triggered after executing a /mj2:* command",
+      "variables": [
+        "MJ2_COMMAND",
+        "MJ2_ARGS",
+        "MJ2_EXIT_CODE",
+        "MJ2_DURATION",
+        "MJ2_USER",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "on-spec-created": {
+      "description": "Triggered when a new SPEC is created",
+      "variables": [
+        "MJ2_SPEC_ID",
+        "MJ2_SPEC_PATH",
+        "MJ2_SPEC_PRIORITY",
+        "MJ2_SPEC_TYPE",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "on-spec-updated": {
+      "description": "Triggered when a SPEC is updated",
+      "variables": [
+        "MJ2_SPEC_ID",
+        "MJ2_SPEC_PATH",
+        "MJ2_SPEC_PRIORITY",
+        "MJ2_SPEC_TYPE",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "on-sync-done": {
+      "description": "Triggered when /mj2:3-sync completes",
+      "variables": [
+        "MJ2_SYNC_FILES_COUNT",
+        "MJ2_SYNC_DURATION",
+        "MJ2_SYNC_ERRORS",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "on-test-run": {
+      "description": "Triggered when tests are executed",
+      "variables": [
+        "MJ2_TEST_RESULT",
+        "MJ2_TEST_TOTAL",
+        "MJ2_TEST_PASSED",
+        "MJ2_TEST_FAILED",
+        "MJ2_COVERAGE",
+        "MJ2_COVERAGE_LINES",
+        "MJ2_COVERAGE_BRANCHES",
+        "MJ2_TEST_DURATION",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "on-deploy": {
+      "description": "Triggered when deployment is executed",
+      "variables": [
+        "MJ2_DEPLOY_ENV",
+        "MJ2_DEPLOY_VERSION",
+        "MJ2_DEPLOY_STRATEGY",
+        "MJ2_DEPLOY_URL",
+        "MJ2_DEPLOY_DURATION",
+        "MJ2_DEPLOY_STATUS",
+        "MJ2_TIMESTAMP"
+      ]
+    },
+    "on-release": {
+      "description": "Triggered when a release is created",
+      "variables": [
+        "MJ2_RELEASE_VERSION",
+        "MJ2_RELEASE_TYPE",
+        "MJ2_RELEASE_BREAKING",
+        "MJ2_RELEASE_TAG",
+        "MJ2_TIMESTAMP"
+      ]
+    }
+  },
+  "examples": {
+    "enableHook": "Set 'enabled: true' for the hook you want to activate",
+    "disableHook": "Set 'enabled: false' to temporarily disable a hook",
+    "customHook": "Copy a template from .claude/hooks/templates/ and register it here",
+    "environmentVariables": "Use ${VAR_NAME} syntax to reference environment variables"
+  },
+  "notes": [
+    "Hooks with 'async: true' run in the background and don't block the workflow",
+    "Hooks with 'continueOnError: true' won't stop execution if they fail",
+    "Set environment variables in your shell or CI/CD system (e.g., SLACK_WEBHOOK_URL)",
+    "Templates are available in .claude/hooks/templates/",
+    "Examples are available in .claude/hooks/examples/",
+    "Documentation: .claude/hooks/README.md"
+  ]
+}

@@ -149,8 +149,15 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ Design tokens system
 - ✅ Integración con frontend-builder
 
+**Advanced Hooks System** ✅ Issue #50
+- ✅ 6 hook templates (pre-command, post-command, on-spec-created, etc.)
+- ✅ 4 ejemplos funcionales (Slack, S3 backup, metrics, coverage)
+- ✅ 8 eventos soportados
+- ✅ config.json con configuración de hooks
+- ✅ Integración con workflow MJ²
+- ✅ Extensibilidad completa
+
 **Próximos Issues**
-- 📋 Advanced Hooks (#50)
 - 📋 Output Styles (#51)
 
 ## Instalación
