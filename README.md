@@ -327,10 +327,15 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - 📋 Vertical Slice template
 - 📋 Full-stack React + .NET template
 
-**Performance Engineer** 📋 Issue #42
-- 📋 Backend performance optimization
-- 📋 Frontend performance patterns
-- 📋 Caching strategies
+**Performance Engineer** ✅ Issue #42
+- ✅ performance-optimization.md skill (650+ líneas) - Backend & Frontend optimization
+- ✅ caching-strategies.md skill (800+ líneas) - In-Memory, Distributed, CDN caching
+- ✅ performance-engineer.md agent (750+ líneas) - Performance analysis y profiling
+- ✅ /mj2:perf-analyze command (600+ líneas) - Performance audit automation
+- ✅ EF Core optimization: AsNoTracking, projections, bulk operations
+- ✅ React optimization: Code splitting, memoization, virtual scrolling
+- ✅ Caching patterns: Cache-aside, read-through, write-through
+- ✅ Workflow de 4 fases: MEASURE → ANALYZE → OPTIMIZE → VALIDATE
 
 **Accessibility Expert** 📋 Issue #43
 - 📋 WCAG 2.1 Level AA compliance
@@ -382,8 +387,8 @@ Ver documentación completa en `.github/issues/issue-*.md`
 ### v0.4.0 - Advanced Features 🚧 EN PROGRESO (Issues #39-43)
 - [#39 - Security Expert](/.github/issues/issue-39.md) ✅
 - [#40 - API Designer Agent](/.github/issues/issue-40.md) ✅
-- #41 - Project Templates 📋
-- #42 - Performance Engineer 📋
+- #41 - Project Templates 📋 (SKIPPED - postponed)
+- [#42 - Performance Engineer](/.github/issues/issue-42.md) ✅
 - #43 - Accessibility Expert 📋
 
 ## Inspiración
