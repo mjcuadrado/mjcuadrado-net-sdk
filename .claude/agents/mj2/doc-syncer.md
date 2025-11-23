@@ -283,21 +283,84 @@ TAG chain: @SPEC → @TEST → @CODE → @DOC complete
 
 ## 📤 Output Format
 
-```json
-{
-  "status": "success",
-  "spec_id": "SPEC-AUTH-001",
-  "files_updated": [
-    "README.md",
-    "docs/architecture.md",
-    "docs/api.md",
-    "CHANGELOG.md"
-  ],
-  "doc_tags_added": 4,
-  "tag_chain_complete": true,
-  "commit_hash": "a1b2c3d",
-  "cycle_complete": true
-}
+### Success - Spanish
+```
+✅ Documentación sincronizada: SPEC-AUTH-001
+
+🤖 Mr. mj2 recomienda:
+   1. Revisar cambios en documentación
+   2. Crear Pull Request: gh pr create
+   3. Ver estado final: /mj2:status AUTH-001
+   4. Workflow completo! 🎉
+
+📊 Estado actual:
+   SPEC ID: SPEC-AUTH-001
+   Workflow: COMPLETADO ✅
+   TAG chain: COMPLETA ✅
+   Docs: SINCRONIZADAS ✅
+
+📁 Archivos actualizados:
+   ✓ README.md (feature added)
+   ✓ docs/architecture.md (diagrams updated)
+   ✓ docs/api.md (endpoints documented)
+   ✓ CHANGELOG.md (entry added)
+
+📚 TAG chain completa:
+   ✓ @SPEC:AUTH-001 (spec-builder)
+   ✓ @TEST:AUTH-001 (tdd-implementer - RED)
+   ✓ @CODE:AUTH-001 (tdd-implementer - GREEN/REFACTOR)
+   ✓ @DOC:AUTH-001 (este commit)
+
+🎯 Ciclo SPEC-First completado:
+   SPEC → TEST → CODE → DOC ✅
+
+📌 Próximos pasos:
+   1. Review cambios en documentación
+   2. Crear PR: gh pr create --title "feat: User Authentication with JWT"
+   3. Asignar reviewers
+   4. Merge después de aprobación
+
+💡 Tip: Workflow completo! Ready para PR y merge 🎉
+```
+
+### Success - English
+```
+✅ Documentation synchronized: SPEC-AUTH-001
+
+🤖 Mr. mj2 recommends:
+   1. Review documentation changes
+   2. Create Pull Request: gh pr create
+   3. Check final status: /mj2:status AUTH-001
+   4. Workflow complete! 🎉
+
+📊 Current status:
+   SPEC ID: SPEC-AUTH-001
+   Workflow: COMPLETED ✅
+   TAG chain: COMPLETE ✅
+   Docs: SYNCHRONIZED ✅
+
+📁 Files updated:
+   ✓ README.md (feature added)
+   ✓ docs/architecture.md (diagrams updated)
+   ✓ docs/api.md (endpoints documented)
+   ✓ CHANGELOG.md (entry added)
+
+📚 TAG chain complete:
+   ✓ @SPEC:AUTH-001 (spec-builder)
+   ✓ @TEST:AUTH-001 (tdd-implementer - RED)
+   ✓ @CODE:AUTH-001 (tdd-implementer - GREEN/REFACTOR)
+   ✓ @DOC:AUTH-001 (this commit)
+
+🎯 SPEC-First cycle completed:
+   SPEC → TEST → CODE → DOC ✅
+
+📌 Next steps:
+   1. Review documentation changes
+   2. Create PR: gh pr create --title "feat: User Authentication with JWT"
+   3. Assign reviewers
+   4. Merge after approval
+
+💡 Tip: Workflow complete! Ready for PR and merge 🎉
 ```
 
 ## 🎯 Examples

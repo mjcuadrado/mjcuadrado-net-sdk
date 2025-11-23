@@ -314,29 +314,79 @@ Estimated: [hours]h
 
 ## 📤 Output Format
 
-### Success
-```json
-{
-  "status": "success",
-  "spec_id": "SPEC-AUTH-001",
-  "title": "User Authentication with JWT",
-  "domain": "AUTH",
-  "files_created": ["spec.md", "plan.md", "acceptance.md"],
-  "git_branch": "feature/SPEC-AUTH-001",
-  "estimated_hours": "8-12",
-  "complexity": "medium",
-  "next_command": "/mj2:2-run AUTH-001"
-}
+### Success - Spanish
+```
+✅ SPEC creada: SPEC-AUTH-001
+
+🤖 Mr. mj2 recomienda:
+   1. Revisar SPEC antes de implementar: docs/specs/SPEC-AUTH-001/spec.md
+   2. Implementar con TDD: /mj2:2-run AUTH-001
+   3. Ver estado: /mj2:status AUTH-001
+
+📊 Estado actual:
+   SPEC ID: SPEC-AUTH-001
+   Título: User Authentication with JWT
+   Dominio: AUTH
+   Complejidad: medium
+   Estimación: 8-12 horas
+   Branch: feature/SPEC-AUTH-001 ✅
+
+📁 Archivos creados:
+   ✓ docs/specs/SPEC-AUTH-001/spec.md (requirements en EARS)
+   ✓ docs/specs/SPEC-AUTH-001/plan.md (implementation plan)
+   ✓ docs/specs/SPEC-AUTH-001/acceptance.md (acceptance criteria)
+
+📚 TAG chain iniciada:
+   ✓ @SPEC:AUTH-001 (este commit)
+   ⏳ @TEST:AUTH-001 (próximo: TDD implementer)
+   ⏳ @CODE:AUTH-001 (próximo: TDD implementer)
+   ⏳ @DOC:AUTH-001 (próximo: Doc syncer)
+
+💡 Tip: Review la SPEC cuidadosamente antes de implementar
+```
+
+### Success - English
+```
+✅ SPEC created: SPEC-AUTH-001
+
+🤖 Mr. mj2 recommends:
+   1. Review SPEC before implementing: docs/specs/SPEC-AUTH-001/spec.md
+   2. Implement with TDD: /mj2:2-run AUTH-001
+   3. Check status: /mj2:status AUTH-001
+
+📊 Current status:
+   SPEC ID: SPEC-AUTH-001
+   Title: User Authentication with JWT
+   Domain: AUTH
+   Complexity: medium
+   Estimation: 8-12 hours
+   Branch: feature/SPEC-AUTH-001 ✅
+
+📁 Files created:
+   ✓ docs/specs/SPEC-AUTH-001/spec.md (EARS requirements)
+   ✓ docs/specs/SPEC-AUTH-001/plan.md (implementation plan)
+   ✓ docs/specs/SPEC-AUTH-001/acceptance.md (acceptance criteria)
+
+📚 TAG chain started:
+   ✓ @SPEC:AUTH-001 (this commit)
+   ⏳ @TEST:AUTH-001 (next: TDD implementer)
+   ⏳ @CODE:AUTH-001 (next: TDD implementer)
+   ⏳ @DOC:AUTH-001 (next: Doc syncer)
+
+💡 Tip: Carefully review the SPEC before implementing
 ```
 
 ### Error
-```json
-{
-  "status": "error",
-  "error_type": "duplicate_spec",
-  "message": "SPEC-AUTH-001 exists",
-  "suggestion": "Use SPEC-AUTH-002"
-}
+```
+❌ Error: [error_type]
+
+🔍 Detalles: [message]
+
+💡 Solución: [suggestion]
+
+🤖 Mr. mj2 recomienda:
+   1. [action to fix]
+   2. Ver ayuda: /mj2:help 1-plan
 ```
 
 ## 🎯 Examples

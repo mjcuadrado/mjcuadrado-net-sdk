@@ -252,39 +252,130 @@ fi
 
 ## 📤 Output Format
 
-### Success
-```json
-{
-  "status": "passed",
-  "spec_id": "SPEC-AUTH-001",
-  "score": 95,
-  "validations": {
-    "tests": {"status": "passed", "score": 20},
-    "coverage": {"status": "passed", "score": 30, "value": 87},
-    "trust_5": {"status": "passed", "score": 28},
-    "tag_chains": {"status": "passed", "score": 10},
-    "conventions": {"status": "passed", "score": 10}
-  },
-  "report_file": ".mjcuadrado-net-sdk/reports/quality-AUTH-001.md",
-  "next_command": "/mj2:3-sync AUTH-001"
-}
+### Success (PASS) - Spanish
+```
+✅ Quality check PASSED: SPEC-AUTH-001
+
+🤖 Mr. mj2 recomienda:
+   1. Sincronizar documentación: /mj2:3-sync AUTH-001
+   2. Ver estado: /mj2:status AUTH-001
+   3. Revisar reporte detallado: .mjcuadrado-net-sdk/reports/quality-AUTH-001.md
+
+📊 Resultado de validación:
+   Score total: 95/100 ✅
+
+✅ Validaciones (todas PASSED):
+   ✓ Tests: 4/4 passing (20/20 pts)
+   ✓ Coverage: 87% (30/30 pts) - ≥85% ✅
+   ✓ TRUST 5: 28/30 pts
+     - Testable: ✅
+     - Readable: ✅
+     - Understandable: ✅
+     - Secure: ✅
+     - Traceable: ✅
+   ✓ TAG chains: Complete (10/10 pts)
+     @SPEC:AUTH-001 → @TEST:AUTH-001 → @CODE:AUTH-001
+   ✓ Conventions: OK (10/10 pts)
+
+📄 Reporte generado:
+   .mjcuadrado-net-sdk/reports/quality-AUTH-001.md
+
+💡 Tip: Todos los criterios de calidad cumplidos! Procede con doc-syncer
 ```
 
-### Failure
-```json
-{
-  "status": "failed",
-  "spec_id": "SPEC-USER-002",
-  "score": 68,
-  "blocking_issues": [
-    "Coverage 78% (need ≥85%)",
-    "2 tests failing"
-  ],
-  "recommendations": [
-    "Add 3 more unit tests",
-    "Fix UserService_GetById_NotFound test"
-  ]
-}
+### Success (PASS) - English
+```
+✅ Quality check PASSED: SPEC-AUTH-001
+
+🤖 Mr. mj2 recommends:
+   1. Synchronize documentation: /mj2:3-sync AUTH-001
+   2. Check status: /mj2:status AUTH-001
+   3. Review detailed report: .mjcuadrado-net-sdk/reports/quality-AUTH-001.md
+
+📊 Validation result:
+   Total score: 95/100 ✅
+
+✅ Validations (all PASSED):
+   ✓ Tests: 4/4 passing (20/20 pts)
+   ✓ Coverage: 87% (30/30 pts) - ≥85% ✅
+   ✓ TRUST 5: 28/30 pts
+     - Testable: ✅
+     - Readable: ✅
+     - Understandable: ✅
+     - Secure: ✅
+     - Traceable: ✅
+   ✓ TAG chains: Complete (10/10 pts)
+     @SPEC:AUTH-001 → @TEST:AUTH-001 → @CODE:AUTH-001
+   ✓ Conventions: OK (10/10 pts)
+
+📄 Report generated:
+   .mjcuadrado-net-sdk/reports/quality-AUTH-001.md
+
+💡 Tip: All quality criteria met! Proceed with doc-syncer
+```
+
+### Failure (FAIL) - Spanish
+```
+❌ Quality check FAILED: SPEC-USER-002
+
+🤖 Mr. mj2 recomienda:
+   1. Revisar issues bloqueantes abajo
+   2. Corregir problemas detectados
+   3. Re-ejecutar: /mj2:quality-check USER-002
+   4. Ver ayuda: /mj2:help quality-check
+
+📊 Resultado de validación:
+   Score total: 68/100 ❌ (necesita ≥85)
+
+❌ Issues bloqueantes:
+   ✗ Coverage: 78% (necesita ≥85%)
+   ✗ Tests: 2 tests failing
+
+📋 Validaciones detalladas:
+   ✓ Tests: 4/6 passing (10/20 pts) - 2 failing
+   ✗ Coverage: 78% (0/30 pts) - Below threshold
+   ✓ TRUST 5: 25/30 pts
+   ✓ TAG chains: Complete (10/10 pts)
+   ✓ Conventions: OK (10/10 pts)
+
+💡 Recomendaciones:
+   1. Añadir 3 unit tests más para subir coverage a ≥85%
+   2. Corregir test: UserService_GetById_NotFound
+   3. Corregir test: UserService_Update_InvalidData
+
+💡 Tip: TRUST 5 principles son críticos - No proceder sin PASS
+```
+
+### Failure (FAIL) - English
+```
+❌ Quality check FAILED: SPEC-USER-002
+
+🤖 Mr. mj2 recommends:
+   1. Review blocking issues below
+   2. Fix detected problems
+   3. Re-run: /mj2:quality-check USER-002
+   4. Get help: /mj2:help quality-check
+
+📊 Validation result:
+   Total score: 68/100 ❌ (needs ≥85)
+
+❌ Blocking issues:
+   ✗ Coverage: 78% (needs ≥85%)
+   ✗ Tests: 2 tests failing
+
+📋 Detailed validations:
+   ✓ Tests: 4/6 passing (10/20 pts) - 2 failing
+   ✗ Coverage: 78% (0/30 pts) - Below threshold
+   ✓ TRUST 5: 25/30 pts
+   ✓ TAG chains: Complete (10/10 pts)
+   ✓ Conventions: OK (10/10 pts)
+
+💡 Recommendations:
+   1. Add 3 more unit tests to reach ≥85% coverage
+   2. Fix test: UserService_GetById_NotFound
+   3. Fix test: UserService_Update_InvalidData
+
+💡 Tip: TRUST 5 principles are critical - Don't proceed without PASS
 ```
 
 ## 🎯 Examples

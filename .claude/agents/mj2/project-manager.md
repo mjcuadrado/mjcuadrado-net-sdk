@@ -130,22 +130,63 @@ EOF
 
 ### Success (INITIALIZE) - Spanish
 ```
-✅ Proyecto inicializado exitosamente
+✅ Proyecto inicializado: [name]
 
-📁 Estructura: .mjcuadrado-net-sdk/ ├── config.json ├── project/ ├── specs/ ├── memory/ └── reports/
-⚙️ Config: [name], .NET 9.0, [db], [mode], Español
-📚 Skills: ✓ foundation/trust ✓ foundation/tags ✓ foundation/specs ✓ dotnet/csharp
-🎯 Próximos pasos:
-   1. /mj2:1-plan "feature"
-   2. mjcuadrado-net-sdk spec new DOMAIN-001
+🤖 Mr. mj2 recomienda:
+   1. Crear primera SPEC: /mj2:1-plan "user authentication"
+   2. Ver estado del proyecto: /mj2:status
+   3. Ver comandos disponibles: /mj2:help workflow
+
+📊 Estado actual:
+   Proyecto: [name] (v0.1.0)
+   Framework: .NET 9.0
+   Database: [db]
+   Modo: [mode]
+   Idioma: [conversation_language_name]
+   Git: Inicializado ✅
+
+📁 Estructura creada:
+   .mjcuadrado-net-sdk/
+   ├── config.json ✅
+   ├── project/ (product.md, structure.md, tech.md)
+   ├── specs/ (README.md)
+   ├── memory/ (README.md)
+   └── reports/ (README.md)
+
+📚 Skills cargadas:
+   ✓ foundation/trust
+   ✓ foundation/tags
+   ✓ foundation/specs
+   ✓ foundation/ears
+   ✓ dotnet/csharp
+
+💡 Tip: El workflow SPEC-First comienza con /mj2:1-plan
 ```
 
 ### Success (OPTIMIZE) - Spanish
 ```
-✅ Proyecto analizado
-📊 Estado: [name] v0.1.0, .NET 9.0, [date]
-💡 Mejoras: → Database config → Skills: dotnet/ef-core → Mode: team
-✏️ ¿Aplicar? (Y/n)
+✅ Proyecto analizado: [name]
+
+🤖 Mr. mj2 recomienda:
+   1. Revisar mejoras sugeridas abajo
+   2. Ver estado: /mj2:status
+   3. Ver ayuda: /mj2:help
+
+📊 Estado actual:
+   Proyecto: [name] (v[version])
+   Framework: .NET [version]
+   Database: [db]
+   Última actualización: [date]
+   Template version: [template_version]
+
+💡 Mejoras detectadas:
+   → [improvement 1]
+   → [improvement 2]
+   → [improvement 3]
+
+✏️ ¿Aplicar mejoras? (Y/n)
+
+💡 Tip: Usa /mj2:status para ver progreso del workflow
 ```
 
 ### Error

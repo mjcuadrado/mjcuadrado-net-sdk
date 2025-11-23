@@ -377,30 +377,77 @@ Coverage: 87% (≥85%)
 
 ## 📤 Output Format
 
-### Success
-```json
-{
-  "status": "success",
-  "spec_id": "SPEC-AUTH-001",
-  "phases": {
-    "red": {"status": "complete", "tests_created": 5, "commit": "abc123"},
-    "green": {"status": "complete", "tests_passing": 5, "commit": "def456"},
-    "refactor": {"status": "complete", "coverage": 87, "trust_5": "compliant", "commit": "ghi789"}
-  },
-  "metrics": {"coverage": 87, "tests": "5/5 passing", "trust_5": "all met"},
-  "next_command": "/mj2:3-sync"
-}
+### Success - Spanish
+```
+✅ Implementación completada: SPEC-AUTH-001
+
+🤖 Mr. mj2 recomienda:
+   1. Ejecutar quality check: /mj2:quality-check AUTH-001
+   2. Ver estado: /mj2:status AUTH-001
+   3. Revisar coverage: coverage.json
+
+📊 Estado actual:
+   SPEC ID: SPEC-AUTH-001
+   Tests: 5/5 passing ✅
+   Coverage: 87% ✅ (≥85%)
+   TRUST 5: All principles met ✅
+
+🔴🟢♻️ TDD Cycle completado:
+   ✓ RED (5 tests created, all FAIL) - Commit: abc123
+   ✓ GREEN (minimal implementation, all PASS) - Commit: def456
+   ✓ REFACTOR (quality improvements) - Commit: ghi789
+
+📚 TAG chain actualizada:
+   ✓ @SPEC:AUTH-001 (spec-builder)
+   ✓ @TEST:AUTH-001 (este commit - RED)
+   ✓ @CODE:AUTH-001 (este commit - GREEN/REFACTOR)
+   ⏳ @DOC:AUTH-001 (próximo: doc-syncer)
+
+💡 Tip: Quality check valida coverage, tests, y TRUST 5 principles
+```
+
+### Success - English
+```
+✅ Implementation completed: SPEC-AUTH-001
+
+🤖 Mr. mj2 recommends:
+   1. Run quality check: /mj2:quality-check AUTH-001
+   2. Check status: /mj2:status AUTH-001
+   3. Review coverage: coverage.json
+
+📊 Current status:
+   SPEC ID: SPEC-AUTH-001
+   Tests: 5/5 passing ✅
+   Coverage: 87% ✅ (≥85%)
+   TRUST 5: All principles met ✅
+
+🔴🟢♻️ TDD Cycle completed:
+   ✓ RED (5 tests created, all FAIL) - Commit: abc123
+   ✓ GREEN (minimal implementation, all PASS) - Commit: def456
+   ✓ REFACTOR (quality improvements) - Commit: ghi789
+
+📚 TAG chain updated:
+   ✓ @SPEC:AUTH-001 (spec-builder)
+   ✓ @TEST:AUTH-001 (this commit - RED)
+   ✓ @CODE:AUTH-001 (this commit - GREEN/REFACTOR)
+   ⏳ @DOC:AUTH-001 (next: doc-syncer)
+
+💡 Tip: Quality check validates coverage, tests, and TRUST 5 principles
 ```
 
 ### Error
-```json
-{
-  "status": "error",
-  "phase": "green",
-  "error_type": "tests_still_failing",
-  "failing_tests": ["Login_ValidCredentials_ReturnsToken"],
-  "suggestion": "Review src/Auth/AuthService.cs"
-}
+```
+❌ Error en fase: [phase]
+
+🔍 Detalles: [error_type]
+   Tests fallando: [failing_tests]
+
+💡 Solución: [suggestion]
+
+🤖 Mr. mj2 recomienda:
+   1. Revisar archivo: [file_path]
+   2. Ejecutar tests: dotnet test
+   3. Ver ayuda: /mj2:help 2-run
 ```
 
 ## 🎯 Examples
