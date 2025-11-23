@@ -20,6 +20,49 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - Integración con Claude Code (agentes, comandos, skills, hooks)
 - Preparado para EF Core (SQL Server / PostgreSQL) en futuras fases
 
+## 🤖 Mr. mj2 - Tu Asistente de Desarrollo
+
+**Mr. mj2** es el orquestador conceptual que coordina todos los agentes especializados de mjcuadrado-net-sdk.
+
+Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los expertos apropiados:
+
+- 🏗️ **Project Manager** - Inicializa proyectos con estructura óptima
+- 📋 **SPEC Builder** - Convierte ideas en especificaciones EARS
+- 🔴🟢♻️ **TDD Implementer** - Ejecuta el ciclo RED-GREEN-REFACTOR
+- ✅ **Quality Gate** - Valida que el código cumple TRUST 5 principles
+- 📚 **Doc Syncer** - Mantiene documentación sincronizada automáticamente
+- 🎨 **Frontend Builder** - Desarrolla componentes React con TDD
+- 🧪 **E2E Tester** - Orquesta tests end-to-end con Playwright
+- 🚀 **DevOps Expert** - Gestiona despliegues y CI/CD
+- 🔒 **Security Expert** - Audita seguridad (OWASP, JWT, rate limiting)
+- ⚡ **Performance Engineer** - Optimiza rendimiento (backend y frontend)
+- ♿ **Accessibility Expert** - Valida WCAG 2.1 AA compliance
+- 🎯 **API Designer** - Diseña APIs RESTful con OpenAPI
+- ... y 14 agentes más especializados
+
+**Mr. mj2 nunca trabaja solo - orquesta expertos para cada tarea.**
+
+### 🔄 Workflow SPEC-First
+
+```
+0️⃣  /mj2:0-project    →  Inicializar proyecto
+1️⃣  /mj2:1-plan       →  Crear SPEC (Plan)
+2️⃣  /mj2:2-run        →  Implementar con TDD (Run)
+3️⃣  /mj2:quality-check →  Validar calidad
+4️⃣  /mj2:3-sync       →  Sincronizar docs (Sync)
+```
+
+**Cada fase guía a la siguiente. Cada agente indica el próximo paso.**
+
+💡 **Comandos útiles:**
+- `/mj2:status` - Ver estado del workflow en tiempo real
+- `/mj2:help` - Guía de comandos disponibles
+- `/mj2:help workflow` - Explicación detallada del workflow
+
+📖 **Más info:** Ver [orchestration-patterns.md](.claude/skills/mj2/orchestration-patterns.md) para patrones de orquestación completos.
+
+---
+
 ## Características
 
 ### v0.1.0 - Core System - ✅ COMPLETADA (Issues #1-22)
