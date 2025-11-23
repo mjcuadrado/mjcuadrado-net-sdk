@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-23 (v0.5.0 IN PROGRESS - Issues #44-46,48 ✅)
+**Última actualización:** 2025-11-23 (v0.5.0 IN PROGRESS - Issues #44-46,48-49 ✅)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -863,34 +863,62 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE
 - **Prioridad:** 🟡 Media (mejor UX)
 - **Tiempo:** 4-5 días
 
-**Issue #48: Debug & Migration Helpers** (5-6 días)
-- `.claude/agents/mj2/debug-helper.md` (~550 líneas)
+**Issue #48: Debug & Migration Helpers** ✅ **COMPLETADO** (2025-11-23)
+- ✅ `.claude/agents/mj2/debug-helper.md` (768 líneas)
   - Debugging assistant especializado
-  - Análisis de errores
-  - Sugerencias de fix
-- `.claude/agents/mj2/migration-expert.md` (~600 líneas)
+  - Workflow: INVESTIGATE → ANALYZE → DIAGNOSE → RESOLVE
+  - Error pattern detection (NullRef, N+1, Memory Leak)
+  - Stack trace analysis
+  - Logging strategies
+  - Performance debugging
+- ✅ `.claude/agents/mj2/migration-expert.md` (185 líneas)
   - Migrar proyectos legacy a mj2
-  - Análisis de código existente
-  - Plan de migración
-- `.claude/commands/mj2-debug.md` (~150 líneas)
-- `.claude/commands/mj2-migrate.md` (~150 líneas)
+  - Workflow: ASSESS → PLAN → MIGRATE → VALIDATE
+  - Strategies: Strangler Fig, Branch by Abstraction, Parallel Run
+  - Legacy code analysis
+  - Incremental migration
+- ✅ `.claude/commands/mj2-debug.md` (73 líneas)
+  - Debugging sistemático
+  - Error pattern detection
+- ✅ `.claude/commands/mj2-migrate.md` (57 líneas)
+  - Migration planning
+  - Incremental execution
+- ✅ `.github/issues/issue-48.md` (documentación completa)
+- **Total líneas:** 1,083
+- **Archivos creados:** 5 (2 agents + 2 commands + 1 doc)
+- **Debug patterns:** 3 (NullRef, N+1, Memory Leak)
+- **Migration strategies:** 3
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/debug-helper, moai-adk/migration-expert
 - **Prioridad:** 🟡 Media (expande casos de uso)
-- **Tiempo:** 5-6 días
+- **Tiempo:** Completado
 
-**Issue #49: Component Designer (Design-First)** (5-6 días)
-- `.claude/agents/mj2/component-designer.md` (~700 líneas)
-  - Design-first approach para componentes
+**Issue #49: Component Designer (Design-First)** ✅ **COMPLETADO** (2025-11-23)
+- ✅ `.claude/agents/mj2/component-designer.md` (750+ líneas)
+  - Design-first approach con WCAG 2.2 AA
+  - Workflow: DESIGN → ANALYZE → SPEC → VALIDATE
   - Análisis UX/UI requirements
-  - Diseño de API de componente
-  - Validación de accesibilidad
-  - Generación de SPEC de componente
-- `.claude/commands/mj2-design-component.md` (~150 líneas)
-- Integration con frontend-builder (#31)
+  - Component API design
+  - Design Patterns: Atomic Design, Compound Components, Render Props, Custom Hooks
+  - Accessibility validation automática
+  - Design tokens system (colors, spacing, typography)
+  - Integration con frontend-builder (#31)
+- ✅ `.claude/commands/mj2-design-component.md` (450+ líneas)
+  - Comando para diseño de componentes
+  - Ejemplos completos (Button, DataTable, Modal, FormField)
+  - Accessibility checklist automático
+  - Design tokens generation
+- ✅ `.github/issues/issue-49.md` (documentación completa)
+- **Total líneas:** 1,200+
+- **Archivos creados:** 3 (1 agent + 1 command + 1 doc)
+- **Design Patterns:** 4 (Atomic, Compound, Render Props, Hooks)
+- **Accessibility Checks:** 8 (Keyboard, Screen reader, Focus, Contrast, Touch targets, Semantic HTML, Errors, Loading)
+- **Workflow Phases:** 4 (DESIGN → ANALYZE → SPEC → VALIDATE)
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/component-designer
 - **Prioridad:** 🟡 Media (mejora workflow frontend)
 - **Workflow:** Design → SPEC → Implement (frontend-builder)
-- **Tiempo:** 5-6 días
+- **Tiempo:** Completado
 
 **Issue #50: Advanced Hooks System** (4-5 días)
 - `.claude/hooks/` directory (diferente de Git hooks)
