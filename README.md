@@ -337,9 +337,19 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Caching patterns: Cache-aside, read-through, write-through
 - ✅ Workflow de 4 fases: MEASURE → ANALYZE → OPTIMIZE → VALIDATE
 
-**Accessibility Expert** 📋 Issue #43
-- 📋 WCAG 2.1 Level AA compliance
-- 📋 Accessibility testing automation
+**Accessibility Expert** ✅ Issue #43
+- ✅ accessibility.md skill (1000+ líneas) - WCAG 2.1 Level AA completo
+- ✅ accessibility-expert.md agent (850+ líneas) - A11y auditing y testing
+- ✅ /mj2:a11y-audit command (650+ líneas) - Accessibility audit automation
+- ✅ WCAG 2.1 Principles: Perceivable, Operable, Understandable, Robust
+- ✅ Semantic HTML: Landmarks, headings, lists, tables
+- ✅ ARIA patterns: Dialog, tabs, accordion, dropdown (25+ patterns)
+- ✅ Keyboard navigation: Focus management, shortcuts, skip links
+- ✅ Screen reader support: NVDA, JAWS, VoiceOver
+- ✅ Color contrast: 4.5:1 (text), 3:1 (UI components)
+- ✅ Form accessibility: Labels, errors, validation
+- ✅ Testing tools: axe-core, Lighthouse, Playwright a11y
+- ✅ Workflow de 4 fases: AUDIT → IDENTIFY → IMPLEMENT → TEST
 
 ### v0.5.0: Multi-language & Integrations
 - [ ] Multi-language support
@@ -384,12 +394,14 @@ Ver documentación completa en `.github/issues/issue-*.md`
 
 **Versión 0.3.0 completada:** Full-stack + DevOps + Observability + Database
 
-### v0.4.0 - Advanced Features 🚧 EN PROGRESO (Issues #39-43)
+### v0.4.0 - Advanced Features ✅ COMPLETA (Issues #39-43)
 - [#39 - Security Expert](/.github/issues/issue-39.md) ✅
 - [#40 - API Designer Agent](/.github/issues/issue-40.md) ✅
-- #41 - Project Templates 📋 (SKIPPED - postponed)
+- #41 - Project Templates (SKIPPED - postponed)
 - [#42 - Performance Engineer](/.github/issues/issue-42.md) ✅
-- #43 - Accessibility Expert 📋
+- [#43 - Accessibility Expert](/.github/issues/issue-43.md) ✅
+
+**Versión 0.4.0 completada:** Security + API Design + Performance + Accessibility
 
 ## Inspiración
 
