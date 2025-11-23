@@ -125,8 +125,15 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ 9 dominios, 5 workflow patterns, 3 niveles
 - ✅ **mj2 es ahora extensible por usuarios**
 
+**Release Management** ✅ Issue #46
+- ✅ release-manager agent (892 líneas)
+- ✅ /mj2:99-release command (565 líneas)
+- ✅ Semantic versioning automático
+- ✅ CHANGELOG generation
+- ✅ Pre-release validation (6 checks)
+- ✅ GitHub Release integration
+
 **Próximos Issues**
-- 📋 Release Management (#46)
 - 📋 Debug & Migration Helpers (#48)
 - 📋 Component Designer (#49)
 - 📋 Advanced Hooks (#50)
