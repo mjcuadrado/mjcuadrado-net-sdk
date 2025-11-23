@@ -556,19 +556,36 @@
 - **Referencia:** STACK.md > Security
 - **Tiempo:** Completado
 
-**API Design - Issue #40** (5 días)
+**API Design - Issue #40** (5 días) ✅ COMPLETADO
 
-**Issue #40: API Designer Agent**
-- `.claude/agents/mj2/api-designer.md` (~650 líneas)
-  - RESTful API design
-  - OpenAPI/Swagger
-  - Versioning
-  - Best practices
-- `.claude/commands/mj2-api-design.md` (~150 líneas)
-  - Comando para diseño de APIs
+**Issue #40: API Designer Agent** ✅ COMPLETADO
+- `.claude/agents/mj2/api-designer.md` (680 líneas) ✅
+  - RESTful API design best practices
+  - REST constraints (Client-Server, Stateless, Cacheable, Uniform Interface, Layered System)
+  - Resource naming conventions (plural, kebab-case, sin verbos)
+  - HTTP methods y status codes apropiados
+  - OpenAPI/Swagger documentation con XML comments
+  - API versioning strategies (URL, Header, Query)
+  - Pagination patterns (Offset-based, Cursor-based)
+  - Filtering, sorting, searching
+  - HATEOAS implementation
+  - RFC 7807 Problem Details error handling
+  - Workflow de 4 fases: ANALYZE → DESIGN → DOCUMENT → VALIDATE
+- `.claude/commands/mj2-api-design.md` (210 líneas) ✅
+  - Comando para diseño de APIs: `/mj2:api-design <SPEC-ID>`
+  - Workflow completo detallado
+  - Ejemplos de uso (Orders API, Auth API)
+  - Integration con workflow full-stack
+  - Checklist de salida
+- `.github/issues/issue-40.md` (documentación completa) ✅
+- **Métricas:** ~890 líneas totales
+- **REST Constraints:** 5 implementados
+- **Versioning Strategies:** 3 (URL, Header, Query)
+- **Pagination Patterns:** 2 (Offset, Cursor)
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/api-designer
 - **Referencia:** STACK.md > Backend > API Design
-- **Tiempo:** 5 días
+- **Tiempo:** Completado
 
 **Project Templates - Issue #41** (1 semana)
 
