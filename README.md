@@ -2,6 +2,7 @@
 
 SDK para desarrollo automatizado con IA, inspirado en [moai-adk](https://github.com/modu-ai/moai-adk).
 
+[![Version](https://img.shields.io/badge/version-0.5.0--rc-orange)](https://github.com/mjcuadrado/mjcuadrado-net-sdk/releases)
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue)](https://dotnet.microsoft.com/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![CI](https://github.com/mjcuadrado/mjcuadrado-net-sdk/workflows/CI/badge.svg)](https://github.com/mjcuadrado/mjcuadrado-net-sdk/actions)
@@ -31,9 +32,9 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
 - ✅ Tests unitarios (195/195 passing, 100%)
-- ✅ 6 agentes mj2 (doc-syncer, git-manager, project-manager, quality-gate, spec-builder, tdd-implementer)
-- ✅ 7 comandos (/mj2:0-project, 1-plan, 2-run, 3-sync, git-merge, quality-check)
-- ✅ 11 skills foundation (.NET, testing, architecture)
+- ✅ **21 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, etc.)
+- ✅ **20 comandos slash** - Workflow completo automatizado
+- ✅ **45 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security
 - ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
 ### v0.2.0 - Frontend Foundation - ✅ COMPLETADA (Issues #24-32)
@@ -108,7 +109,7 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ accessibility-expert agent (850+ líneas)
 - ✅ /mj2:a11y-audit command (650+ líneas)
 
-### v0.5.0 - System Evolution - 🚧 EN PROGRESO (Issues #44-52)
+### v0.5.0 - System Evolution - 🟢 CASI COMPLETA 6/9 (Issues #44-52)
 
 **Feedback & Learning** ✅ Issue #44
 - ✅ feedback-manager agent (437 líneas)
@@ -149,16 +150,20 @@ Inspirado en la filosofía de [moai-adk](https://github.com/modu-ai/moai-adk), e
 - ✅ Design tokens system
 - ✅ Integración con frontend-builder
 
-**Advanced Hooks System** ✅ Issue #50
-- ✅ 6 hook templates (pre-command, post-command, on-spec-created, etc.)
-- ✅ 4 ejemplos funcionales (Slack, S3 backup, metrics, coverage)
-- ✅ 8 eventos soportados
+**Advanced Hooks System** ✅ Issue #50 (v2.0.0 - Python)
+- ✅ **Python hooks** para cross-platform (Windows, macOS, Linux)
+- ✅ 6 hook templates Python (pre_command, post_command, on_spec_created, etc.)
+- ✅ 4 ejemplos funcionales (slack_notification, spec_backup, metrics_tracker, coverage_reporter)
+- ✅ 8 eventos soportados (pre/post-command, on-spec-created/updated, on-sync-done, on-test-run, on-deploy, on-release)
+- ✅ Python 3.8+ required (pip install requests boto3)
 - ✅ config.json con configuración de hooks
 - ✅ Integración con workflow MJ²
 - ✅ Extensibilidad completa
 
-**Próximos Issues**
+**Issues Pendientes** (v0.5.0)
+- 📋 Personalization System (#47) - Postponed
 - 📋 Output Styles (#51)
+- 📋 MCP Integrations (#52) - Evaluación
 
 ## Instalación
 
@@ -329,9 +334,9 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 ### v0.1.0: Core System ✅ COMPLETADA (Issues #1-22)
 - [x] Estructura base del proyecto
 - [x] Comandos CLI (init, doctor, version)
-- [x] 6 agentes mj2
-- [x] 7 comandos slash
-- [x] 11 skills foundation
+- [x] 21 agentes mj2 (evolución desde 6 iniciales)
+- [x] 20 comandos slash (evolución desde 7 iniciales)
+- [x] 45 skills (evolución desde 11 iniciales)
 - [x] Workflow TDD (RED → GREEN → REFACTOR)
 - [x] 195 tests unitarios (100% passing)
 - [x] CI/CD configurado
@@ -346,7 +351,7 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - [x] Playwright E2E testing (Issue #32)
 - [x] **Testing Pyramid completa**
 
-### v0.3.0: Full Stack + DevOps 🚧 EN PROGRESO (Issues #33-38)
+### v0.3.0: Full Stack + DevOps ✅ COMPLETADA (Issues #33-38)
 
 **Frontend Testing Detail** ✅ Issue #33
 - ✅ Vitest skill (Framework de testing moderno con Vite)
@@ -395,7 +400,7 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 
 **v0.3.0 Full Stack + DevOps:** ✅ **COMPLETA** (Issues #33-38)
 
-### v0.4.0: Advanced Features 🚧 EN PROGRESO (Issues #39-43)
+### v0.4.0: Advanced Features ✅ COMPLETADA (Issues #39-43)
 
 **Security Expert** ✅ Issue #39
 - ✅ jwt.md skill (370 líneas) - JWT + Refresh Tokens, claims-based auth
@@ -415,10 +420,9 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ RFC 7807 Problem Details error handling
 - ✅ Workflow de 4 fases: ANALYZE → DESIGN → DOCUMENT → VALIDATE
 
-**Project Templates** 📋 Issue #41
-- 📋 Clean Architecture template
-- 📋 Vertical Slice template
-- 📋 Full-stack React + .NET template
+**Project Templates** ⏭️ Issue #41 - SKIPPED (postponed)
+- Razón: Prioridad baja, enfoque en extensibilidad (agent-factory, skill-factory)
+- Los usuarios pueden crear sus propios templates usando /mj2:create-agent
 
 **Performance Engineer** ✅ Issue #42
 - ✅ performance-optimization.md skill (650+ líneas) - Backend & Frontend optimization
@@ -444,10 +448,18 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Testing tools: axe-core, Lighthouse, Playwright a11y
 - ✅ Workflow de 4 fases: AUDIT → IDENTIFY → IMPLEMENT → TEST
 
-### v0.5.0: Multi-language & Integrations
-- [ ] Multi-language support
-- [ ] MCP integrations
-- [ ] BaaS providers
+### v0.5.0: System Evolution 🟢 CASI COMPLETA 6/9 (Issues #44-52)
+- [x] Feedback & Learning System (#44) ✅
+- [x] Agent & Skill Factory (#45) ✅ - GAME CHANGER
+- [x] Release Management (#46) ✅
+- [ ] Personalization System (#47) - Postponed
+- [x] Debug & Migration Helpers (#48) ✅
+- [x] Component Designer (#49) ✅
+- [x] Advanced Hooks System (#50) ✅ - Python v2.0.0
+- [ ] Output Styles (#51)
+- [ ] MCP Integrations (#52) - Evaluación
+
+**Status:** 6 de 9 issues completados. Sistema ahora es extensible y con aprendizaje continuo.
 
 ## Arquitectura
 

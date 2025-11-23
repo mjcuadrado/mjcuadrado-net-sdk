@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-23 (v0.5.0 IN PROGRESS - Issues #44-46,48-50 ✅)
+**Última actualización:** 2025-11-23 (v0.5.0 CASI COMPLETA 6/9 - Issues #44-46,48-50 ✅ | Issue #53 creado)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
 
 ---
@@ -39,9 +39,9 @@
 
 | Aspecto | moai-adk | mj2 (actual) | Gap |
 |---------|----------|--------------|-----|
-| **Agentes** | 31 agentes | 6 agentes | ❌ 25 agentes faltantes |
-| **Comandos** | 6 comandos | 7 comandos | ✅ Equivalente |
-| **Skills** | 128 skills | 11 skills | ❌ 117 skills faltantes |
+| **Agentes** | 31 agentes | 21 agentes | ⚠️ 10 agentes faltantes |
+| **Comandos** | 6 comandos | 20 comandos | ✅ Superior (20 vs 6) |
+| **Skills** | 128 skills | 45 skills | ⚠️ 83 skills faltantes |
 | **Hooks** | Sí (.claude/hooks) | Sí (.claude/scripts) | ✅ Implementado |
 | **Settings** | config.json | config.json (template) | ✅ Implementado |
 | **Multilenguaje** | 12 idiomas | Solo español | ⚠️ Faltante |
@@ -111,8 +111,8 @@
 - Batch questions, Config manager, Documentation, Language initializer, Template optimizer
 
 **Total moai-adk skills:** ~128 skills
-**Total mj2 skills:** 11 skills
-**Gap:** ~117 skills faltantes
+**Total mj2 skills:** 45 skills (actualizado 2025-11-23)
+**Gap:** ~83 skills faltantes (reducido de 117)
 
 ---
 
@@ -734,26 +734,30 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE
 
 ### Skills Totales
 
-| Categoría | v0.1.0 (actual) | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 | v1.0.0 (total) |
-|-----------|-----------------|--------|--------|--------|--------|----------------|
+| Categoría | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v1.0.0 (proyectado) |
+|-----------|--------|--------|--------|--------|-----------------|---------------------|
 | Foundation | 5 | 5 | 5 | 5 | 5 | 5 |
-| .NET | 4 | 9 | 10 | 11 | 11 | 11 |
-| Frontend | 0 | 8 | 11 | 12 | 12 | 12 |
+| .NET | 4 | 9 | 10 | 11 | 10 | 11 |
+| Frontend | 0 | 8 | 11 | 12 | 10 | 12 |
 | Architecture | 0 | 5 | 5 | 5 | 5 | 5 |
-| Testing | 1 | 3 | 5 | 5 | 5 | 5 |
-| DevOps | 0 | 0 | 5 | 5 | 5 | 5 |
+| Testing | 1 | 3 | 5 | 5 | 4 | 5 |
+| DevOps | 0 | 0 | 5 | 5 | 6 | 6 |
 | Security | 0 | 0 | 0 | 3 | 3 | 3 |
 | Performance | 0 | 0 | 0 | 2 | 2 | 2 |
 | MJ² | 2 | 2 | 2 | 2 | 2 | 2 |
-| System | 0 | 0 | 0 | 0 | 3 | 3 |
-| **Total** | **11** | **32** | **43** | **50** | **53** | **53** |
+| System | 0 | 0 | 0 | 0 | 0 | 3 |
+| **Total** | **11** | **32** | **43** | **50** | **45** | **53** |
+
+**Nota:** Skills v0.5.0 contadas en audit (2025-11-23): 45 skills reales
 
 ### Agentes Totales
 
-| Tipo | v0.1.0 (actual) | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 | v1.0.0 (total) |
-|------|-----------------|--------|--------|--------|--------|----------------|
+| Tipo | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v1.0.0 (proyectado) |
+|------|--------|--------|--------|--------|-----------------|---------------------|
 | Core | 6 | 8 | 10 | 15 | 21 | 21 |
 | **Total** | **6** | **8** | **10** | **15** | **21** | **21** |
+
+**Nota:** Agentes v0.5.0 contados en audit (2025-11-23): 21 agentes reales ✅
 
 ---
 
@@ -852,16 +856,18 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE
 - **Prioridad:** 🔴 Alta (crítico para v1.0.0)
 - **Tiempo:** Completado
 
-**Issue #47: Personalization System** (4-5 días)
-- Actualizar `.mjcuadrado-net-sdk/config.json` template:
-  - `user.name` field (personalización)
-  - `language.conversation_language` (es, en)
-  - `language.agent_prompt_language` (en recomendado)
-- Actualizar todos los agentes para usar nombre del usuario
-- Sistema multilenguaje básico (español/inglés)
+**Issue #47: Personalization System** ⏭️ **POSTPONED**
+- **Razón:** Prioridad baja vs Issues #51-52
+- **Futuro trabajo:**
+  - Actualizar `.mjcuadrado-net-sdk/config.json` template
+  - user.name field (personalización)
+  - language.conversation_language (es, en)
+  - language.agent_prompt_language (en recomendado)
+  - Sistema multilenguaje básico (español/inglés)
 - **Adaptar de:** moai-adk/configuration, moai-adk/language-detection
 - **Prioridad:** 🟡 Media (mejor UX)
-- **Tiempo:** 4-5 días
+- **Status:** Documentado en Issue #53, postponed para v0.6.0+
+- **Tiempo:** 4-5 días (cuando se implemente)
 
 **Issue #48: Debug & Migration Helpers** ✅ **COMPLETADO** (2025-11-23)
 - ✅ `.claude/agents/mj2/debug-helper.md` (768 líneas)
@@ -920,36 +926,40 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE
 - **Workflow:** Design → SPEC → Implement (frontend-builder)
 - **Tiempo:** Completado
 
-**Issue #50: Advanced Hooks System** ✅ **COMPLETADO** (2025-11-23)
+**Issue #50: Advanced Hooks System** ✅ **COMPLETADO** (2025-11-23 - v2.0.0 Python)
+- ✅ **Migrado a Python** para cross-platform (Windows, macOS, Linux)
 - ✅ `.claude/hooks/` directory estructura completa
-- ✅ 6 hook templates:
-  - pre-command.sh (53 líneas)
-  - post-command.sh (59 líneas)
-  - on-spec-created.sh (56 líneas)
-  - on-sync-done.sh (38 líneas)
-  - on-test-run.sh (79 líneas)
-  - on-deploy.sh (111 líneas)
-- ✅ 4 hook examples funcionales:
-  - slack-notification.sh (82 líneas)
-  - spec-backup.sh (61 líneas)
-  - metrics-tracker.sh (93 líneas)
-  - coverage-reporter.sh (166 líneas)
-- ✅ config.json (150+ líneas) con configuración completa
-- ✅ README.md actualizado con MJ² Hooks System
+- ✅ 6 hook templates Python:
+  - pre_command.py (70 líneas)
+  - post_command.py (95 líneas)
+  - on_spec_created.py (92 líneas)
+  - on_sync_done.py (65 líneas)
+  - on_test_run.py (110 líneas)
+  - on_deploy.py (145 líneas)
+- ✅ 4 hook examples funcionales Python:
+  - slack_notification.py (78 líneas)
+  - spec_backup.py (83 líneas) - con boto3
+  - metrics_tracker.py (110 líneas) - JSON Lines format
+  - coverage_reporter.py (170 líneas) - con badges
+- ✅ config.json (185+ líneas) con configuración completa y Python requirements
+- ✅ README.md actualizado con MJ² Hooks System y Python examples
 - ✅ 8 eventos soportados (pre-command, post-command, on-spec-created, on-spec-updated, on-sync-done, on-test-run, on-deploy, on-release)
 - ✅ **Use cases implementados:**
   - Notificaciones (Slack notifications)
-  - Metrics tracking (command metrics)
-  - Auto-backup de SPECs (S3 backup)
-  - Coverage monitoring (threshold alerts)
+  - Metrics tracking (command metrics con daily reports)
+  - Auto-backup de SPECs (S3 backup con boto3)
+  - Coverage monitoring (threshold alerts + badges)
 - ✅ Security best practices incluidas
 - ✅ Variables de entorno documentadas (30+)
-- **Total líneas:** ~950+
-- **Archivos creados:** 13 (6 templates + 4 examples + 1 config + 1 README + 1 doc)
+- ✅ **Python 3.8+ required** (pip install requests boto3)
+- **Total líneas:** ~1,308+
+- **Archivos creados:** 13 (6 templates .py + 4 examples .py + 1 config + 1 README + 1 doc)
+- **Versión:** 2.0.0 (migrado de shell scripts a Python)
+- **Commits:** b312f00 (inicial .sh), 54f80ca (migración Python)
 - **Idioma:** 100% español ✅
-- **Adaptar de:** moai-adk/hooks system
+- **Adaptar de:** moai-adk/hooks system (Python)
 - **Prioridad:** 🟡 Media (extensibilidad)
-- **Impacto:** Extensibilidad completa - usuarios pueden crear hooks personalizados
+- **Impacto:** Extensibilidad completa + cross-platform real
 - **Tiempo:** Completado
 
 **Issue #51: Output Styles Customization** (3-4 días)
