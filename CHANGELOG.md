@@ -8,9 +8,25 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 
 ### En progreso
-- Ninguno (Fase 1 MVP completada)
+- Ninguno
 
 ### Completado recientemente
+- ✅ **2024-11-23**: Issue #64 - Workflow Orchestrator & "Mr. mj2" (@SPEC:ORCH-064, @CODE:ORCH-064, @DOC:ORCH-064)
+  - **Concepto "Mr. mj2"** documentado en README.md (orquestador conceptual)
+  - **`/mj2:status` command** implementado - Muestra estado del workflow en tiempo real
+  - **`/mj2:help` command** implementado - Guía contextual de 20+ comandos disponibles
+  - **orchestration-patterns.md skill** (~520 líneas) - Documentación de 3 patrones de orquestación
+  - **workflow-status.md agent** (~430 líneas) - Analiza y reporta estado del proyecto
+  - **Agent outputs actualizados** - 5 agentes core con formato "Mr. mj2 recomienda":
+    - project-manager.md (INITIALIZE/OPTIMIZE modes)
+    - spec-builder.md (SPEC creada con TAG chain)
+    - tdd-implementer.md (TDD cycle RED/GREEN/REFACTOR)
+    - quality-gate.md (PASS/FAIL con validaciones detalladas)
+    - doc-syncer.md (workflow completo!)
+  - **UX mejorada** - Usuarios tienen claridad sobre próximos pasos en cada fase
+  - **Guidance completo** - Outputs guiados con tips útiles y comandos sugeridos
+  - **Multiidioma** - Outputs en español e inglés
+  - **TAG chain completa** - @SPEC:ORCH-064 → @CODE:ORCH-064 → @DOC:ORCH-064
 - ✅ **2024-11-20**: Issue #7 - Comando version
   - VersionCommand ya implementado previamente
   - 6 tests unitarios nuevos (194/195 passing total)
