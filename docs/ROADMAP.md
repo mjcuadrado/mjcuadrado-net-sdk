@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-23 (v0.5.0 CASI COMPLETA 6/9 - Issues #44-46,48-50 ✅ | Gap Analysis + Workflow Orchestration Analysis completos | Issues #54-64 creados)
+**Última actualización:** 2025-11-24 (v0.5.0 CASI COMPLETA 7/9 - Issues #44-46,48-50,64 ✅ | Gap Analysis + Workflow Orchestration Analysis completos | Issues #54-63 creados)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md + Workflow Orchestration Analysis
 **Roadmap extendido:** v0.6.0-v0.9.0 (11 issues nuevos | +27 skills | +5 agentes | +2 comandos proyectados)
 
@@ -40,10 +40,10 @@
 
 | Aspecto | moai-adk | mj2 (actual) | Gap |
 |---------|----------|--------------|-----|
-| **Agentes** | 31 agentes | 21 agentes | ⚠️ 10 agentes faltantes |
-| **Comandos** | 6 comandos | 20 comandos | ✅ Superior (20 vs 6) |
-| **Skills** | 128 skills | 45 skills | ⚠️ 83 skills faltantes |
-| **Hooks** | Sí (.claude/hooks) | Sí (.claude/scripts) | ✅ Implementado |
+| **Agentes** | 31 agentes | 22 agentes | ⚠️ 9 agentes faltantes |
+| **Comandos** | 6 comandos | 22 comandos | ✅ Superior (22 vs 6) |
+| **Skills** | 128 skills | 46 skills | ⚠️ 82 skills faltantes |
+| **Hooks** | Sí (.claude/hooks) | Sí (.claude/hooks - Python v2.0.0) | ✅ Implementado |
 | **Settings** | config.json | config.json (template) | ✅ Implementado |
 | **Multilenguaje** | 12 idiomas | Solo español | ⚠️ Faltante |
 | **MCP Integration** | 4 integraciones | 0 | ❌ Faltante |
@@ -112,8 +112,8 @@
 - Batch questions, Config manager, Documentation, Language initializer, Template optimizer
 
 **Total moai-adk skills:** ~128 skills
-**Total mj2 skills:** 45 skills (actualizado 2025-11-23)
-**Gap:** ~83 skills faltantes (reducido de 117)
+**Total mj2 skills:** 46 skills (actualizado 2025-11-24)
+**Gap:** ~82 skills faltantes (reducido de 117)
 
 ---
 
@@ -775,9 +775,9 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 | Performance | 0 | 0 | 0 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
 | Backend | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 4 | 4 |
 | MJ² | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
-| **Total** | **11** | **32** | **43** | **50** | **45** | **48** | **64** | **64** | **72** | **72** |
+| **Total** | **11** | **32** | **43** | **50** | **46** | **48** | **64** | **64** | **72** | **72** |
 
-**Nota:** Skills v0.5.0 contadas en audit (2025-11-23): 45 skills reales
+**Nota:** Skills v0.5.0 contadas en audit (2025-11-24): 46 skills reales
 **Nuevas skills:**
 - v0.6.0: +3 (dotnet-format, prettier, eslint)
 - v0.7.0: +16 (4 Azure Cloud + 4 K8s/IaC + 4 GraphQL/gRPC + 4 SignalR)
@@ -787,10 +787,10 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 
 | Tipo | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v0.6.0 | v0.7.0 | v0.8.0 | v0.9.0 | v1.0.0 |
 |------|--------|--------|--------|--------|-----------------|--------|--------|--------|--------|--------|
-| Core | 6 | 8 | 10 | 15 | 21 | 24 | 24 | 26 | 26 | 26 |
-| **Total** | **6** | **8** | **10** | **15** | **21** | **24** | **24** | **26** | **26** | **26** |
+| Core | 6 | 8 | 10 | 15 | 22 | 24 | 24 | 26 | 26 | 26 |
+| **Total** | **6** | **8** | **10** | **15** | **22** | **24** | **24** | **26** | **26** | **26** |
 
-**Nota:** Agentes v0.5.0 contados en audit (2025-11-23): 21 agentes reales ✅
+**Nota:** Agentes v0.5.0 contados en audit (2025-11-24): 22 agentes reales ✅
 **Nuevos agentes:**
 - v0.6.0: +3 (implementation-planner, format-expert, docs-manager)
 - v0.8.0: +2 (monitoring-expert, ui-ux-expert)
@@ -1071,25 +1071,32 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 - **Prioridad:** 🟡 Media (documentación profesional)
 - **Tiempo:** 5-6 días
 
-**Issue #64: Workflow Orchestrator & "Mr. mj2"** (3-4 días) 🆕
-- Hacer explícito el concepto de orquestación "Mr. mj2"
-- `.claude/skills/mj2/orchestration-patterns.md` (~400 líneas)
-  - Sequential workflow pattern
-  - Quality gate pattern (conditional)
-  - Agent responsibilities matrix
-  - Workflow state tracking con TAG chain
-- `.claude/agents/mj2/workflow-status.md` (~300 líneas)
-  - Analiza estado del proyecto y muestra progreso
-- `.claude/commands/mj2-status.md` (~150 líneas)
-  - Sintaxis: `/mj2:status [SPEC-ID]`
-- `.claude/commands/mj2-help.md` (~200 líneas)
-  - Lista comandos, explica workflow, guía contextual
-- Actualizar outputs de agentes con formato "Mr. mj2 recomienda"
-- README.md actualizado con sección "Mr. mj2"
+**Issue #64: Workflow Orchestrator & "Mr. mj2"** ✅ **COMPLETADO** (2025-11-24)
+- ✅ Concepto "Mr. mj2" documentado en README.md (orquestador conceptual)
+- ✅ `.claude/skills/mj2/orchestration-patterns.md` (520 líneas)
+  - 3 patrones de orquestación (Sequential, Quality Gate, Parallel)
+  - Agent Responsibilities Matrix (26 agentes)
+  - Skills Loading Strategy
+  - User Intervention Points
+- ✅ `.claude/agents/mj2/workflow-status.md` (430 líneas)
+  - Workflow: DETECT → ANALYZE → FORMAT → RECOMMEND
+  - Data sources: config.json, git log, coverage, TAG chain
+- ✅ `.claude/commands/mj2-status.md` (170 líneas)
+  - Estado general y SPEC-específico
+  - Símbolos: ✅ done, 🟡 in progress, ⏳ pending, ❌ failed
+- ✅ `.claude/commands/mj2-help.md` (323 líneas)
+  - 20+ comandos organizados por categoría
+  - Workflow explanation
+  - Command-specific help
+- ✅ 5 agentes core actualizados con formato "Mr. mj2 recomienda"
+  - project-manager.md, spec-builder.md, tdd-implementer.md, quality-gate.md, doc-syncer.md
+- ✅ README.md actualizado con sección "Mr. mj2"
+- ✅ TAG chain completa (@SPEC:ORCH-064 → @CODE:ORCH-064 → @DOC:ORCH-064)
+- **Total líneas:** ~1,800
+- **Commits:** 626301d (SPEC), 93d83f6 (status), 6ae48be (help), 44eab29 (agents), 43a9324 (docs)
 - **Inspirado en:** moai-adk "Mr. Alfred" (conceptual orchestrator)
 - **Análisis completo:** `.github/analysis/workflow-orchestration-analysis-2025-11-23.md`
-- **Prioridad:** 🟡 Media (mejor UX)
-- **Tiempo:** 3-4 días
+- **Tiempo:** Completado
 
 **Tiempo Total v0.6.0:** 3.5-4 semanas (~19-22 días)
 

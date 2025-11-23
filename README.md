@@ -75,9 +75,9 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
 - ✅ Tests unitarios (195/195 passing, 100%)
-- ✅ **21 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, etc.)
-- ✅ **20 comandos slash** - Workflow completo automatizado
-- ✅ **45 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security
+- ✅ **22 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, etc.)
+- ✅ **22 comandos slash** - Workflow completo automatizado
+- ✅ **46 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security
 - ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
 ### v0.2.0 - Frontend Foundation - ✅ COMPLETADA (Issues #24-32)
@@ -152,7 +152,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ accessibility-expert agent (850+ líneas)
 - ✅ /mj2:a11y-audit command (650+ líneas)
 
-### v0.5.0 - System Evolution - 🟢 CASI COMPLETA 6/9 (Issues #44-52)
+### v0.5.0 - System Evolution - 🟢 CASI COMPLETA 7/9 (Issues #44-52, #64)
 
 **Feedback & Learning** ✅ Issue #44
 - ✅ feedback-manager agent (437 líneas)
@@ -202,6 +202,16 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ config.json con configuración de hooks
 - ✅ Integración con workflow MJ²
 - ✅ Extensibilidad completa
+
+**Workflow Orchestrator & "Mr. mj2"** ✅ Issue #64
+- ✅ Concepto "Mr. mj2" documentado en README (orquestador conceptual)
+- ✅ /mj2:status command (170 líneas) - Estado del workflow en tiempo real
+- ✅ /mj2:help command (323 líneas) - Guía contextual de 20+ comandos
+- ✅ orchestration-patterns.md skill (520 líneas) - 3 patrones de orquestación
+- ✅ workflow-status.md agent (430 líneas) - Analiza estado del proyecto
+- ✅ 5 agentes core actualizados con formato "Mr. mj2 recomienda"
+- ✅ UX mejorada con guidance completa en cada fase
+- ✅ TAG chain completa (@SPEC → @CODE → @DOC)
 
 **Issues Pendientes** (v0.5.0)
 - 📋 Personalization System (#47) - Postponed
