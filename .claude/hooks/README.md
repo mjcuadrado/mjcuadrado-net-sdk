@@ -115,25 +115,42 @@ Los MJ² hooks permiten extender el sistema en puntos clave del workflow de desa
 ```
 .claude/hooks/
 ├── config.json              # Configuración de hooks MJ²
-├── templates/               # Templates de hooks
-│   ├── pre-command.sh
-│   ├── post-command.sh
-│   ├── on-spec-created.sh
-│   ├── on-sync-done.sh
-│   ├── on-test-run.sh
-│   └── on-deploy.sh
-└── examples/                # Ejemplos de hooks
-    ├── slack-notification.sh
-    ├── metrics-tracker.sh
-    ├── spec-backup.sh
-    └── coverage-reporter.sh
+├── templates/               # Templates de hooks (Python)
+│   ├── pre_command.py
+│   ├── post_command.py
+│   ├── on_spec_created.py
+│   ├── on_sync_done.py
+│   ├── on_test_run.py
+│   └── on_deploy.py
+└── examples/                # Ejemplos de hooks (Python)
+    ├── slack_notification.py
+    ├── metrics_tracker.py
+    ├── spec_backup.py
+    └── coverage_reporter.py
 ```
+
+### 🐍 ¿Por qué Python?
+
+**Los hooks están escritos en Python (no shell scripts) por:**
+
+1. **✅ Cross-platform:** Funciona en Windows, macOS y Linux
+2. **✅ Consistente con moai-adk:** Nuestra referencia base
+3. **✅ Más poderoso:** Mejor para lógica compleja
+4. **✅ Común en DevOps:** Python es estándar en automatización
+
+**Requisitos:**
+- Python 3.8+ (verificar con `python3 --version`)
+- Paquetes opcionales: `pip install requests boto3`
 
 ### 🔧 Configuración de MJ² Hooks
 
 **config.json:**
 ```json
 {
+  "python": {
+    "required": true,
+    "minVersion": "3.8"
+  },
   "hooks": {
     "enabled": true,
     "timeout": 30000,
@@ -141,16 +158,18 @@ Los MJ² hooks permiten extender el sistema en puntos clave del workflow de desa
       {
         "name": "slack-notification",
         "event": "post-deploy",
-        "script": ".claude/hooks/examples/slack-notification.sh",
+        "script": ".claude/hooks/examples/slack_notification.py",
         "enabled": true,
-        "async": true
+        "async": true,
+        "dependencies": ["requests"]
       },
       {
         "name": "spec-backup",
         "event": "on-spec-created",
-        "script": ".claude/hooks/examples/spec-backup.sh",
+        "script": ".claude/hooks/examples/spec_backup.py",
         "enabled": true,
-        "async": false
+        "async": false,
+        "dependencies": ["boto3"]
       }
     ]
   }
@@ -160,77 +179,105 @@ Los MJ² hooks permiten extender el sistema en puntos clave del workflow de desa
 ### 💡 Ejemplos de MJ² Hooks
 
 #### **1. Notificación a Slack en Deployment**
-```bash
-#!/bin/bash
-# .claude/hooks/examples/slack-notification.sh
+```python
+#!/usr/bin/env python3
+# .claude/hooks/examples/slack_notification.py
 
-SLACK_WEBHOOK="${SLACK_WEBHOOK_URL}"  # Variable de entorno
+import os
+import requests
 
-if [ "$MJ2_DEPLOY_ENV" == "production" ]; then
-  curl -X POST $SLACK_WEBHOOK \
-    -H 'Content-Type: application/json' \
-    -d "{
-      \"text\": \"🚀 Deployment to PRODUCTION\",
-      \"attachments\": [{
-        \"color\": \"good\",
-        \"fields\": [
-          {\"title\": \"Version\", \"value\": \"$MJ2_RELEASE_VERSION\"},
-          {\"title\": \"Environment\", \"value\": \"$MJ2_DEPLOY_ENV\"}
-        ]
-      }]
-    }"
-fi
+webhook_url = os.getenv('SLACK_WEBHOOK_URL')
+env = os.getenv('MJ2_DEPLOY_ENV')
+version = os.getenv('MJ2_RELEASE_VERSION')
+
+if env == 'production' and webhook_url:
+    payload = {
+        'text': '🚀 Deployment to PRODUCTION',
+        'attachments': [{
+            'color': 'good',
+            'fields': [
+                {'title': 'Version', 'value': version},
+                {'title': 'Environment', 'value': env}
+            ]
+        }]
+    }
+    requests.post(webhook_url, json=payload)
 ```
 
 #### **2. Backup de SPECs a S3**
-```bash
-#!/bin/bash
-# .claude/hooks/examples/spec-backup.sh
+```python
+#!/usr/bin/env python3
+# .claude/hooks/examples/spec_backup.py
 
-SPEC_PATH="$MJ2_SPEC_PATH"
-S3_BUCKET="s3://my-backups/specs/"
+import os
+import boto3
+from datetime import datetime
+from pathlib import Path
 
-if [ -f "$SPEC_PATH" ]; then
-  TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-  BACKUP_NAME="${MJ2_SPEC_ID}_${TIMESTAMP}.md"
+spec_path = os.getenv('MJ2_SPEC_PATH')
+spec_id = os.getenv('MJ2_SPEC_ID')
+s3_bucket = os.getenv('S3_BACKUP_BUCKET', 's3://my-backups/specs/')
 
-  aws s3 cp "$SPEC_PATH" "${S3_BUCKET}${BACKUP_NAME}"
-  echo "✅ SPEC backed up to S3: ${BACKUP_NAME}"
-fi
+if Path(spec_path).exists():
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    backup_name = f"{spec_id}_{timestamp}.md"
+
+    s3 = boto3.client('s3')
+    bucket = s3_bucket.replace('s3://', '').split('/')[0]
+
+    with open(spec_path, 'rb') as f:
+        s3.upload_fileobj(f, bucket, f'backups/{backup_name}')
+
+    print(f"✅ SPEC backed up to S3: {backup_name}")
 ```
 
 #### **3. Tracking de Métricas**
-```bash
-#!/bin/bash
-# .claude/hooks/examples/metrics-tracker.sh
+```python
+#!/usr/bin/env python3
+# .claude/hooks/examples/metrics_tracker.py
 
-METRICS_FILE=".mj2/metrics/commands.json"
-mkdir -p .mj2/metrics
+import os
+import json
+from datetime import datetime
+from pathlib import Path
 
-cat <<EOF >> $METRICS_FILE
-{
-  "command": "$MJ2_COMMAND",
-  "exitCode": $MJ2_EXIT_CODE,
-  "duration": $MJ2_DURATION,
-  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+metrics_dir = Path('.mj2/metrics')
+metrics_dir.mkdir(parents=True, exist_ok=True)
+
+metric = {
+    'command': os.getenv('MJ2_COMMAND'),
+    'exitCode': int(os.getenv('MJ2_EXIT_CODE', '0')),
+    'duration': int(os.getenv('MJ2_DURATION', '0')),
+    'timestamp': datetime.utcnow().isoformat()
 }
-EOF
+
+with open(metrics_dir / 'commands.jsonl', 'a') as f:
+    f.write(json.dumps(metric) + '\n')
 ```
 
 #### **4. Coverage Reporter**
-```bash
-#!/bin/bash
-# .claude/hooks/examples/coverage-reporter.sh
+```python
+#!/usr/bin/env python3
+# .claude/hooks/examples/coverage_reporter.py
 
-if [ "$MJ2_COVERAGE" -lt 85 ]; then
-  echo "⚠️  Coverage below threshold: ${MJ2_COVERAGE}% (required: 85%)"
+import os
+import sys
 
-  # Enviar alerta
-  curl -X POST "https://api.example.com/alerts" \
-    -d "coverage=${MJ2_COVERAGE}&threshold=85"
-else
-  echo "✅ Coverage OK: ${MJ2_COVERAGE}%"
-fi
+coverage = int(os.getenv('MJ2_COVERAGE', '0'))
+threshold = 85
+
+if coverage < threshold:
+    print(f"⚠️  Coverage below threshold: {coverage}% (required: {threshold}%)")
+
+    # Send alert
+    import requests
+    webhook = os.getenv('COVERAGE_ALERT_WEBHOOK')
+    if webhook:
+        requests.post(webhook, json={'coverage': coverage, 'threshold': threshold})
+
+    sys.exit(1)
+else:
+    print(f"✅ Coverage OK: {coverage}%")
 ```
 
 ### 🔒 Seguridad en MJ² Hooks
@@ -244,18 +291,24 @@ fi
 
 **Paso 1:** Copiar template
 ```bash
-cp .claude/hooks/templates/post-command.sh .claude/hooks/my-hook.sh
-chmod +x .claude/hooks/my-hook.sh
+cp .claude/hooks/templates/post_command.py .claude/hooks/my_hook.py
+chmod +x .claude/hooks/my_hook.py
 ```
 
 **Paso 2:** Editar script
-```bash
-#!/bin/bash
-# my-hook.sh
+```python
+#!/usr/bin/env python3
+# my_hook.py
 
-echo "Command: $MJ2_COMMAND"
-echo "Exit Code: $MJ2_EXIT_CODE"
-echo "Duration: $MJ2_DURATION ms"
+import os
+
+command = os.getenv('MJ2_COMMAND')
+exit_code = os.getenv('MJ2_EXIT_CODE')
+duration = os.getenv('MJ2_DURATION')
+
+print(f"Command: {command}")
+print(f"Exit Code: {exit_code}")
+print(f"Duration: {duration}ms")
 ```
 
 **Paso 3:** Registrar en config.json
@@ -266,12 +319,17 @@ echo "Duration: $MJ2_DURATION ms"
       {
         "name": "my-hook",
         "event": "post-command",
-        "script": ".claude/hooks/my-hook.sh",
+        "script": ".claude/hooks/my_hook.py",
         "enabled": true
       }
     ]
   }
 }
+```
+
+**Paso 4:** Probar el hook
+```bash
+python3 .claude/hooks/my_hook.py
 ```
 
 ---

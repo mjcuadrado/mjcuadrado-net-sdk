@@ -1,9 +1,27 @@
 # Issue #50: Advanced Hooks System
 
 **Fecha:** 2025-11-23
+**Actualizado:** 2025-11-23 (Migrado a Python)
 **Prioridad:** 🟡 Media
 **Estado:** ✅ Completado
 **Branch:** `main`
+**Versión:** 2.0.0
+
+---
+
+## ⚠️ IMPORTANTE: Migración a Python
+
+**Los hooks fueron re-implementados en Python para compatibilidad cross-platform.**
+
+**Por qué Python:**
+- ✅ **Cross-platform:** Funciona en Windows, macOS y Linux
+- ✅ **Consistente con moai-adk:** Nuestra referencia base
+- ✅ **No más problemas en Windows:** Shell scripts (.sh) no funcionan nativamente en Windows
+- ✅ **Más poderoso:** Python es mejor para lógica compleja
+
+**Requisitos:**
+- Python 3.8+ (verificar: `python3 --version`)
+- Paquetes opcionales: `pip install requests boto3`
 
 ---
 
@@ -17,24 +35,24 @@ Sistema avanzado de hooks para extender MJ² en puntos clave del workflow, permi
 
 ## 📦 Entregables
 
-### 1. Hook Templates (6 templates)
-- **pre-command.sh** (53 líneas) - Antes de ejecutar `/mj2:*`
-- **post-command.sh** (59 líneas) - Después de ejecutar `/mj2:*`
-- **on-spec-created.sh** (56 líneas) - Al crear una SPEC
-- **on-sync-done.sh** (38 líneas) - Al completar sync
-- **on-test-run.sh** (79 líneas) - Al ejecutar tests
-- **on-deploy.sh** (111 líneas) - Al hacer deployment
+### 1. Hook Templates Python (6 templates)
+- **pre_command.py** (70 líneas) - Antes de ejecutar `/mj2:*`
+- **post_command.py** (95 líneas) - Después de ejecutar `/mj2:*`
+- **on_spec_created.py** (92 líneas) - Al crear una SPEC
+- **on_sync_done.py** (65 líneas) - Al completar sync
+- **on_test_run.py** (110 líneas) - Al ejecutar tests
+- **on_deploy.py** (145 líneas) - Al hacer deployment
 
-### 2. Hook Examples (4 ejemplos funcionales)
-- **slack-notification.sh** (82 líneas) - Notificaciones a Slack
-- **spec-backup.sh** (61 líneas) - Backup de SPECs a S3
-- **metrics-tracker.sh** (93 líneas) - Tracking de métricas
-- **coverage-reporter.sh** (166 líneas) - Monitoreo de coverage
+### 2. Hook Examples Python (4 ejemplos funcionales)
+- **slack_notification.py** (78 líneas) - Notificaciones a Slack
+- **spec_backup.py** (83 líneas) - Backup de SPECs a S3 con boto3
+- **metrics_tracker.py** (110 líneas) - Tracking de métricas con JSON Lines
+- **coverage_reporter.py** (170 líneas) - Monitoreo de coverage con badges
 
 ### 3. Documentación
-- **README.md** actualizado con MJ² Hooks System
-- **config.json** (150+ líneas) - Configuración de hooks
-- **.github/issues/issue-50.md** - Documentación del issue
+- **README.md** actualizado con ejemplos Python y cross-platform notes
+- **config.json** (185+ líneas) - Configuración con Python requirements
+- **.github/issues/issue-50.md** - Documentación del issue actualizada
 
 ---
 

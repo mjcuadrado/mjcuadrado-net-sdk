@@ -1,7 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "description": "MJ² Hooks System Configuration",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "python": {
+    "required": true,
+    "minVersion": "3.8",
+    "note": "Python hooks are cross-platform (Windows, macOS, Linux)"
+  },
   "hooks": {
     "enabled": true,
     "timeout": 30000,
@@ -10,7 +15,7 @@
         "name": "metrics-tracker",
         "description": "Track command execution metrics",
         "event": "post-command",
-        "script": ".claude/hooks/examples/metrics-tracker.sh",
+        "script": ".claude/hooks/examples/metrics_tracker.py",
         "enabled": true,
         "async": true,
         "continueOnError": true
@@ -19,7 +24,7 @@
         "name": "coverage-reporter",
         "description": "Monitor test coverage and generate reports",
         "event": "on-test-run",
-        "script": ".claude/hooks/examples/coverage-reporter.sh",
+        "script": ".claude/hooks/examples/coverage_reporter.py",
         "enabled": true,
         "async": false,
         "continueOnError": false,
@@ -32,35 +37,38 @@
         "name": "spec-backup",
         "description": "Backup SPECs to S3",
         "event": "on-spec-created",
-        "script": ".claude/hooks/examples/spec-backup.sh",
+        "script": ".claude/hooks/examples/spec_backup.py",
         "enabled": false,
         "async": true,
         "continueOnError": true,
         "config": {
           "s3Bucket": "${S3_BACKUP_BUCKET}"
-        }
+        },
+        "dependencies": ["boto3"]
       },
       {
         "name": "spec-backup-update",
         "description": "Backup SPECs to S3 on update",
         "event": "on-spec-updated",
-        "script": ".claude/hooks/examples/spec-backup.sh",
+        "script": ".claude/hooks/examples/spec_backup.py",
         "enabled": false,
         "async": true,
-        "continueOnError": true
+        "continueOnError": true,
+        "dependencies": ["boto3"]
       },
       {
         "name": "slack-deploy-notification",
         "description": "Send Slack notification on deployment",
         "event": "post-deploy",
-        "script": ".claude/hooks/examples/slack-notification.sh",
+        "script": ".claude/hooks/examples/slack_notification.py",
         "enabled": false,
         "async": true,
         "continueOnError": true,
         "config": {
           "slackWebhook": "${SLACK_WEBHOOK_URL}",
           "environments": ["staging", "production"]
-        }
+        },
+        "dependencies": ["requests"]
       }
     ]
   },
@@ -155,14 +163,25 @@
     "enableHook": "Set 'enabled: true' for the hook you want to activate",
     "disableHook": "Set 'enabled: false' to temporarily disable a hook",
     "customHook": "Copy a template from .claude/hooks/templates/ and register it here",
-    "environmentVariables": "Use ${VAR_NAME} syntax to reference environment variables"
+    "environmentVariables": "Use ${VAR_NAME} syntax to reference environment variables",
+    "runHook": "python3 .claude/hooks/examples/metrics_tracker.py"
+  },
+  "requirements": {
+    "python": "Python 3.8+ required for cross-platform compatibility",
+    "install": "pip install requests boto3  # For optional hooks",
+    "verify": "python3 --version"
   },
   "notes": [
+    "Hooks are written in Python for cross-platform compatibility (Windows, macOS, Linux)",
+    "Python 3.8+ is required - verify with: python3 --version",
     "Hooks with 'async: true' run in the background and don't block the workflow",
     "Hooks with 'continueOnError: true' won't stop execution if they fail",
     "Set environment variables in your shell or CI/CD system (e.g., SLACK_WEBHOOK_URL)",
+    "Some hooks require additional packages (listed in 'dependencies' field)",
+    "Install dependencies with: pip install requests boto3",
     "Templates are available in .claude/hooks/templates/",
     "Examples are available in .claude/hooks/examples/",
-    "Documentation: .claude/hooks/README.md"
+    "Documentation: .claude/hooks/README.md",
+    "Follows moai-adk pattern: https://github.com/modu-ai/moai-adk"
   ]
 }
