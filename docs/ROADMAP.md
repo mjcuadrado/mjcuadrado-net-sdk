@@ -1,7 +1,8 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-23 (v0.5.0 CASI COMPLETA 6/9 - Issues #44-46,48-50 ✅ | Issue #53 creado)
+**Última actualización:** 2025-11-23 (v0.5.0 CASI COMPLETA 6/9 - Issues #44-46,48-50 ✅ | Gap Analysis completo | Issues #54-63 creados)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md
+**Roadmap extendido:** v0.6.0-v0.9.0 (10 issues nuevos | +27 skills | +5 agentes proyectados)
 
 ---
 
@@ -715,7 +716,29 @@ v0.5.0 (3-4 semanas) ← ADVANCED 🆕
   └── MCP Integrations (#52)
       │
       ↓
-v1.0.0 - FULL STACK READY + EXTENSIBLE
+v0.6.0 (3 semanas) ← ESSENTIAL AGENTS 🆕
+  ├── Implementation Planner (#54)
+  ├── Format Expert (#55)
+  └── Docs Manager (#56)
+      │
+      ↓
+v0.7.0 (4 semanas) ← CLOUD & DEVOPS 🆕
+  ├── Azure Cloud Skills (#57)
+  ├── Kubernetes & IaC (#58)
+  └── GraphQL & gRPC (#59)
+      │
+      ↓
+v0.8.0 (2 semanas) ← ADVANCED AGENTS 🆕
+  ├── Monitoring Expert (#60)
+  └── UI/UX Expert (#61)
+      │
+      ↓
+v0.9.0 (2.5 semanas) ← SPECIALIZED SKILLS 🆕
+  ├── MAUI & Blazor (#62)
+  └── Advanced Testing (#63)
+      │
+      ↓
+v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 ```
 
 ---
@@ -730,34 +753,46 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE
 | v0.3.0 | #33-38 (6 issues) | 5-6 | 🟡 IMPORTANTE |
 | v0.4.0 | #39-43 (5 issues) | 4-5 | 🟢 NICE TO HAVE |
 | v0.5.0 | #44-52 (9 issues) | 3-4 | 🔵 ADVANCED |
-| **Total** | **29 issues** | **18-22 semanas** | **(~5 meses)** |
+| v0.6.0 | #54-56 (3 issues) | 3 | 🟡 ESSENTIAL AGENTS |
+| v0.7.0 | #57-59 (3 issues) | 4 | 🔴 CLOUD & DEVOPS |
+| v0.8.0 | #60-61 (2 issues) | 2 | 🟡 ADVANCED AGENTS |
+| v0.9.0 | #62-63 (2 issues) | 2.5 | 🟡 SPECIALIZED |
+| **Total** | **38 issues** | **30-35 semanas** | **(~7.5 meses)** |
 
 ### Skills Totales
 
-| Categoría | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v1.0.0 (proyectado) |
-|-----------|--------|--------|--------|--------|-----------------|---------------------|
-| Foundation | 5 | 5 | 5 | 5 | 5 | 5 |
-| .NET | 4 | 9 | 10 | 11 | 10 | 11 |
-| Frontend | 0 | 8 | 11 | 12 | 10 | 12 |
-| Architecture | 0 | 5 | 5 | 5 | 5 | 5 |
-| Testing | 1 | 3 | 5 | 5 | 4 | 5 |
-| DevOps | 0 | 0 | 5 | 5 | 6 | 6 |
-| Security | 0 | 0 | 0 | 3 | 3 | 3 |
-| Performance | 0 | 0 | 0 | 2 | 2 | 2 |
-| MJ² | 2 | 2 | 2 | 2 | 2 | 2 |
-| System | 0 | 0 | 0 | 0 | 0 | 3 |
-| **Total** | **11** | **32** | **43** | **50** | **45** | **53** |
+| Categoría | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v0.6.0 | v0.7.0 | v0.8.0 | v0.9.0 | v1.0.0 |
+|-----------|--------|--------|--------|--------|-----------------|--------|--------|--------|--------|--------|
+| Foundation | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| .NET | 4 | 9 | 10 | 11 | 10 | 10 | 10 | 10 | 10 | 10 |
+| Frontend | 0 | 8 | 11 | 12 | 10 | 10 | 10 | 10 | 14 | 14 |
+| Architecture | 0 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Testing | 1 | 3 | 5 | 5 | 4 | 4 | 4 | 4 | 7 | 7 |
+| Tools | 0 | 0 | 5 | 5 | 6 | 9 | 17 | 17 | 17 | 17 |
+| Cloud | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 4 | 4 |
+| Security | 0 | 0 | 0 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| Performance | 0 | 0 | 0 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| Backend | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 4 | 4 |
+| MJ² | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| **Total** | **11** | **32** | **43** | **50** | **45** | **48** | **64** | **64** | **72** | **72** |
 
 **Nota:** Skills v0.5.0 contadas en audit (2025-11-23): 45 skills reales
+**Nuevas skills:**
+- v0.6.0: +3 (dotnet-format, prettier, eslint)
+- v0.7.0: +16 (4 Azure Cloud + 4 K8s/IaC + 4 GraphQL/gRPC + 4 SignalR)
+- v0.9.0: +8 (4 MAUI/Blazor + 3 Advanced Testing)
 
 ### Agentes Totales
 
-| Tipo | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v1.0.0 (proyectado) |
-|------|--------|--------|--------|--------|-----------------|---------------------|
-| Core | 6 | 8 | 10 | 15 | 21 | 21 |
-| **Total** | **6** | **8** | **10** | **15** | **21** | **21** |
+| Tipo | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v0.6.0 | v0.7.0 | v0.8.0 | v0.9.0 | v1.0.0 |
+|------|--------|--------|--------|--------|-----------------|--------|--------|--------|--------|--------|
+| Core | 6 | 8 | 10 | 15 | 21 | 24 | 24 | 26 | 26 | 26 |
+| **Total** | **6** | **8** | **10** | **15** | **21** | **24** | **24** | **26** | **26** | **26** |
 
 **Nota:** Agentes v0.5.0 contados en audit (2025-11-23): 21 agentes reales ✅
+**Nuevos agentes:**
+- v0.6.0: +3 (implementation-planner, format-expert, docs-manager)
+- v0.8.0: +2 (monitoring-expert, ui-ux-expert)
 
 ---
 
@@ -987,28 +1022,201 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE
 
 ---
 
+### 🟡 ESSENTIAL AGENTS - v0.6.0 (Issues #54-56) - Core Agents Expansion
+
+**Gap Analysis: Agentes esenciales de moai-adk que completan el toolkit**
+
+**Issue #54: Implementation Planner Agent** (6-7 días)
+- `.claude/agents/mj2/implementation-planner.md` (~800 líneas)
+  - Planning detallado de implementación
+  - Workflow: ANALYZE → PLAN → BREAK_DOWN → VALIDATE
+  - Complementa spec-builder con planificación técnica
+  - Task breakdown exhaustivo
+  - Dependency graph generation
+  - Integration con quality-gate
+- `.claude/commands/mj2-1p-plan-impl.md` (~180 líneas)
+  - Comando para planning de implementación
+  - Sintaxis: `/mj2:1p-plan-impl <SPEC-ID>`
+- **Adaptar de:** moai-adk/implementation-planner
+- **Prioridad:** 🔴 Alta (mejor workflow planning)
+- **Tiempo:** 6-7 días
+
+**Issue #55: Format Expert Agent** (4-5 días)
+- `.claude/agents/mj2/format-expert.md` (~650 líneas)
+  - Code formatting y linting automatizado
+  - Workflow: ANALYZE → FORMAT → LINT → VALIDATE
+  - Integration con dotnet format, prettier, ESLint, StyleCop
+  - Auto-formatting pre-commit
+  - Style guidelines validation
+- `.claude/commands/mj2-format.md` (~150 líneas)
+  - Sintaxis: `/mj2:format [path] [--check|--fix|--staged]`
+- `.claude/skills/tools/dotnet-format.md` (~300 líneas)
+- `.claude/skills/tools/prettier.md` (~250 líneas)
+- `.claude/skills/tools/eslint.md` (~300 líneas)
+- **Adaptar de:** moai-adk/format-expert
+- **Prioridad:** 🟡 Media (código consistente)
+- **Tiempo:** 4-5 días
+
+**Issue #56: Docs Manager Agent** (5-6 días)
+- `.claude/agents/mj2/docs-manager.md` (~750 líneas)
+  - Gestión completa de documentación del proyecto
+  - Workflow: AUDIT → UPDATE → GENERATE → PUBLISH
+  - README, CHANGELOG, API docs, ADRs
+  - Integration con doc-syncer (TAG sync)
+  - GitHub Pages support
+- `.claude/commands/mj2-docs.md` (~200 líneas)
+  - Sintaxis: `/mj2:docs <action>` (audit, update, generate, publish)
+- **Adaptar de:** moai-adk/docs-manager
+- **Prioridad:** 🟡 Media (documentación profesional)
+- **Tiempo:** 5-6 días
+
+**Tiempo Total v0.6.0:** 3 semanas (~16-18 días)
+
+---
+
+### 🟠 CLOUD & DEVOPS - v0.7.0 (Issues #57-59) - Azure & Modern APIs
+
+**Gap Analysis: Azure crítico para .NET + APIs modernas**
+
+**Issue #57: Azure Cloud Skills** (7 días) 🔴 CRÍTICO
+- `.claude/skills/cloud/azure-fundamentals.md` (~450 líneas)
+  - Azure Resource Groups, Azure CLI, ARM Templates, Bicep
+- `.claude/skills/cloud/azure-app-service.md` (~400 líneas)
+  - Web Apps deployment, App Service Plans, Deployment slots
+- `.claude/skills/cloud/azure-functions.md` (~350 líneas)
+  - Serverless .NET, HTTP/Timer triggers, Durable Functions
+- `.claude/skills/cloud/azure-sql.md` (~400 líneas)
+  - Azure SQL Database, Geo-replication, Elastic pools
+- **Adaptar de:** moai-adk/domain-cloud
+- **Prioridad:** 🔴 Alta (crítico para stack .NET)
+- **Tiempo:** 7 días
+
+**Issue #58: Kubernetes & IaC Skills** (7 días)
+- `.claude/skills/tools/kubernetes.md` (~500 líneas)
+  - Pods, Deployments, Services, Ingress, Helm charts
+- `.claude/skills/tools/helm.md` (~350 líneas)
+  - Chart structure, Values.yaml, Release management
+- `.claude/skills/tools/terraform.md` (~450 líneas)
+  - HCL syntax, Providers (Azure, AWS), State management, Modules
+- `.claude/skills/tools/bicep.md` (~350 líneas)
+  - Azure IaC, Bicep vs ARM, Modules
+- **Adaptar de:** moai-adk/domain-devops
+- **Prioridad:** 🟡 Media (orquestación avanzada)
+- **Tiempo:** 7 días
+
+**Issue #59: GraphQL & gRPC Skills** (5-6 días)
+- `.claude/skills/backend/graphql.md` (~400 líneas)
+  - GraphQL fundamentals, Schema, Queries, Mutations, Subscriptions
+- `.claude/skills/backend/hotchocolate.md` (~450 líneas)
+  - HotChocolate 13+ (.NET), Schema-first vs Code-first, DataLoaders
+- `.claude/skills/backend/grpc.md` (~400 líneas)
+  - gRPC fundamentals, Protocol Buffers, Streaming
+- `.claude/skills/backend/signalr.md` (~350 líneas)
+  - Real-time communication, Hubs, Scaling con Redis
+- **Adaptar de:** moai-adk/domain-backend
+- **Prioridad:** 🟡 Media (APIs modernas)
+- **Tiempo:** 5-6 días
+
+**Tiempo Total v0.7.0:** 4 semanas (~19-20 días)
+
+---
+
+### 🟣 ADVANCED AGENTS - v0.8.0 (Issues #60-61) - Expert Orchestration
+
+**Gap Analysis: Agentes orquestadores avanzados de moai-adk**
+
+**Issue #60: Monitoring Expert Agent** (5 días)
+- `.claude/agents/mj2/monitoring-expert.md` (~700 líneas)
+  - Orchestrar observability stack completo
+  - Workflow: INSTRUMENT → COLLECT → ANALYZE → ALERT
+  - Orchestrar OpenTelemetry, Grafana, Prometheus, Jaeger, Loki, Serilog
+  - SLO/SLI definition
+  - Alerting strategy
+  - Dashboard automation
+- `.claude/commands/mj2-monitor.md` (~180 líneas)
+  - Sintaxis: `/mj2:monitor <action>` (setup, dashboard, alert)
+- **Adaptar de:** moai-adk/monitoring-expert
+- **Prioridad:** 🟡 Media (orchestration de skills existentes)
+- **Tiempo:** 5 días
+
+**Issue #61: UI/UX Expert Agent** (5-6 días)
+- `.claude/agents/mj2/ui-ux-expert.md` (~750 líneas)
+  - Diseño UX completo, complementa component-designer
+  - Workflow: RESEARCH → DESIGN → PROTOTYPE → TEST
+  - User research, Information architecture, Interaction design
+  - User personas, Journey maps, Wireframes
+  - Usability testing, A/B testing
+  - Integration con component-designer, accessibility-expert
+- `.claude/commands/mj2-ux-design.md` (~200 líneas)
+  - Sintaxis: `/mj2:ux-design <feature>`
+- **Adaptar de:** moai-adk/ui-ux-expert
+- **Prioridad:** 🟡 Media (UX profesional)
+- **Tiempo:** 5-6 días
+
+**Tiempo Total v0.8.0:** 2 semanas (~10-11 días)
+
+---
+
+### 🔵 SPECIALIZED SKILLS - v0.9.0 (Issues #62-63) - .NET Ecosystem
+
+**Gap Analysis: Skills especializadas del ecosistema .NET**
+
+**Issue #62: MAUI & Blazor Skills** (7 días)
+- `.claude/skills/frontend/maui.md` (~450 líneas)
+  - .NET MAUI fundamentals, Cross-platform (iOS, Android, Windows, macOS)
+  - MVVM pattern, Platform-specific code
+- `.claude/skills/frontend/blazor-server.md` (~400 líneas)
+  - Blazor Server architecture, SignalR connection, State management
+- `.claude/skills/frontend/blazor-wasm.md` (~400 líneas)
+  - Blazor WebAssembly, PWA support, AOT compilation, JavaScript interop
+- `.claude/skills/frontend/blazor-hybrid.md` (~350 líneas)
+  - Blazor Hybrid (MAUI + Blazor), WebView integration, Native capabilities
+- **Adaptar de:** moai-adk/domain-mobile, moai-adk/domain-frontend
+- **Prioridad:** 🟡 Media (.NET mobile & SPA)
+- **Tiempo:** 7 días
+
+**Issue #63: Advanced Testing Skills** (5-6 días)
+- `.claude/skills/testing/load-testing.md` (~450 líneas)
+  - k6 (JavaScript load testing), Performance benchmarks, Stress testing
+- `.claude/skills/testing/contract-testing.md` (~400 líneas)
+  - Consumer-driven contracts, Pact (.NET), API contract validation
+- `.claude/skills/testing/mutation-testing.md` (~350 líneas)
+  - Stryker.NET, Test quality validation, Coverage vs mutation score
+- **Adaptar de:** moai-adk/domain-testing
+- **Prioridad:** 🟡 Media (testing avanzado)
+- **Tiempo:** 5-6 días
+
+**Tiempo Total v0.9.0:** 2.5 semanas (~12-13 días)
+
+---
+
 ## 🎯 Next Steps
 
 ### Inmediato (próximos 7 días)
 
-1. ✅ **Issue #23:** Gap Analysis (DONE)
-2. ⏳ **Issue #24:** PostgreSQL & Mapster
-3. ⏳ **Issue #25:** MediatR & FluentValidation
+1. ✅ **Issue #53:** Documentation Sync (DONE)
+2. ✅ **Gap Analysis:** moai-adk vs mj2 (DONE)
+3. ✅ **Issues #54-63:** Creados (DONE)
+4. ⏳ **Issue #51:** Output Styles Customization (pendiente v0.5.0)
+5. ⏳ **Issue #52:** MCP Integrations (evaluación v0.5.0)
 
-### Corto Plazo (próximas 4 semanas)
+### Corto Plazo (v0.5.0 - próximas 2 semanas)
 
-- Issues #26-28: Architecture + React Core
-- Milestone: Backend Advanced + Frontend Foundation
+- Completar Issues #51-52
+- Milestone: v0.5.0 COMPLETA (9/9)
+- Release v0.5.0
 
-### Mediano Plazo (2-3 meses)
+### Mediano Plazo (v0.6.0-v0.7.0 - 2 meses)
 
-- Issues #29-35: Frontend completo + DevOps
-- Milestone: Full Stack + CI/CD
+- Issues #54-56: Essential Agents
+- Issues #57-59: Azure Cloud + K8s + GraphQL/gRPC
+- Milestone: Cloud Native + Modern APIs
 
-### Largo Plazo (4 meses)
+### Largo Plazo (v0.8.0-v1.0.0 - 2 meses)
 
-- Issues #36-43: Observability + Security + Templates
-- Milestone: v1.0.0 Production Ready
+- Issues #60-61: Monitoring + UI/UX Experts
+- Issues #62-63: MAUI/Blazor + Advanced Testing
+- Milestone: v1.0.0 Full Stack + Extensible + Cloud Native
 
 ---
 
