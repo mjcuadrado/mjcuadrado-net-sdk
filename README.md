@@ -312,10 +312,15 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ OWASP Top 10:2021 mitigación completa
 - ✅ Workflow de 4 fases: ASSESS → DESIGN → IMPLEMENT → VERIFY
 
-**API Designer Agent** 📋 Issue #40
-- 📋 API design best practices (RESTful/GraphQL)
-- 📋 OpenAPI/Swagger documentation
-- 📋 API versioning strategies
+**API Designer Agent** ✅ Issue #40
+- ✅ api-designer.md agent (680 líneas) - RESTful API design best practices
+- ✅ mj2-api-design.md command (210 líneas) - API design automation
+- ✅ REST constraints y resource modeling
+- ✅ OpenAPI/Swagger documentation completa
+- ✅ API versioning strategies (URL, Header, Query)
+- ✅ Pagination (offset y cursor), filtering, sorting
+- ✅ RFC 7807 Problem Details error handling
+- ✅ Workflow de 4 fases: ANALYZE → DESIGN → DOCUMENT → VALIDATE
 
 **Project Templates** 📋 Issue #41
 - 📋 Clean Architecture template
@@ -376,7 +381,7 @@ Ver documentación completa en `.github/issues/issue-*.md`
 
 ### v0.4.0 - Advanced Features 🚧 EN PROGRESO (Issues #39-43)
 - [#39 - Security Expert](/.github/issues/issue-39.md) ✅
-- #40 - API Designer Agent 📋
+- [#40 - API Designer Agent](/.github/issues/issue-40.md) ✅
 - #41 - Project Templates 📋
 - #42 - Performance Engineer 📋
 - #43 - Accessibility Expert 📋
