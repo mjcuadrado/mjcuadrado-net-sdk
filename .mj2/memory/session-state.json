@@ -1,0 +1,54 @@
+{
+  "session_id": "session-2025-11-23",
+  "started_at": "2025-11-23T09:00:00Z",
+  "last_updated": "2025-11-23T10:00:00Z",
+  "context": {
+    "current_spec": null,
+    "current_phase": "IDLE",
+    "current_issue": "ISSUE-044",
+    "branch": "feature/issue-44-feedback-system",
+    "technologies": [
+      "ASP.NET Core 10",
+      "React 18",
+      "TypeScript 5",
+      "PostgreSQL 16"
+    ]
+  },
+  "learnings_applied": [
+    {
+      "rule_id": "avoid-n1",
+      "applied_at": "2025-11-23T10:00:00Z",
+      "result": "success",
+      "context": "Initial setup"
+    }
+  ],
+  "feedback_summary": {
+    "total": 0,
+    "open": 0,
+    "resolved": 0,
+    "archived": 0,
+    "by_type": {
+      "bug": 0,
+      "feature": 0,
+      "question": 0
+    },
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    }
+  },
+  "execution_history": [
+    {
+      "command": "/mj2:9-feedback",
+      "timestamp": "2025-11-23T10:00:00Z",
+      "action": "init",
+      "status": "success"
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "environment": "development"
+  }
+}

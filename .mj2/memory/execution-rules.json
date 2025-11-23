@@ -1,0 +1,50 @@
+{
+  "rules": [
+    {
+      "id": "avoid-n1",
+      "trigger": "EF Core query detected",
+      "action": "Suggest .Include() or .AsSplitQuery()",
+      "priority": "high",
+      "enabled": true,
+      "description": "Detecta y previene N+1 query patterns en Entity Framework Core",
+      "skillRef": ".claude/skills/backend/ef-core.md#n1-queries",
+      "createdAt": "2025-11-23T10:00:00Z"
+    },
+    {
+      "id": "check-accessibility",
+      "trigger": "React component with <img>",
+      "action": "Verify alt attribute",
+      "priority": "medium",
+      "enabled": true,
+      "description": "Verifica que todas las imágenes tengan texto alternativo para accesibilidad",
+      "skillRef": ".claude/skills/frontend/accessibility.md#text-alternatives",
+      "createdAt": "2025-11-23T10:00:00Z"
+    },
+    {
+      "id": "use-result-pattern",
+      "trigger": "Error handling needed",
+      "action": "Suggest Result<T> pattern",
+      "priority": "medium",
+      "enabled": true,
+      "description": "Recomienda usar Result pattern en lugar de excepciones para casos de negocio",
+      "skillRef": ".claude/skills/architecture/result-pattern.md",
+      "createdAt": "2025-11-23T10:00:00Z"
+    },
+    {
+      "id": "validate-spec-coverage",
+      "trigger": "New feature implementation",
+      "action": "Verify SPEC exists and is linked",
+      "priority": "high",
+      "enabled": true,
+      "description": "Asegura que toda feature tenga su SPEC en formato EARS",
+      "skillRef": ".claude/agents/mj2/spec-builder.md",
+      "createdAt": "2025-11-23T10:00:00Z"
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-11-23T10:00:00Z",
+    "totalRules": 4,
+    "enabledRules": 4
+  }
+}

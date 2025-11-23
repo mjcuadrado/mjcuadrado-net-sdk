@@ -1,0 +1,86 @@
+{
+  "patterns": [
+    {
+      "id": "n1-query",
+      "name": "N+1 Query Pattern",
+      "category": "performance",
+      "frequency": 0,
+      "severity": "high",
+      "description": "Queries que generan 1 query principal + N queries adicionales",
+      "occurrences": [],
+      "solution": {
+        "description": "Usar .Include() para eager loading o .AsSplitQuery() para split queries",
+        "example": "dbContext.Orders.Include(o => o.Items).ToListAsync()",
+        "skillRef": ".claude/skills/backend/ef-core.md#n1-queries"
+      },
+      "prevention": [
+        "Code review checklist",
+        "Logging de queries en desarrollo",
+        "Profiling con MiniProfiler"
+      ]
+    },
+    {
+      "id": "missing-alt-text",
+      "name": "Missing Alt Text",
+      "category": "accessibility",
+      "frequency": 0,
+      "severity": "medium",
+      "description": "Imágenes sin texto alternativo",
+      "occurrences": [],
+      "solution": {
+        "description": "Agregar alt attribute a todos los elementos <img>",
+        "example": "<img src=\"product.jpg\" alt=\"Producto XYZ\" />",
+        "skillRef": ".claude/skills/frontend/accessibility.md#text-alternatives"
+      },
+      "prevention": [
+        "Pre-commit hook con axe-core",
+        "ESLint rule jsx-a11y/alt-text",
+        "Ejecutar /mj2:a11y-audit regularmente"
+      ]
+    },
+    {
+      "id": "unhandled-error",
+      "name": "Unhandled Error",
+      "category": "error-handling",
+      "frequency": 0,
+      "severity": "high",
+      "description": "Errores no manejados o uso incorrecto de excepciones",
+      "occurrences": [],
+      "solution": {
+        "description": "Implementar Result<T> pattern para casos de negocio",
+        "example": "public Result<Order> CreateOrder(CreateOrderDto dto)",
+        "skillRef": ".claude/skills/architecture/result-pattern.md"
+      },
+      "prevention": [
+        "Usar Result pattern por defecto",
+        "Reservar excepciones para casos excepcionales",
+        "Documentar error cases en SPEC"
+      ]
+    },
+    {
+      "id": "missing-spec",
+      "name": "Missing SPEC",
+      "category": "documentation",
+      "frequency": 0,
+      "severity": "high",
+      "description": "Features sin SPEC en formato EARS",
+      "occurrences": [],
+      "solution": {
+        "description": "Crear SPEC con /mj2:1-plan antes de implementar",
+        "example": "/mj2:1-plan \"API para crear pedidos\"",
+        "skillRef": ".claude/agents/mj2/spec-builder.md"
+      },
+      "prevention": [
+        "Workflow SPEC-First obligatorio",
+        "Pre-commit hook verifica SPEC",
+        "Code review checklist"
+      ]
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-11-23T10:00:00Z",
+    "totalPatterns": 4,
+    "totalOccurrences": 0
+  }
+}
