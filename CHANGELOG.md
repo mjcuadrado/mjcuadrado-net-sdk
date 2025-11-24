@@ -11,6 +11,51 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - Ninguno
 
 ### Completado recientemente
+- ✅ **2024-11-24**: Issue #61 - UI/UX Expert Agent (@SPEC:UX-061, @CODE:UX-061, @DOC:UX-061)
+  - **ui-ux-expert.md agent** (~850 líneas) - User-centered design completo
+    - 4-phase workflow: RESEARCH → DESIGN → PROTOTYPE → TEST
+    - 7 responsibilities (user research, information architecture, journey mapping, wireframing, interaction design, prototyping, usability testing)
+    - Design Thinking methodology (Empathize → Define → Ideate → Prototype → Test)
+    - Jobs-to-be-Done framework integration
+    - Nielsen's 10 Usability Heuristics validation
+    - Integration con component-designer, accessibility-expert, frontend-builder, spec-builder
+    - "Mr. mj2 recomienda" output format
+    - Complete examples per phase
+  - **`/mj2:ux-design` command** (~350 líneas) - Generate UX design artifacts:
+    - Syntax: `/mj2:ux-design <feature> [--research|--journey|--wireframe|--test|--full]`
+    - 5 actions:
+      - `--full` - Complete UX workflow (default)
+      - `--research` - User personas + pain points
+      - `--journey` - User journey mapping
+      - `--wireframe` - Wireframes + layout guidelines
+      - `--test` - Usability test plan
+    - 5 complete examples with outputs
+    - Integration workflows documented
+    - Troubleshooting section
+  - **4 UX templates** (~1,340 líneas total):
+    - **user-persona.md** (~180 líneas) - Demographics, goals, pain points, behaviors, tools, JTBD
+    - **user-journey.md** (~240 líneas) - 4 stages (Discover → Try → Use → Recommend) with emotions, touchpoints
+    - **wireframe-guidelines.md** (~400 líneas) - 5 layout patterns (Hero, Grid, List, Master-Detail, Dashboard), responsive breakpoints, accessibility checkpoints
+    - **usability-test-plan.md** (~520 líneas) - Test objectives, scenarios, metrics (SUS, completion, time), test script, analysis framework
+  - **SPEC-UX-061** completo (spec.md, plan.md, acceptance.md - 1,860+ líneas):
+    - Domain: DESIGN
+    - Complexity: high
+    - Estimated: 40-48 hours
+    - 8 Functional Requirements (FR-1 to FR-8)
+    - 4 Non-Functional Requirements (NFR-1 to NFR-4)
+  - **README.md actualizado** con Issue #61:
+    - v0.8.0: 1/2 completado (Issue #61 añadido) 🟡 EN PROGRESO
+    - Agentes: 26 (ui-ux-expert añadido)
+    - Comandos: 26 (/mj2:ux-design añadido)
+    - Skills: 49 (sin cambios, templates no cuentan como skills)
+    - Mr. mj2 lista actualizada con UI/UX Expert
+  - **ROADMAP.md actualizado**:
+    - Issue #61 marcado COMPLETADO
+    - Gap Analysis: 26 agentes, 26 comandos, 49 skills
+    - Agentes faltantes: 21 (actualizado de 22 - removido ui-ux-expert)
+    - v0.8.0 1/2 en progreso
+  - **TAG chain completa** - @SPEC:UX-061 → @CODE:UX-061 → @DOC:UX-061 ✅
+  - **Total:** ~3,900 líneas (1 agent + 1 command + 4 templates + 3 SPEC docs)
 - ✅ **2024-11-24**: Issue #55 - Format Expert Agent (@SPEC:FMT-055, @CODE:FMT-055, @DOC:FMT-055)
   - **format-expert.md agent** (~680 líneas) - Automated code formatting and linting
     - 4-phase workflow: ANALYZE → FORMAT → LINT → VALIDATE

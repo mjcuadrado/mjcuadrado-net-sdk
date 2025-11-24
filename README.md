@@ -41,7 +41,8 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ♿ **Accessibility Expert** - Valida WCAG 2.1 AA compliance
 - 🎯 **API Designer** - Diseña APIs RESTful con OpenAPI
 - 🎨 **Format Expert** - Automatiza code formatting y linting (C#, TypeScript, JavaScript)
-- ... y 11 agentes más especializados
+- 🎨 **UI/UX Expert** - Diseña experiencias de usuario con research, wireframes y usability testing
+- ... y 10 agentes más especializados
 
 **Mr. mj2 nunca trabaja solo - orquesta expertos para cada tarea.**
 
@@ -78,8 +79,8 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
 - ✅ Tests unitarios (195/195 passing, 100%)
-- ✅ **25 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, planning, formatting, etc.)
-- ✅ **25 comandos slash** - Workflow completo automatizado
+- ✅ **26 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, planning, formatting, UX, etc.)
+- ✅ **26 comandos slash** - Workflow completo automatizado
 - ✅ **49 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security, Tools
 - ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
@@ -265,6 +266,32 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Performance optimization (parallel execution, caching)
 - ✅ Integration with quality-gate, tdd-implementer, pre-commit hooks
 - ✅ "Mr. mj2 recomienda" output format
+
+### v0.8.0 - Specialized Experts - 🟡 EN PROGRESO 1/2 (Issues #60-61)
+
+**UI/UX Expert** ✅ Issue #61
+- ✅ ui-ux-expert agent (850+ líneas) - User-centered design completo
+- ✅ /mj2:ux-design command (350+ líneas) - Generate UX design artifacts
+- ✅ 4-phase workflow: RESEARCH → DESIGN → PROTOTYPE → TEST
+- ✅ 4 UX templates (~1,340 líneas total):
+  - user-persona.md (~180 líneas) - Demographics, goals, pain points, JTBD
+  - user-journey.md (~240 líneas) - 4 stages: Discover → Try → Use → Recommend
+  - wireframe-guidelines.md (~400 líneas) - 5 layout patterns, responsive, accessibility
+  - usability-test-plan.md (~520 líneas) - Test scenarios, metrics, script, analysis
+- ✅ Design Thinking methodology (Empathize → Define → Ideate → Prototype → Test)
+- ✅ Jobs-to-be-Done framework integration
+- ✅ Nielsen's 10 Usability Heuristics validation
+- ✅ Integration with component-designer, accessibility-expert, frontend-builder, spec-builder
+- ✅ User research (personas, pain points, interviews)
+- ✅ Information architecture (sitemap, navigation, content hierarchy)
+- ✅ User journey mapping (actions, emotions, touchpoints)
+- ✅ Wireframing (layouts, components, responsive breakpoints)
+- ✅ Interaction design (user flows, micro-interactions)
+- ✅ Prototyping recommendations (fidelity levels, tools, design tokens)
+- ✅ Usability testing (test plans, SUS score, analysis framework)
+- ✅ "Mr. mj2 recomienda" output format
+
+**Monitoring Expert** ⏳ Issue #60 (Pending)
 
 ## Instalación
 
