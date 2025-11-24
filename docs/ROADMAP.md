@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-24 (v0.6.0 COMPLETADA 4/4 - Issues #54,55,56,64 ✅ | v0.5.0 CASI COMPLETA 8/9)
+**Última actualización:** 2025-11-24 (v0.8.0 EN PROGRESO 1/2 - Issue #61 ✅ | v0.6.0 COMPLETADA 4/4 | v0.5.0 CASI COMPLETA 8/9)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md + Workflow Orchestration Analysis
 **Roadmap extendido:** v0.6.0-v0.9.0 (11 issues nuevos | +27 skills | +5 agentes | +2 comandos proyectados)
 
@@ -40,8 +40,8 @@
 
 | Aspecto | moai-adk | mj2 (actual) | Gap |
 |---------|----------|--------------|-----|
-| **Agentes** | 31 agentes | 25 agentes | ⚠️ 6 agentes faltantes |
-| **Comandos** | 6 comandos | 25 comandos | ✅ Superior (25 vs 6) |
+| **Agentes** | 31 agentes | 26 agentes | ⚠️ 5 agentes faltantes |
+| **Comandos** | 6 comandos | 26 comandos | ✅ Superior (26 vs 6) |
 | **Skills** | 128 skills | 49 skills | ⚠️ 79 skills faltantes |
 | **Hooks** | Sí (.claude/hooks) | Sí (.claude/hooks - Python v2.0.0) | ✅ Implementado |
 | **Settings** | config.json | config.json (template) | ✅ Implementado |
@@ -51,7 +51,7 @@
 
 ### Agentes en moai-adk que NO tenemos
 
-**Agentes Especializados (22 agentes faltantes):**
+**Agentes Especializados (21 agentes faltantes):**
 
 1. **accessibility-expert** - Accesibilidad web (WCAG, ARIA)
 2. **agent-factory** - Meta-agente para crear nuevos agentes
@@ -1212,19 +1212,35 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 - **Prioridad:** 🟡 Media (orchestration de skills existentes)
 - **Tiempo:** 5 días
 
-**Issue #61: UI/UX Expert Agent** (5-6 días)
-- `.claude/agents/mj2/ui-ux-expert.md` (~750 líneas)
-  - Diseño UX completo, complementa component-designer
-  - Workflow: RESEARCH → DESIGN → PROTOTYPE → TEST
-  - User research, Information architecture, Interaction design
-  - User personas, Journey maps, Wireframes
-  - Usability testing, A/B testing
-  - Integration con component-designer, accessibility-expert
-- `.claude/commands/mj2-ux-design.md` (~200 líneas)
-  - Sintaxis: `/mj2:ux-design <feature>`
+**Issue #61: UI/UX Expert Agent** ✅ **COMPLETADO** (2025-11-24)
+- ✅ `.claude/agents/mj2/ui-ux-expert.md` (850+ líneas)
+  - Diseño UX completo, user-centered design
+  - Workflow: RESEARCH → DESIGN → PROTOTYPE → TEST (4 fases)
+  - 7 responsibilities (research, IA, journey mapping, wireframing, interaction design, prototyping, usability testing)
+  - Design Thinking methodology (Empathize → Define → Ideate → Prototype → Test)
+  - Jobs-to-be-Done framework integration
+  - Nielsen's 10 Usability Heuristics validation
+  - Integration con component-designer, accessibility-expert, frontend-builder, spec-builder
+  - "Mr. mj2 recomienda" output format
+- ✅ `.claude/commands/mj2-ux-design.md` (350+ líneas)
+  - Sintaxis: `/mj2:ux-design <feature> [--research|--journey|--wireframe|--test|--full]`
+  - 5 actions con complete examples
+  - Integration workflows documented
+- ✅ 4 UX templates (~1,340 líneas total):
+  - user-persona.md (~180 líneas) - Demographics, goals, pain points, JTBD
+  - user-journey.md (~240 líneas) - 4 stages with emotions, touchpoints
+  - wireframe-guidelines.md (~400 líneas) - 5 layout patterns, responsive, accessibility
+  - usability-test-plan.md (~520 líneas) - Test scenarios, SUS, analysis framework
+- ✅ `.github/issues/issue-61.md` (documentación - SPEC-UX-061)
+- **Total líneas:** ~3,900
+- **Archivos creados:** 7 (1 agent + 1 command + 4 templates + 1 issue doc)
+- **SPEC:** SPEC-UX-061 (spec.md, plan.md, acceptance.md - ~1,860 líneas)
+- **TAG chain:** @SPEC:UX-061 → @CODE:UX-061 → @DOC:UX-061 ✅
+- **Commits:** 9135135 (SPEC), bbb482b (CODE), pending (DOC)
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/ui-ux-expert
 - **Prioridad:** 🟡 Media (UX profesional)
-- **Tiempo:** 5-6 días
+- **Tiempo:** Completado
 
 **Tiempo Total v0.8.0:** 2 semanas (~10-11 días)
 
