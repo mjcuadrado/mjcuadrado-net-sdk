@@ -4,7 +4,7 @@ SDK para desarrollo automatizado con IA, inspirado en [moai-adk](https://github.
 
 [![Version](https://img.shields.io/badge/version-0.5.0--rc-orange)](https://github.com/mjcuadrado/mjcuadrado-net-sdk/releases)
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue)](https://dotnet.microsoft.com/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License](https://img.shields.io/badge/license-MPL--2.0-orange)](LICENSE)
 [![CI](https://github.com/mjcuadrado/mjcuadrado-net-sdk/workflows/CI/badge.svg)](https://github.com/mjcuadrado/mjcuadrado-net-sdk/actions)
 
 ## Descripción

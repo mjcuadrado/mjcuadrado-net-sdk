@@ -11,6 +11,21 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - Ninguno
 
 ### Completado recientemente
+- ✅ **2024-11-24**: Cambio de licencia MIT → MPL-2.0
+  - **LICENSE actualizado** - Mozilla Public License Version 2.0
+  - **Razón del cambio:**
+    - ✅ Modificaciones del código fuente deben ser públicas (share-alike)
+    - ✅ Uso en aplicaciones propietarias permitido sin restricciones
+    - ✅ Requiere reconocimiento de autoría
+    - ✅ Copyleft a nivel de archivo (no proyecto completo)
+  - **Impacto:**
+    - Badge README.md actualizado: MIT → MPL-2.0
+    - LICENSE-HEADER.md template creado para archivos futuros
+    - Protección del código manteniendo flexibilidad de uso
+  - **Qué significa para usuarios:**
+    - Pueden usar mjcuadrado-net-sdk en apps privadas/comerciales ✅
+    - Si modifican archivos del SDK, deben publicar modificaciones ✅
+    - Deben reconocer autoría de @mjcuadrado ✅
 - ✅ **2024-11-24**: Issue #61 - UI/UX Expert Agent (@SPEC:UX-061, @CODE:UX-061, @DOC:UX-061)
   - **ui-ux-expert.md agent** (~850 líneas) - User-centered design completo
     - 4-phase workflow: RESEARCH → DESIGN → PROTOTYPE → TEST
