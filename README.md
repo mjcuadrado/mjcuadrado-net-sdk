@@ -40,7 +40,8 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ⚡ **Performance Engineer** - Optimiza rendimiento (backend y frontend)
 - ♿ **Accessibility Expert** - Valida WCAG 2.1 AA compliance
 - 🎯 **API Designer** - Diseña APIs RESTful con OpenAPI
-- ... y 12 agentes más especializados
+- 🎨 **Format Expert** - Automatiza code formatting y linting (C#, TypeScript, JavaScript)
+- ... y 11 agentes más especializados
 
 **Mr. mj2 nunca trabaja solo - orquesta expertos para cada tarea.**
 
@@ -77,9 +78,9 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
 - ✅ Tests unitarios (195/195 passing, 100%)
-- ✅ **24 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, planning, etc.)
-- ✅ **24 comandos slash** - Workflow completo automatizado
-- ✅ **46 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security
+- ✅ **25 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, planning, formatting, etc.)
+- ✅ **25 comandos slash** - Workflow completo automatizado
+- ✅ **49 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security, Tools
 - ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
 ### v0.2.0 - Frontend Foundation - ✅ COMPLETADA (Issues #24-32)
@@ -232,7 +233,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - 📋 Output Styles (#51)
 - 📋 MCP Integrations (#52) - Evaluación
 
-### v0.6.0 - Essential Agents - 🟢 EN PROGRESO 1/2 (Issues #54-55)
+### v0.6.0 - Essential Agents - ✅ COMPLETADA 2/2 (Issues #54-55)
 
 **Implementation Planner** ✅ Issue #54
 - ✅ implementation-planner agent (750+ líneas) - Transform SPECs into executable plans
@@ -249,8 +250,21 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Integration with spec-builder, tdd-implementer, quality-gate, doc-syncer
 - ✅ 3 complete examples (CRUD API, Payment Integration, UI Component)
 
-**Issues Pendientes** (v0.6.0)
-- 📋 Format Expert (#55)
+**Format Expert** ✅ Issue #55
+- ✅ format-expert agent (680+ líneas) - Code formatting & linting orchestrator
+- ✅ /mj2:format command (190+ líneas) - Automated formatting for C# and TypeScript/JavaScript
+- ✅ 4-phase workflow: ANALYZE → FORMAT → LINT → VALIDATE
+- ✅ 3 skills created (~930 líneas total):
+  - dotnet-format.md (~330 líneas) - .NET formatting con dotnet format CLI
+  - prettier.md (~270 líneas) - TypeScript/JavaScript formatting
+  - eslint.md (~330 líneas) - JavaScript/TypeScript linting
+- ✅ File type detection (.cs, .ts, .tsx, .js, .jsx)
+- ✅ Configuration auto-detection (.editorconfig, .prettierrc, .eslintrc)
+- ✅ Tool orchestration (dotnet format, prettier, ESLint)
+- ✅ Git integration (--staged, --check, --fix modes)
+- ✅ Performance optimization (parallel execution, caching)
+- ✅ Integration with quality-gate, tdd-implementer, pre-commit hooks
+- ✅ "Mr. mj2 recomienda" output format
 
 ## Instalación
 
