@@ -1,6 +1,6 @@
 # MJ² Roadmap
 
-**Última actualización:** 2025-11-24 (v0.5.0 CASI COMPLETA 8/9 - Issues #44-46,48-50,56,64 ✅ | Gap Analysis + Workflow Orchestration Analysis completos | Issues #54-55,57-63 pendientes)
+**Última actualización:** 2025-11-24 (v0.6.0 EN PROGRESO 3/4 - Issues #54,56,64 ✅ | Issue #55 pendiente | v0.5.0 CASI COMPLETA 8/9)
 **Basado en:** Gap Analysis vs moai-adk + STACK.md + Workflow Orchestration Analysis
 **Roadmap extendido:** v0.6.0-v0.9.0 (11 issues nuevos | +27 skills | +5 agentes | +2 comandos proyectados)
 
@@ -40,8 +40,8 @@
 
 | Aspecto | moai-adk | mj2 (actual) | Gap |
 |---------|----------|--------------|-----|
-| **Agentes** | 31 agentes | 23 agentes | ⚠️ 8 agentes faltantes |
-| **Comandos** | 6 comandos | 23 comandos | ✅ Superior (23 vs 6) |
+| **Agentes** | 31 agentes | 24 agentes | ⚠️ 7 agentes faltantes |
+| **Comandos** | 6 comandos | 24 comandos | ✅ Superior (24 vs 6) |
 | **Skills** | 128 skills | 46 skills | ⚠️ 82 skills faltantes |
 | **Hooks** | Sí (.claude/hooks) | Sí (.claude/hooks - Python v2.0.0) | ✅ Implementado |
 | **Settings** | config.json | config.json (template) | ✅ Implementado |
@@ -718,9 +718,11 @@ v0.5.0 (3-4 semanas) ← ADVANCED 🆕
   └── MCP Integrations (#52) - Evaluación
       │
       ↓
-v0.6.0 (2-3 semanas) ← ESSENTIAL AGENTS 🆕
-  ├── Implementation Planner (#54)
-  └── Format Expert (#55)
+v0.6.0 (2-3 semanas) ← ESSENTIAL AGENTS 🆕 ✅ 3/4
+  ├── Implementation Planner (#54) ✅
+  ├── Format Expert (#55)
+  ├── Docs Manager (#56) ✅
+  └── Workflow Orchestrator (#64) ✅
       │
       ↓
 v0.7.0 (4 semanas) ← CLOUD & DEVOPS 🆕
@@ -785,14 +787,14 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 
 ### Agentes Totales
 
-| Tipo | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 (actual) | v0.6.0 | v0.7.0 | v0.8.0 | v0.9.0 | v1.0.0 |
-|------|--------|--------|--------|--------|-----------------|--------|--------|--------|--------|--------|
+| Tipo | v0.1.0 | v0.2.0 | v0.3.0 | v0.4.0 | v0.5.0 | v0.6.0 (actual) | v0.7.0 | v0.8.0 | v0.9.0 | v1.0.0 |
+|------|--------|--------|--------|--------|--------|-----------------|--------|--------|--------|--------|
 | Core | 6 | 8 | 10 | 15 | 22 | 24 | 24 | 26 | 26 | 26 |
 | **Total** | **6** | **8** | **10** | **15** | **22** | **24** | **24** | **26** | **26** | **26** |
 
-**Nota:** Agentes v0.5.0 contados en audit (2025-11-24): 22 agentes reales ✅
+**Nota:** Agentes v0.6.0 contados (2025-11-24): 24 agentes reales ✅
 **Nuevos agentes:**
-- v0.6.0: +3 (implementation-planner, format-expert, docs-manager)
+- v0.6.0: +2 (implementation-planner ✅, format-expert) | Docs-manager y workflow-status ya incluidos
 - v0.8.0: +2 (monitoring-expert, ui-ux-expert)
 
 ---
@@ -1027,20 +1029,30 @@ v1.0.0 - FULL STACK READY + EXTENSIBLE + CLOUD NATIVE
 
 **Gap Analysis: Agentes esenciales de moai-adk que completan el toolkit + Orquestación explícita**
 
-**Issue #54: Implementation Planner Agent** (6-7 días)
-- `.claude/agents/mj2/implementation-planner.md` (~800 líneas)
-  - Planning detallado de implementación
-  - Workflow: ANALYZE → PLAN → BREAK_DOWN → VALIDATE
-  - Complementa spec-builder con planificación técnica
-  - Task breakdown exhaustivo
-  - Dependency graph generation
-  - Integration con quality-gate
-- `.claude/commands/mj2-1p-plan-impl.md` (~180 líneas)
-  - Comando para planning de implementación
-  - Sintaxis: `/mj2:1p-plan-impl <SPEC-ID>`
+**Issue #54: Implementation Planner Agent** ✅ **COMPLETADO** (2025-11-24)
+- ✅ `.claude/agents/mj2/implementation-planner.md` (750+ líneas)
+  - Transformar SPECs en planes de implementación ejecutables
+  - Workflow: ANALYZE → PLAN → BREAK_DOWN → VALIDATE (4 fases)
+  - 7 Responsibilities (SPEC analysis, technical planning, task breakdown, dependency analysis, risk assessment, complexity estimation, architectural design)
+  - Data sources: SPEC docs, config.json, codebase, git history, skills
+  - 3 complete examples (Simple CRUD, Complex Payment Integration, Frontend Component)
+  - Integration con spec-builder, tdd-implementer, quality-gate, doc-syncer
+  - Output format: "Mr. mj2 recomienda"
+- ✅ `.claude/commands/mj2-plan-impl.md` (470+ líneas)
+  - Comando para planning de implementación: `/mj2:plan-impl <SPEC-ID>`
+  - Options: --detail [basic|medium|detailed], --validate, --format [markdown|json]
+  - 3 detail levels con ejemplos exhaustivos
+  - Workflow integration documentado
+- ✅ SPEC-IMP-054 complete (spec.md, plan.md, acceptance.md - 1,320+ líneas)
+- ✅ `.github/issues/issue-54.md` (documentación completa)
+- ✅ TAG chain completa (@SPEC:IMP-054 → @CODE:IMP-054 → @DOC:IMP-054)
+- **Total líneas:** ~2,500+
+- **Archivos creados:** 6 (1 agent + 1 command + 3 SPEC docs + 1 issue doc)
+- **Commits:** c6afa02 (SPEC), c6d177a (CODE), pending (DOC)
+- **Idioma:** 100% español ✅
 - **Adaptar de:** moai-adk/implementation-planner
 - **Prioridad:** 🔴 Alta (mejor workflow planning)
-- **Tiempo:** 6-7 días
+- **Tiempo:** Completado
 
 **Issue #55: Format Expert Agent** (4-5 días)
 - `.claude/agents/mj2/format-expert.md` (~650 líneas)
