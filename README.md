@@ -642,9 +642,17 @@ Ver documentación completa en `.github/issues/issue-*.md`
 
 Este proyecto está inspirado en [moai-adk](https://github.com/modu-ai/moai-adk), adaptando su filosofía y metodología al ecosistema .NET.
 
+Construido con [Claude Code](https://claude.ai/code) - el CLI oficial de Anthropic para desarrollo asistido por IA.
+
 ## Licencia
 
-[MIT License](LICENSE)
+[Mozilla Public License 2.0](LICENSE)
+
+**¿Qué significa MPL-2.0?**
+- ✅ Puedes usar este SDK en tus proyectos privados y comerciales
+- ✅ Si modificas el código del SDK, debes compartir tus mejoras
+- ✅ Debes mantener el reconocimiento de autoría
+- 📖 [Más sobre MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/)
 
 ## Autor
 
