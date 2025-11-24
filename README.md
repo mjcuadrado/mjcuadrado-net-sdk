@@ -31,6 +31,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - 🔴🟢♻️ **TDD Implementer** - Ejecuta el ciclo RED-GREEN-REFACTOR
 - ✅ **Quality Gate** - Valida que el código cumple TRUST 5 principles
 - 📚 **Doc Syncer** - Mantiene documentación sincronizada automáticamente
+- 📖 **Docs Manager** - Gestiona documentación completa (README, CHANGELOG, API docs, ADRs)
 - 🎨 **Frontend Builder** - Desarrolla componentes React con TDD
 - 🧪 **E2E Tester** - Orquesta tests end-to-end con Playwright
 - 🚀 **DevOps Expert** - Gestiona despliegues y CI/CD
@@ -38,7 +39,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ⚡ **Performance Engineer** - Optimiza rendimiento (backend y frontend)
 - ♿ **Accessibility Expert** - Valida WCAG 2.1 AA compliance
 - 🎯 **API Designer** - Diseña APIs RESTful con OpenAPI
-- ... y 14 agentes más especializados
+- ... y 13 agentes más especializados
 
 **Mr. mj2 nunca trabaja solo - orquesta expertos para cada tarea.**
 
@@ -75,8 +76,8 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
 - ✅ Tests unitarios (195/195 passing, 100%)
-- ✅ **22 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, etc.)
-- ✅ **22 comandos slash** - Workflow completo automatizado
+- ✅ **23 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, etc.)
+- ✅ **23 comandos slash** - Workflow completo automatizado
 - ✅ **46 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security
 - ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
@@ -152,7 +153,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ accessibility-expert agent (850+ líneas)
 - ✅ /mj2:a11y-audit command (650+ líneas)
 
-### v0.5.0 - System Evolution - 🟢 CASI COMPLETA 7/9 (Issues #44-52, #64)
+### v0.5.0 - System Evolution - 🟢 CASI COMPLETA 8/9 (Issues #44-52, #56, #64)
 
 **Feedback & Learning** ✅ Issue #44
 - ✅ feedback-manager agent (437 líneas)
@@ -212,6 +213,18 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ 5 agentes core actualizados con formato "Mr. mj2 recomienda"
 - ✅ UX mejorada con guidance completa en cada fase
 - ✅ TAG chain completa (@SPEC → @CODE → @DOC)
+
+**Docs Manager Agent** ✅ Issue #56
+- ✅ docs-manager agent (750+ líneas) - Complete documentation management
+- ✅ /mj2:docs command (380+ líneas) - 4 actions: audit, update, generate, publish
+- ✅ 4-phase workflow: AUDIT → UPDATE → GENERATE → PUBLISH
+- ✅ README.md management (badges, sections, examples)
+- ✅ CHANGELOG.md generation (Keep a Changelog format)
+- ✅ API documentation (OpenAPI/Swagger)
+- ✅ Architecture docs (C4 diagrams, ADRs)
+- ✅ 5 documentation templates (README, CHANGELOG, ADR, CONTRIBUTING, CODE_OF_CONDUCT)
+- ✅ GitHub Pages publishing support
+- ✅ Integration with doc-syncer, api-designer, release-manager, quality-gate
 
 **Issues Pendientes** (v0.5.0)
 - 📋 Personalization System (#47) - Postponed
@@ -501,7 +514,7 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - ✅ Testing tools: axe-core, Lighthouse, Playwright a11y
 - ✅ Workflow de 4 fases: AUDIT → IDENTIFY → IMPLEMENT → TEST
 
-### v0.5.0: System Evolution 🟢 CASI COMPLETA 6/9 (Issues #44-52)
+### v0.5.0: System Evolution 🟢 CASI COMPLETA 8/9 (Issues #44-52, #56, #64)
 - [x] Feedback & Learning System (#44) ✅
 - [x] Agent & Skill Factory (#45) ✅ - GAME CHANGER
 - [x] Release Management (#46) ✅
@@ -511,8 +524,10 @@ Ver [ROADMAP.md](docs/ROADMAP.md) completo para detalles.
 - [x] Advanced Hooks System (#50) ✅ - Python v2.0.0
 - [ ] Output Styles (#51)
 - [ ] MCP Integrations (#52) - Evaluación
+- [x] Docs Manager Agent (#56) ✅
+- [x] Workflow Orchestrator & "Mr. mj2" (#64) ✅
 
-**Status:** 6 de 9 issues completados. Sistema ahora es extensible y con aprendizaje continuo.
+**Status:** 8 de 9 issues completados (excluye #47 postponed, #52 evaluación). Sistema con documentation management completo.
 
 ## Arquitectura
 
