@@ -28,6 +28,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 
 - 🏗️ **Project Manager** - Inicializa proyectos con estructura óptima
 - 📋 **SPEC Builder** - Convierte ideas en especificaciones EARS
+- 🧩 **Implementation Planner** - Transforma SPECs en planes ejecutables con task breakdown
 - 🔴🟢♻️ **TDD Implementer** - Ejecuta el ciclo RED-GREEN-REFACTOR
 - ✅ **Quality Gate** - Valida que el código cumple TRUST 5 principles
 - 📚 **Doc Syncer** - Mantiene documentación sincronizada automáticamente
@@ -39,7 +40,7 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ⚡ **Performance Engineer** - Optimiza rendimiento (backend y frontend)
 - ♿ **Accessibility Expert** - Valida WCAG 2.1 AA compliance
 - 🎯 **API Designer** - Diseña APIs RESTful con OpenAPI
-- ... y 13 agentes más especializados
+- ... y 12 agentes más especializados
 
 **Mr. mj2 nunca trabaja solo - orquesta expertos para cada tarea.**
 
@@ -76,8 +77,8 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - ✅ Sistema de templates embebidos
 - ✅ Configuración centralizada en `config.json`
 - ✅ Tests unitarios (195/195 passing, 100%)
-- ✅ **23 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, etc.)
-- ✅ **23 comandos slash** - Workflow completo automatizado
+- ✅ **24 agentes mj2** - Core system + especialistas (frontend, DevOps, security, performance, docs, planning, etc.)
+- ✅ **24 comandos slash** - Workflow completo automatizado
 - ✅ **46 skills** - Backend, Frontend, Architecture, Testing, DevOps, Security
 - ✅ Workflow TDD estricto (RED → GREEN → REFACTOR)
 
@@ -230,6 +231,26 @@ Cuando usas mj2, **Mr. mj2** entiende tu intención y delega el trabajo a los ex
 - 📋 Personalization System (#47) - Postponed
 - 📋 Output Styles (#51)
 - 📋 MCP Integrations (#52) - Evaluación
+
+### v0.6.0 - Essential Agents - 🟢 EN PROGRESO 1/2 (Issues #54-55)
+
+**Implementation Planner** ✅ Issue #54
+- ✅ implementation-planner agent (750+ líneas) - Transform SPECs into executable plans
+- ✅ /mj2:plan-impl command (470+ líneas) - Generate implementation plans
+- ✅ 4-phase workflow: ANALYZE → PLAN → BREAK_DOWN → VALIDATE
+- ✅ SPEC analysis (requirements extraction, context analysis)
+- ✅ Technical planning (architecture, stack, patterns, API contracts, DB schema)
+- ✅ Task breakdown (granular 4-8h tasks, acceptance criteria, dependency graphs)
+- ✅ Dependency analysis (external, internal, data, infrastructure)
+- ✅ Risk assessment (identification, scoring, mitigation strategies)
+- ✅ Complexity estimation (level, time, team, skill)
+- ✅ Architectural design (component diagrams, sequence diagrams, Mermaid)
+- ✅ 3 detail levels (basic, medium, detailed) + JSON output
+- ✅ Integration with spec-builder, tdd-implementer, quality-gate, doc-syncer
+- ✅ 3 complete examples (CRUD API, Payment Integration, UI Component)
+
+**Issues Pendientes** (v0.6.0)
+- 📋 Format Expert (#55)
 
 ## Instalación
 

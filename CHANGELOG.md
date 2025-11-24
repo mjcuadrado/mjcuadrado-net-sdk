@@ -11,6 +11,42 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - Ninguno
 
 ### Completado recientemente
+- ✅ **2024-11-24**: Issue #54 - Implementation Planner Agent (@SPEC:IMP-054, @CODE:IMP-054, @DOC:IMP-054)
+  - **implementation-planner.md agent** (~750 líneas) - Transform SPECs into executable implementation plans
+    - 4-phase workflow: ANALYZE → PLAN → BREAK_DOWN → VALIDATE
+    - 7 responsibilities (SPEC analysis, technical planning, task breakdown, dependency analysis, risk assessment, complexity estimation, architectural design)
+    - Data sources: SPEC docs, config.json, codebase, git history, available skills
+    - 3 complete examples (Simple CRUD API, Complex Payment Integration, Frontend Component)
+    - Integration con spec-builder, tdd-implementer, quality-gate, doc-syncer
+    - "Mr. mj2 recomienda" output format
+  - **`/mj2:plan-impl` command** (~470 líneas) - Generate implementation plans from SPECs:
+    - Required: `<SPEC-ID>` - SPEC identifier to analyze
+    - Optional flags:
+      - `--detail [basic|medium|detailed]` - Detail level (default: medium)
+      - `--validate` - Run validation checks before generating plan
+      - `--format [markdown|json]` - Output format (default: markdown)
+    - 3 detail levels:
+      - **basic**: High-level architecture, phase breakdown, top 3 risks, overall estimate
+      - **medium** (DEFAULT): Full component diagrams, all phases with tasks, all dependencies, all risks, quality gates
+      - **detailed**: Everything from medium PLUS individual task details with code examples, test scenarios, sequence diagrams, DB scripts, API contracts
+    - Examples: Simple CRUD, Payment Integration, Frontend Component
+  - **SPEC-IMP-054** completo (spec.md, plan.md, acceptance.md - 1,320+ líneas):
+    - Domain: PLAN
+    - Complexity: high
+    - Estimated: 32-40 hours
+    - 8 Functional Requirements (FR-1 to FR-8)
+    - 4 Non-Functional Requirements (NFR-1 to NFR-4)
+  - **README.md actualizado** con Issue #54:
+    - v0.6.0: 1/2 completado (Issue #54 añadido)
+    - Agentes: 24 (implementation-planner añadido)
+    - Comandos: 24 (/mj2:plan-impl añadido)
+    - Mr. mj2 lista actualizada con Implementation Planner
+  - **ROADMAP.md actualizado**:
+    - Issue #54 marcado COMPLETADO
+    - Gap Analysis: 24 agentes, 24 comandos (actualizado de 23)
+    - Visual roadmap actualizado (v0.6.0 3/4 - 75% completo)
+  - **TAG chain completa** - @SPEC:IMP-054 → @CODE:IMP-054 → @DOC:IMP-054 ✅
+  - **Total:** ~2,500 líneas (1 agent + 1 command + 3 SPEC docs)
 - ✅ **2024-11-24**: Issue #56 - Docs Manager Agent (@SPEC:DOC-002, @CODE:DOC-002, @DOC:DOC-002)
   - **docs-manager.md agent** (~750 líneas) - Complete documentation management
     - 4-phase workflow: AUDIT → UPDATE → GENERATE → PUBLISH
